@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/</item>
+        <item>@font/montserrat_alternates</item>
+        <item>@font/racing_sans_one</item>
+        <item>@font/roboto</item>
+    </array>
+</resources>
