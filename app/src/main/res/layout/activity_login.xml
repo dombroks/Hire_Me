@@ -196,16 +196,17 @@
             android:layout_marginTop="16dp"
             android:text="Don't have an account?"
             android:textColor="@color/black"
-            app:layout_constraintEnd_toStartOf="@+id/textView5"
+            app:layout_constraintEnd_toStartOf="@+id/registerNow"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/registerNow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@={(v)->viewmodel.goToSignUp()}"
             android:text="Register now"
             android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/textView4"
