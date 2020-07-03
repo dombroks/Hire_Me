@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dom_broks.hireme">
 
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
     <application
         android:name=".myApplication"
         android:allowBackup="true"
@@ -11,7 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.auth.SignUp"></activity>
-        <activity android:name=".ui.auth.Login" />
+        <activity android:name=".ui.auth.Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.home.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,9 +30,8 @@
             </intent-filter>
         </activity>
 
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
+
+
     </application>
 
 </manifest>

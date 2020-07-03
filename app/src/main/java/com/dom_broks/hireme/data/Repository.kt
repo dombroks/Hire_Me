@@ -12,6 +12,8 @@ class Repository(private val firebase: FirebaseSource) {
 
     fun logout() = firebase.logout()
 
+    fun loginWithGoogle(idToken : String)=firebase.loginWithGoogle(idToken)
+
 
 }
 
