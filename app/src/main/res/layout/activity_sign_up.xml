@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewmodel"
-            type="com.dom_broks.hireme.ui.auth.viewModel.AuthViewModel"
-            />
+            type="com.dom_broks.hireme.ui.auth.viewModel.AuthViewModel" />
 
     </data>
 
@@ -33,13 +33,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:fontFamily="@font/roboto"
             android:text="Register"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/top" />
+
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="31dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/line"
+            app:layout_constraintEnd_toEndOf="@+id/textView5"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -50,7 +60,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5">
+            app:layout_constraintTop_toBottomOf="@+id/view">
 
             <ImageView
                 android:id="@+id/facebook"
@@ -85,34 +95,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"
-            android:text="Username"
-            android:textColor="@color/black"
-
-            app:layout_constraintBottom_toTopOf="@+id/username"
-            app:layout_constraintStart_toStartOf="@+id/username" />
-
-        <EditText
-            android:id="@+id/username"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="26dp"
-            android:background="@drawable/edit_text_shape"
-            android:paddingLeft="15dp"
-            android:singleLine="true"
-
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto"
             android:singleLine="true"
             android:text="Email address"
             android:textColor="@color/black"
@@ -125,16 +107,16 @@
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginStart="26dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="26dp"
             android:background="@drawable/edit_text_shape"
             android:paddingLeft="15dp"
             android:singleLine="true"
-            android:text=""
+            android:text="@={viewmodel.email}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -159,6 +141,7 @@
             android:inputType="textPassword"
             android:paddingLeft="15dp"
             android:singleLine="true"
+            android:text="@={viewmodel.password}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailAddress" />
@@ -185,6 +168,7 @@
             android:inputType="textPassword"
             android:paddingLeft="15dp"
             android:singleLine="true"
+            android:text="@={viewmodel.passwordConfirm}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -201,6 +185,7 @@
             android:layout_marginRight="26dp"
             android:background="@drawable/button_shape"
             android:fontFamily="sans-serif"
+            android:onClick="@{(v) -> viewmodel.signUp()}"
             android:text="Register"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/white"
@@ -225,11 +210,12 @@
             android:id="@+id/registerNow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:clickable="true"
+            android:fontFamily="@font/roboto_medium"
+            android:onClick="@{(v)->viewmodel.goToLogin(v)}"
             android:text="Login now"
             android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/textView4"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textView4"

@@ -176,7 +176,6 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:clickable="true"
-
                 app:srcCompat="@drawable/ic_google"
                 tools:ignore="VectorDrawableCompat" />
 
@@ -207,7 +206,8 @@
             android:id="@+id/registerNow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:fontFamily="@font/roboto_medium"
+            android:onClick="@{(v)->viewmodel.goToSignUp(v)}"
             android:text="Register now"
             android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/textView4"

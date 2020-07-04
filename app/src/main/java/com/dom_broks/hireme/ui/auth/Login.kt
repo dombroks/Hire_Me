@@ -49,7 +49,7 @@ class Login : AppCompatActivity(), AuthListener, KodeinAware {
 
         viewModel.authListener = this
 
-        google.setOnClickListener(View.OnClickListener { signIn() })
+       google.setOnClickListener(View.OnClickListener { signIn() })
 
         createGoogleSignInRequest()
 

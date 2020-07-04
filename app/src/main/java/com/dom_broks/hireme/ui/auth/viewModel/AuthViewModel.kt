@@ -21,6 +21,10 @@ class AuthViewModel(private val repository: Repository) : ViewModel() {
     var email: String? = null
     var password: String? = null
 
+    var passwordConfirm : String? = null
+
+
+
 
     var authListener: AuthListener? = null
     val user by lazy { repository.currentUser() }
@@ -67,8 +71,11 @@ class AuthViewModel(private val repository: Repository) : ViewModel() {
     }
 
     fun signUp() {
-        if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
+        if (email.isNullOrEmpty() || password.isNullOrEmpty() || passwordConfirm.isNullOrEmpty() ) {
             authListener?.onFailure("Please add valid credentials")
+        }else if(password.equals(passwordConfirm)){
+            authListener?.onFailure("Passwords are not matches")
+
         } else {
             authListener?.onStarted()
 
