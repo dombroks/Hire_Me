@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.dom_broks.hireme.R
-import com.dom_broks.hireme.ui.auth.Login
+import com.dom_broks.hireme.ui.auth.view.Login
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

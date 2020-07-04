@@ -1,4 +1,4 @@
-package com.dom_broks.hireme.ui
+package com.dom_broks.hireme.ui.home
 
 import android.view.View
 import androidx.lifecycle.ViewModel

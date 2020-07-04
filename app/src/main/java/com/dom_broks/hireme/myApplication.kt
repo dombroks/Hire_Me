@@ -19,6 +19,7 @@ class myApplication:Application(),KodeinAware {
         bind() from singleton { FirebaseSource() }
         bind() from singleton { Repository(instance()) }
         bind() from provider { AuthViewModelFactory(instance()) }
+
     }
 
 }

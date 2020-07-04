@@ -2,7 +2,7 @@ package com.dom_broks.hireme.utils
 
 import android.content.Context
 import android.content.Intent
-import com.dom_broks.hireme.ui.auth.Login
+import com.dom_broks.hireme.ui.auth.view.Login
 import com.dom_broks.hireme.ui.home.MainActivity
 
 fun Context.startHomeActivity() =

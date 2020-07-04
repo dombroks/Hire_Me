@@ -1,7 +1,6 @@
-package com.dom_broks.hireme.ui.auth
+package com.dom_broks.hireme.ui.auth.view
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -9,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
 
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil

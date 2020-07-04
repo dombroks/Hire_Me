@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:background="@color/white"
-        tools:context=".ui.auth.Login">
+        tools:context=".ui.auth.view.Login">
 
 
         <ImageView
@@ -67,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginStart="26dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="48dp"
             android:layout_marginEnd="26dp"
             android:background="@drawable/edit_text_shape"
             android:paddingLeft="15dp"
@@ -111,7 +111,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="26dp"
             android:background="@drawable/button_shape"
             android:fontFamily="sans-serif"
@@ -193,7 +193,7 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="68dp"
             android:text="Don't have an account?"
             android:textColor="@color/black"
             app:layout_constraintEnd_toStartOf="@+id/registerNow"

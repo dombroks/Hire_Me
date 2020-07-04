@@ -1,10 +1,9 @@
-package com.dom_broks.hireme.ui.auth
+package com.dom_broks.hireme.ui.auth.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.data.AuthListener
@@ -12,7 +11,6 @@ import com.dom_broks.hireme.databinding.ActivitySignUpBinding
 import com.dom_broks.hireme.ui.auth.viewModel.AuthViewModel
 import com.dom_broks.hireme.ui.auth.viewModel.AuthViewModelFactory
 import com.dom_broks.hireme.utils.startHomeActivity
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
