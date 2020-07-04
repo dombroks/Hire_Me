@@ -2,6 +2,7 @@ package com.dom_broks.hireme.ui.auth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -10,6 +11,7 @@ import com.dom_broks.hireme.data.AuthListener
 import com.dom_broks.hireme.databinding.ActivitySignUpBinding
 import com.dom_broks.hireme.ui.auth.viewModel.AuthViewModel
 import com.dom_broks.hireme.ui.auth.viewModel.AuthViewModelFactory
+import com.dom_broks.hireme.utils.startHomeActivity
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -37,9 +39,11 @@ class SignUp : AppCompatActivity() , AuthListener,KodeinAware{
     }
 
     override fun onSuccess() {
+        startHomeActivity()
     }
 
     override fun onFailure(message: String) {
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
     }
 
 

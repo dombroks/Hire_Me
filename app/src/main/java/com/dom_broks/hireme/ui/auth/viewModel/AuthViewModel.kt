@@ -12,6 +12,7 @@ import com.dom_broks.hireme.data.AuthListener
 import com.dom_broks.hireme.data.Repository
 import com.dom_broks.hireme.ui.auth.Login
 import com.dom_broks.hireme.ui.auth.SignUp
+import com.dom_broks.hireme.utils.isEmailValid
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -21,9 +22,7 @@ class AuthViewModel(private val repository: Repository) : ViewModel() {
     var email: String? = null
     var password: String? = null
 
-    var passwordConfirm : String? = null
-
-
+    var passwordConfirm: String? = null
 
 
     var authListener: AuthListener? = null
@@ -59,10 +58,8 @@ class AuthViewModel(private val repository: Repository) : ViewModel() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-
                     authListener?.onSuccess()
                 }, {
-
                     authListener?.onFailure(it.message!!)
                 })
             disposables.add(disposable)
@@ -71,25 +68,31 @@ class AuthViewModel(private val repository: Repository) : ViewModel() {
     }
 
     fun signUp() {
-        if (email.isNullOrEmpty() || password.isNullOrEmpty() || passwordConfirm.isNullOrEmpty() ) {
+        if (email.isNullOrEmpty() || password.isNullOrEmpty() || passwordConfirm.isNullOrEmpty()) {
             authListener?.onFailure("Please add valid credentials")
-        }else if(password.equals(passwordConfirm)){
-            authListener?.onFailure("Passwords are not matches")
+
 
         } else {
-            authListener?.onStarted()
+            if (!password.equals(passwordConfirm)) {
+                authListener?.onFailure("Passwords are not matches")
+            } else if (!isEmailValid(email!!)) {
+                authListener?.onFailure("Please add a valid email")
 
-            val disposable = repository.register(email!!, password!!)
-                .observeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    authListener?.onSuccess()
+            } else {
 
+                authListener?.onStarted()
 
-                }, {
-                    authListener?.onFailure(it.message!!)
-                })
-            disposables.add(disposable)
+                val disposable = repository.register(email!!, password!!)
+                    .observeOn(Schedulers.io())
+                    .subscribeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        authListener?.onSuccess()
+                    }, {
+                        Log.e("message", "signUp:${it.message!!} ")
+                        authListener?.onFailure(it.message!!)
+                    })
+                disposables.add(disposable)
+            }
         }
     }
 
