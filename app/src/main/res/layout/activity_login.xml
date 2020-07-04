@@ -59,11 +59,11 @@
             android:text="Email address"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/emailAddress"
-            app:layout_constraintStart_toStartOf="@+id/emailAddress" />
+            app:layout_constraintBottom_toTopOf="@+id/username"
+            app:layout_constraintStart_toStartOf="@+id/username" />
 
         <EditText
-            android:id="@+id/emailAddress"
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginStart="26dp"
@@ -87,11 +87,11 @@
             android:text="Password"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/Password"
-            app:layout_constraintStart_toStartOf="@+id/Password" />
+            app:layout_constraintBottom_toTopOf="@+id/emailAddress"
+            app:layout_constraintStart_toStartOf="@+id/emailAddress" />
 
         <EditText
-            android:id="@+id/Password"
+            android:id="@+id/emailAddress"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginStart="26dp"
@@ -104,7 +104,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailAddress" />
+            app:layout_constraintTop_toBottomOf="@+id/username" />
 
         <Button
             android:id="@+id/button"
@@ -133,8 +133,8 @@
             android:fontFamily="@font/roboto"
             android:text="Forgot password?"
             android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@+id/Password"
-            app:layout_constraintTop_toBottomOf="@+id/Password" />
+            app:layout_constraintStart_toStartOf="@+id/emailAddress"
+            app:layout_constraintTop_toBottomOf="@+id/emailAddress" />
 
         <TextView
             android:id="@+id/textView3"
@@ -176,6 +176,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:clickable="true"
+                android:onClick="@={(v)->viewmodel.signUp()}"
                 app:srcCompat="@drawable/ic_google"
                 tools:ignore="VectorDrawableCompat" />
 
