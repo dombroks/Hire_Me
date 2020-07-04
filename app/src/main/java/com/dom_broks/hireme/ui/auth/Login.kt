@@ -48,6 +48,7 @@ class Login : AppCompatActivity(), AuthListener, KodeinAware {
         binding.viewmodel = viewModel
 
         viewModel.authListener = this
+
         google.setOnClickListener(View.OnClickListener { signIn() })
 
         createGoogleSignInRequest()
