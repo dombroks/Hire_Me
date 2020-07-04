@@ -84,7 +84,7 @@ class Login : AppCompatActivity(), AuthListener, KodeinAware {
                 //passing the id token to viewModel login with google function
                 viewModel.loginWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
-                Log.e("Failure",e.message)
+                Log.e("Failure","Msg ${e.message}")
             }
         }
     }
