@@ -4,8 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import bolts.Task.delay
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class SplashScreenViewModel : ViewModel() {
@@ -13,10 +15,12 @@ class SplashScreenViewModel : ViewModel() {
     val liveData: LiveData<SplashState>
         get() = mutableLiveData
     private val mutableLiveData = MutableLiveData<SplashState>()
+
     init {
         GlobalScope.launch{
-            delay(10000)
+            kotlinx.coroutines.delay(5000)
             mutableLiveData.postValue(SplashState.LoginActivity())
+
         }
     }
 

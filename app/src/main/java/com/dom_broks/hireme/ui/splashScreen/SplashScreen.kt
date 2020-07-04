@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.utils.startHomeActivity
 import com.dom_broks.hireme.utils.startLoginActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class SplashScreen : AppCompatActivity() {
 
@@ -19,10 +21,17 @@ class SplashScreen : AppCompatActivity() {
         }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
+        setupViewModel()
 
-        val viewModel: SplashScreenViewModel = ViewModelProviders.of(this)
-            .get(SplashScreenViewModel::class.java)
+
+    }
+
+    private fun setupViewModel() {
+        val viewModel: SplashScreenViewModel =
+            ViewModelProviders.of(this, SplashScreenViewModelFactory())
+                .get(SplashScreenViewModel::class.java)
         viewModel.liveData.observe(this, Observer {
+
             when (it) {
                 is SplashState.LoginActivity -> {
                     finish()
@@ -31,7 +40,6 @@ class SplashScreen : AppCompatActivity() {
             }
 
         })
-
 
     }
 
