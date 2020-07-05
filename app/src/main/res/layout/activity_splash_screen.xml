@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.splashScreen.SplashScreen"
-    android:background="@color/colorPrimaryDark">
+    android:background="@drawable/splach_screen_background">
 
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:src="@drawable/ic_twitter"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/ic_work"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

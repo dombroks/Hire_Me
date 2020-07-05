@@ -7,12 +7,21 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.dom_broks.hireme.R
+import com.dom_broks.hireme.ui.auth.viewModel.AuthViewModelFactory
 import com.dom_broks.hireme.utils.startHomeActivity
 import com.dom_broks.hireme.utils.startLoginActivity
+import io.reactivex.internal.operators.maybe.MaybeToPublisher.instance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.kodein
+import org.kodein.di.generic.instance
 
-class SplashScreen : AppCompatActivity() {
+class SplashScreen : AppCompatActivity(), KodeinAware {
+    override val kodein by kodein()
+    lateinit var viewModel: SplashScreenViewModel
+
+    private val factory: SplashScreenViewModelFactory by instance<SplashScreenViewModelFactory>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,9 +36,11 @@ class SplashScreen : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-        val viewModel: SplashScreenViewModel =
-            ViewModelProviders.of(this, SplashScreenViewModelFactory())
+        viewModel =
+            ViewModelProviders.of(this, factory)
                 .get(SplashScreenViewModel::class.java)
+
+
         viewModel.liveData.observe(this, Observer {
 
             when (it) {
@@ -41,6 +52,15 @@ class SplashScreen : AppCompatActivity() {
 
         })
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        viewModel.user?.let {
+            startHomeActivity()
+
+        }
     }
 
 
