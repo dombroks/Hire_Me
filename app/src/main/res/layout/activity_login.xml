@@ -37,7 +37,7 @@
             android:fontFamily="@font/montserrat_alternates"
             android:text="Login"
             android:textColor="@color/black"
-            android:textSize="28sp"
+            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
