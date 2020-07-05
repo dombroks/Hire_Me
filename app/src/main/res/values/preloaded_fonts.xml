@@ -5,6 +5,8 @@
         <item>@font/montserrat_alternates</item>
         <item>@font/racing_sans_one</item>
         <item>@font/roboto</item>
+        <item>@font/roboto_black</item>
+        <item>@font/roboto_bold</item>
         <item>@font/roboto_medium</item>
     </array>
 </resources>

@@ -33,9 +33,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/roboto_bold"
             android:text="Register"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/black"
+            android:textSize="28sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/top" />
@@ -43,14 +44,13 @@
 
         <View
             android:id="@+id/view"
-            android:layout_width="31dp"
-            android:layout_height="4dp"
+            android:layout_width="25dp"
+            android:layout_height="3dp"
             android:layout_marginTop="2dp"
             android:background="@drawable/line"
             app:layout_constraintEnd_toEndOf="@+id/textView5"
             app:layout_constraintStart_toStartOf="@+id/textView5"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
 
 
         <TextView
@@ -174,7 +174,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:fontFamily="@font/roboto_medium"
+            android:fontFamily="@font/roboto_bold"
             android:onClick="@{(v)->viewmodel.goToLogin(v)}"
             android:text="Login now"
             android:textColor="@color/colorPrimary"
