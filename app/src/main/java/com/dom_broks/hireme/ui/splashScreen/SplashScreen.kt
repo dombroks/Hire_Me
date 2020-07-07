@@ -10,6 +10,7 @@ import com.dom_broks.hireme.R
 import com.dom_broks.hireme.ui.auth.viewModel.AuthViewModelFactory
 import com.dom_broks.hireme.utils.startHomeActivity
 import com.dom_broks.hireme.utils.startLoginActivity
+import com.dom_broks.hireme.utils.startWelcomeActivity
 import io.reactivex.internal.operators.maybe.MaybeToPublisher.instance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -44,9 +45,9 @@ class SplashScreen : AppCompatActivity(), KodeinAware {
         viewModel.liveData.observe(this, Observer {
 
             when (it) {
-                is SplashState.LoginActivity -> {
+                is SplashState.SignUpActivity -> {
                     finish()
-                    startLoginActivity()
+                    startWelcomeActivity()
                 }
             }
 

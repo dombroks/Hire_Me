@@ -1,10 +1,13 @@
 package com.dom_broks.hireme.ui.splashScreen
 
+import android.content.Intent
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import bolts.Task.delay
 import com.dom_broks.hireme.data.Repository
+import com.dom_broks.hireme.ui.auth.view.Login
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -24,12 +27,14 @@ class SplashScreenViewModel(private val repository: Repository) : ViewModel() {
     init {
         GlobalScope.launch{
             kotlinx.coroutines.delay(5000)
-            mutableLiveData.postValue(SplashState.LoginActivity())
+            mutableLiveData.postValue(SplashState.SignUpActivity())
 
         }
     }
 
+
 }
 sealed class SplashState {
-    class LoginActivity : SplashState()
+    class SignUpActivity : SplashState()
+
 }

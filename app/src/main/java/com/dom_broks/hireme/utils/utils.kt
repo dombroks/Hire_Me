@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.dom_broks.hireme.ui.auth.view.Login
 import com.dom_broks.hireme.ui.home.MainActivity
+import com.dom_broks.hireme.ui.welcomeScreen.WelcomeScreen
 
 fun Context.startHomeActivity() =
     Intent(this, MainActivity::class.java).also {
@@ -13,6 +14,11 @@ fun Context.startHomeActivity() =
 
 fun Context.startLoginActivity() =
     Intent(this, Login::class.java).also {
+        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(it)
+    }
+fun Context.startWelcomeActivity() =
+    Intent(this, WelcomeScreen::class.java).also {
         it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(it)
     }
