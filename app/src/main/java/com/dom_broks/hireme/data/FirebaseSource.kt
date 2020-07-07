@@ -1,18 +1,83 @@
 package com.dom_broks.hireme.data
 
+import android.net.Uri
 import com.dom_broks.hireme.R
+import com.dom_broks.hireme.User
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.tasks.Continuation
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
 import io.reactivex.Completable
+import java.util.*
+import kotlin.collections.HashMap
 
 
 class FirebaseSource {
     private val firebaseAuth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }
+    private val firebaseDatabase: FirebaseDatabase by lazy {
+        FirebaseDatabase.getInstance()
+    }
+    private val firebaseStorage: FirebaseStorage by lazy {
+        FirebaseStorage.getInstance()
+    }
 
-    fun loginWithGoogle(idToken : String) = Completable.create { emitter ->
+    fun addImageToStorage(filePath: Uri, folder: String) = Completable.create { emitter ->
+        if (filePath != null) {
+            val ref = firebaseStorage.reference.child("$folder/${UUID.randomUUID()}")
+            val uploadTask = ref.putFile(filePath)
+            val urlTask =
+                uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
+                    if (!task.isSuccessful) {
+                        task.exception?.let { emitter.onError(it) }
+
+                    }
+                    return@Continuation ref.downloadUrl
+                }).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val downloadUri = task.result
+                        addImageToDatabase(firebaseAuth.currentUser?.uid, downloadUri.toString())
+
+
+                    } else {
+                        // some kind of errors here to handle
+                    }
+
+                }.addOnFailureListener {
+                    // some kind of errors here to handle
+                }
+
+
+        }
+    }
+
+    fun addImageToDatabase(userUid: String?, uri: String) {
+
+        val ref = firebaseDatabase.getReference("Users")
+
+        ref.child(userUid!!).child("picture").setValue(uri)
+
+
+    }
+
+
+    fun addNewUser(id: String, name: String, picture: String) = Completable.create { emitter ->
+        val ref = firebaseDatabase.getReference("Users")
+        val user = User(id, name, picture)
+        if (!emitter.isDisposed) {
+            ref.child(id).setValue(user)
+            emitter.onComplete()
+
+        }
+    }
+
+
+    fun loginWithGoogle(idToken: String) = Completable.create { emitter ->
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
             if (!emitter.isDisposed) {
@@ -23,10 +88,6 @@ class FirebaseSource {
             }
         }
     }
-
-
-
-
 
 
     fun login(email: String, password: String) = Completable.create { emitter ->

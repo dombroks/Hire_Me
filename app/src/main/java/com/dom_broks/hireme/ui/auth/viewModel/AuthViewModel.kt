@@ -1,6 +1,7 @@
 package com.dom_broks.hireme.ui.auth.viewModel
 
 import android.content.Intent
+import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModel
@@ -24,6 +25,21 @@ class AuthViewModel(private val repository: Repository) : ViewModel() {
     val user by lazy { repository.currentUser() }
     private val disposables = CompositeDisposable()
 
+    private fun saveUser() {
+        val disposable =
+            repository.addNewUser(repository.currentUser()!!.uid, email!!, "nothing right now")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    {
+                        authListener?.onSuccess()
+                    }, {
+                        authListener?.onFailure(it.message!!)
+                    }
+                )
+        disposables.add(disposable)
+
+    }
 
     fun loginWithGoogle(idToken: String) {
         val disposable = repository.loginWithGoogle(idToken!!)
@@ -54,6 +70,7 @@ class AuthViewModel(private val repository: Repository) : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     authListener?.onSuccess()
+
                 }, {
                     authListener?.onFailure(it.message!!)
                 })
@@ -82,6 +99,8 @@ class AuthViewModel(private val repository: Repository) : ViewModel() {
                     .subscribeOn(AndroidSchedulers.mainThread())
                     .subscribe({
                         authListener?.onSuccess()
+                        saveUser()
+
                     }, {
                         Log.e("message", "signUp:${it.message!!} ")
                         authListener?.onFailure(it.message!!)
