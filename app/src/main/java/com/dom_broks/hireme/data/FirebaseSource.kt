@@ -1,9 +1,7 @@
 package com.dom_broks.hireme.data
 
 import android.net.Uri
-import com.dom_broks.hireme.R
-import com.dom_broks.hireme.User
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.dom_broks.hireme.model.User
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -13,7 +11,6 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import io.reactivex.Completable
 import java.util.*
-import kotlin.collections.HashMap
 
 
 class FirebaseSource {
@@ -66,13 +63,22 @@ class FirebaseSource {
     }
 
 
-    fun addNewUser(id: String, name: String, picture: String) = Completable.create { emitter ->
-        val ref = firebaseDatabase.getReference("Users")
-        val user = User(id, name, picture)
-        if (!emitter.isDisposed) {
-            ref.child(id).setValue(user)
-            emitter.onComplete()
+    fun addNewUser(id: String, email: String, username: String, picture: String) =
+        Completable.create { emitter ->
+            val ref = firebaseDatabase.getReference("Users")
+            val user = User(id, email, username, picture)
+            if (!emitter.isDisposed) {
+                ref.child(id).setValue(user)
+                emitter.onComplete()
 
+            }
+        }
+
+    fun updateUsername(id: String, username: String) = Completable.create { emitter ->
+        val ref = firebaseDatabase.getReference("Users")
+        if (!emitter.isDisposed) {
+            ref.child(id).child("username").setValue(username)
+            emitter.onComplete()
         }
     }
 

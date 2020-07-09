@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.dom_broks.hireme.ui.username.UsernameViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:background="@color/white"
+        tools:context=".ui.username.Username">
+
+
+        <Button
+            android:id="@+id/Next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginRight="26dp"
+            android:background="@drawable/button_shape"
+            android:fontFamily="sans-serif"
+            android:text="Next"
+            android:onClick="@{(v) -> viewmodel.goToHome(v)}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginRight="26dp"
+            android:background="@drawable/edit_text_shape"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@={viewmodel.username}"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="376dp"
+            android:layout_height="276dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/ic_nature"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.666"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="76dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="What we gonna call you ?"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="@+id/username"
+            app:layout_constraintStart_toStartOf="@+id/username"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

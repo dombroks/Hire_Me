@@ -1,14 +1,15 @@
 package com.dom_broks.hireme.ui.auth.viewModel
 
+import android.content.Context
 import android.content.Intent
-import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModel
 import com.dom_broks.hireme.data.AuthListener
 import com.dom_broks.hireme.data.Repository
 import com.dom_broks.hireme.ui.auth.view.Login
-import com.dom_broks.hireme.ui.auth.view.SignUp
+import com.dom_broks.hireme.ui.auth.view.Register
+import com.dom_broks.hireme.ui.username.Username
 import com.dom_broks.hireme.utils.isEmailValid
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -27,7 +28,12 @@ class AuthViewModel(private val repository: Repository) : ViewModel() {
 
     private fun saveUser() {
         val disposable =
-            repository.addNewUser(repository.currentUser()!!.uid, email!!, "nothing right now")
+            repository.addNewUser(
+                repository.currentUser()!!.uid,
+                email!!,
+                "nothing right now",
+                "nothing right now"
+            )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -111,7 +117,7 @@ class AuthViewModel(private val repository: Repository) : ViewModel() {
     }
 
     fun goToSignUp(view: View) {
-        Intent(view.context, SignUp::class.java).also {
+        Intent(view.context, Register::class.java).also {
             view.context.startActivity(it)
         }
 
@@ -120,6 +126,11 @@ class AuthViewModel(private val repository: Repository) : ViewModel() {
     fun goToLogin(view: View) {
         Intent(view.context, Login::class.java).also {
             view.context.startActivity(it)
+        }
+    }
+    fun goToUsernameActivity(ctx : Context) {
+        Intent(ctx, Username::class.java).also {
+            ctx.startActivity(it)
         }
     }
 

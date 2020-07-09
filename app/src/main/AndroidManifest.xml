@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WhatWeGonnaCallYou"></activity>
+        <activity android:name=".ui.username.Username"></activity>
         <activity android:name=".ui.welcomeScreen.WelcomeScreen" />
         <activity android:name=".ui.splashScreen.SplashScreen">
             <intent-filter>
@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.auth.view.SignUp" />
+        <activity android:name=".ui.auth.view.Register" />
         <activity android:name=".ui.auth.view.Login" />
         <activity android:name=".ui.home.MainActivity" />
 

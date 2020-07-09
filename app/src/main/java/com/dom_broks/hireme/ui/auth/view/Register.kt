@@ -15,20 +15,20 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 
-class SignUp : AppCompatActivity() , AuthListener,KodeinAware{
+class Register : AppCompatActivity(), AuthListener, KodeinAware {
     override val kodein by kodein()
-    private val factory : AuthViewModelFactory by instance<AuthViewModelFactory>()
+    private val factory: AuthViewModelFactory by instance<AuthViewModelFactory>()
     private lateinit var viewModel: AuthViewModel
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        val binding : ActivitySignUpBinding = DataBindingUtil.setContentView(this,R.layout.activity_sign_up)
-        viewModel= ViewModelProviders.of(this,factory).get(AuthViewModel::class.java)
-        binding.viewmodel=viewModel
+        val binding: ActivitySignUpBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
+        viewModel = ViewModelProviders.of(this, factory).get(AuthViewModel::class.java)
+        binding.viewmodel = viewModel
 
         viewModel.authListener = this
     }
@@ -37,11 +37,11 @@ class SignUp : AppCompatActivity() , AuthListener,KodeinAware{
     }
 
     override fun onSuccess() {
-        startHomeActivity()
+        viewModel.goToUsernameActivity(this)
     }
 
     override fun onFailure(message: String) {
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
 
