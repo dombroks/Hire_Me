@@ -23,6 +23,8 @@
         android:layout_height="139dp"
         android:layout_marginTop="56dp"
         android:src="@drawable/charlie"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
