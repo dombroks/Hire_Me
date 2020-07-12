@@ -2,25 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/profileFragment"
-
-        android:icon="@drawable/ic_user"
-
-        android:title="."
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/chatFragment"
-        android:icon="@drawable/ic_message"
-        android:title="message"
+        android:id="@+id/mainFragment"
+        android:icon="@drawable/ic_home"
+        android:title="Home"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/notificationFragment"
         android:icon="@drawable/ic_bell"
-        android:title="notification"
+        android:title="Notification"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/chatFragment"
+        android:icon="@drawable/ic_message"
+        android:title="Message"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/mainFragment"
-        android:icon="@drawable/ic_home"
-        android:title="home"
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_user"
+        android:title="Profile"
         app:showAsAction="ifRoom" />
+
 </menu>
