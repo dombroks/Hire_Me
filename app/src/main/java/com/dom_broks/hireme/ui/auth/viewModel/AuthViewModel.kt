@@ -48,7 +48,7 @@ class AuthViewModel(private val repository: Repository) : ViewModel() {
     }
 
     fun loginWithGoogle(idToken: String) {
-        val disposable = repository.loginWithGoogle(idToken!!)
+        val disposable = repository.loginWithGoogle(idToken)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({

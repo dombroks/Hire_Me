@@ -1,19 +1,35 @@
 package com.dom_broks.hireme.ui.home
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.dom_broks.hireme.R
-import com.dom_broks.hireme.ui.auth.view.Login
-import kotlinx.android.synthetic.main.activity_main.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        button2.setOnClickListener(View.OnClickListener {
-            intent = Intent(this, Login::class.java).also { startActivity(it) } })
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+
+/*
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.profileFragment,
+                R.id.chatFragment,
+                R.id.mainFragment,
+                R.id.notificationFragment
+            )
+        )
+*/
+        val navController = findNavController(R.id.fragment)
+        bottomNavigationView.setupWithNavController(navController)
+       // setupActionBarWithNavController(navController, appBarConfiguration)
+
+
     }
 }   
