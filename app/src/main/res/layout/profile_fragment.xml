@@ -47,6 +47,46 @@
         app:layout_constraintTop_toBottomOf="@+id/job"
         app:layout_constraintVertical_bias="1.0">
 
+        <TextView
+            android:id="@+id/button2"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:elevation="10dp"
+            android:gravity="center"
+            android:text="Infos"
+            app:layout_constraintEnd_toStartOf="@+id/button3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/button3"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_shape_twoo"
+            android:elevation="10dp"
+            android:gravity="center"
+            android:text="Experience"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/button4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/button4"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:elevation="10dp"
+            android:gravity="center"
+            android:text="Portfolio"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button3"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -68,10 +108,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/roboto"
-        android:textSize="18sp"
         android:gravity="center"
         android:text="Mobile Apps Developer\n UI/UX Designer"
         android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/username"
         app:layout_constraintStart_toStartOf="@+id/username"
         app:layout_constraintTop_toBottomOf="@+id/username" />
