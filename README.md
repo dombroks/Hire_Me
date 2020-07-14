@@ -4,8 +4,9 @@
 ## Project Description
 
 This project is created in order to help people whether the are searching for a job or seaching for an emplyee. For example, recuiters in companies can open an
-account in this app and post some announcement for their offers or they can directly search for someone who has the requirements that make him eligible to apply to this 
-job. The app is still underconstruction and i will add new features everytime.
+account in this app and post some announcement for their offers or they can directly search for someone who has the requirements that make him eligible to apply to this job. The app is still underconstruction and i will add new features everytime.
+
+The Design is made by me (Figma project is available).
 
 ## Some technical informations about the app:
 
@@ -20,7 +21,7 @@ job. The app is still underconstruction and i will add new features everytime.
 
 ## How to Run 
 
-In order to get the big picture, you just need to download the repository and upload it your android studio. That's all.
+For getting more understanding, you can donwload the project and upload it to your android studio.
 
 ## Notes 
 
