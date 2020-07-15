@@ -17,6 +17,7 @@ The Design is made by me (Figma project is available).
 - Navigation components.
 - DataBinding.
 - Firebase services (Authentication,Storage,Database).
+- Coroutines.
 - And More...
 
 ## Screenshots:
