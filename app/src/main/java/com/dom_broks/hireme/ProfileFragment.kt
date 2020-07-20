@@ -1,8 +1,11 @@
 package com.dom_broks.hireme
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.ImageDecoder
 import android.net.Uri
@@ -18,6 +21,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.core.content.PermissionChecker.checkSelfPermission
 import kotlinx.android.synthetic.main.profile_fragment.*
 import java.io.IOException
 
@@ -28,7 +32,7 @@ class ProfileFragment : Fragment() {
     }
 
     private lateinit var viewModel: ProfileViewModel
-    private val PICK_IMAGE_REQUEST = 71
+    private val PICK_IMAGE_REQUEST = 1
     private var filePath: Uri? = null
 
 
@@ -82,12 +86,13 @@ class ProfileFragment : Fragment() {
 
     private fun launchGallery() {
         val intent = Intent()
-        intent.type = "images/*"
+        intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST)
     }
 
 
+    @SuppressLint("NewApi")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
@@ -104,14 +109,16 @@ class ProfileFragment : Fragment() {
 
                 val bitmap = when {
                     Build.VERSION.SDK_INT < 28 -> MediaStore.Images.Media.getBitmap(
-                        activity!!.contentResolver,
+                        context!!.contentResolver,
                         filePath
-                    )
+
+                    ) as Bitmap
                     else -> {
                         val source =
-                            ImageDecoder.createSource(activity!!.contentResolver, filePath!!)
-                        ImageDecoder.decodeBitmap(source)
+                            ImageDecoder.createSource(context!!.contentResolver, filePath!!)
+                        ImageDecoder.decodeBitmap(source) as Bitmap
                     }
+
                 }
                 circleImageView.setImageBitmap(bitmap)
             } catch (e: IOException) {
