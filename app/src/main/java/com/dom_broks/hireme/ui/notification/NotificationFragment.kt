@@ -1,4 +1,4 @@
-package com.dom_broks.hireme
+package com.dom_broks.hireme.ui.notification
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.dom_broks.hireme.R
 
 class NotificationFragment : Fragment() {
 
     companion object {
-        fun newInstance() = NotificationFragment()
+        fun newInstance() =
+            NotificationFragment()
     }
 
     private lateinit var viewModel: NotificationViewModel

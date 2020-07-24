@@ -1,12 +1,9 @@
-package com.dom_broks.hireme
+package com.dom_broks.hireme.ui.profile
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
@@ -17,21 +14,32 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.RequiresApi
-import androidx.core.content.PermissionChecker.checkSelfPermission
+import com.dom_broks.hireme.R
+import com.dom_broks.hireme.data.FirebaseSource
+import com.dom_broks.hireme.data.Repository
+import com.dom_broks.hireme.ui.auth.viewModel.AuthViewModelFactory
 import kotlinx.android.synthetic.main.profile_fragment.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.kodein
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 import java.io.IOException
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(){
+
+
 
     companion object {
         fun newInstance() = ProfileFragment()
     }
 
+
+
+
     private lateinit var viewModel: ProfileViewModel
+    private lateinit var profileViewModelFactory: ProfileViewModelFactory
     private val PICK_IMAGE_REQUEST = 1
     private var filePath: Uri? = null
 
@@ -41,7 +49,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater!!.inflate(R.layout.profile_fragment, container, false)
+        val view: View = inflater.inflate(R.layout.profile_fragment, container, false)
 
 
         val infoBtn: TextView = view.findViewById(R.id.infoBtn)
@@ -58,9 +66,9 @@ class ProfileFragment : Fragment() {
         infoBtn.setOnClickListener(View.OnClickListener {
             changeToSelectedColor(infoBtn, portfolioBtn, experienceBtn)
         })
-        experienceBtn.setOnClickListener(View.OnClickListener {
+        experienceBtn.setOnClickListener {
             changeToSelectedColor(experienceBtn, portfolioBtn, infoBtn)
-        })
+        }
         portfolioBtn.setOnClickListener(View.OnClickListener {
             changeToSelectedColor(portfolioBtn, infoBtn, experienceBtn)
         })
@@ -72,7 +80,14 @@ class ProfileFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+
+
+        val firebaseSource = FirebaseSource()
+        val repository = Repository(firebaseSource)
+        profileViewModelFactory= ProfileViewModelFactory(repository)
+        viewModel=ViewModelProviders.of(this,profileViewModelFactory).get(ProfileViewModel::class.java)
+
+     //   viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
@@ -102,6 +117,10 @@ class ProfileFragment : Fragment() {
 
             filePath = data.data
 
+            viewModel.uploadPictureToFirebaseStorage(filePath!!,"ProfileImages")
+
+
+
             try {
                 // val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, filePath)
                 //  val source = ImageDecoder.createSource(activity!!.contentResolver, filePath!!)
@@ -116,10 +135,11 @@ class ProfileFragment : Fragment() {
                     else -> {
                         val source =
                             ImageDecoder.createSource(context!!.contentResolver, filePath!!)
-                        ImageDecoder.decodeBitmap(source) as Bitmap
+                        ImageDecoder.decodeBitmap(source)
                     }
 
                 }
+
                 circleImageView.setImageBitmap(bitmap)
             } catch (e: IOException) {
                 e.printStackTrace()

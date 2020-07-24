@@ -1,7 +1,7 @@
-package com.dom_broks.hireme
+package com.dom_broks.hireme.ui.chat
 
 import androidx.lifecycle.ViewModel
 
-class NotificationViewModel : ViewModel() {
+class ChatViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

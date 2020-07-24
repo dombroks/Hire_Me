@@ -4,6 +4,7 @@ import android.app.Application
 import com.dom_broks.hireme.data.FirebaseSource
 import com.dom_broks.hireme.data.Repository
 import com.dom_broks.hireme.ui.auth.viewModel.AuthViewModelFactory
+import com.dom_broks.hireme.ui.profile.ProfileViewModelFactory
 import com.dom_broks.hireme.ui.splashScreen.SplashScreenViewModelFactory
 import com.dom_broks.hireme.ui.username.UsernameViewModelFactory
 import org.kodein.di.Kodein
@@ -23,6 +24,7 @@ class myApplication:Application(),KodeinAware {
         bind() from provider { AuthViewModelFactory(instance()) }
         bind() from provider { SplashScreenViewModelFactory(instance()) }
         bind() from provider { UsernameViewModelFactory(instance()) }
+        bind() from provider { ProfileViewModelFactory(instance()) }
 
     }
 
