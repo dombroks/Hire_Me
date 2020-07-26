@@ -16,10 +16,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.dom_broks.hireme.ExperienceFragment
+import com.dom_broks.hireme.InfoFragment
+import com.dom_broks.hireme.PortfolioFragment
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.data.FirebaseSource
 import com.dom_broks.hireme.data.Repository
 import com.dom_broks.hireme.ui.auth.viewModel.AuthViewModelFactory
+import com.dom_broks.hireme.utils.addChildFragment
 import kotlinx.android.synthetic.main.profile_fragment.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -27,8 +31,10 @@ import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 import java.io.IOException
 
-class ProfileFragment : Fragment(){
-
+class ProfileFragment : Fragment() {
+    val INFO_FRAG_TAG = "fragment_info"
+    val PORTFOLIO_FRAG_TAG = "fragment_portfolio"
+    val EXPERIENCE_FRAG_TAG = "fragment_experience"
 
 
     companion object {
@@ -36,12 +42,22 @@ class ProfileFragment : Fragment(){
     }
 
 
-
-
     private lateinit var viewModel: ProfileViewModel
     private lateinit var profileViewModelFactory: ProfileViewModelFactory
     private val PICK_IMAGE_REQUEST = 1
     private var filePath: Uri? = null
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val infoFragment = InfoFragment()
+        val portfolioFragment = PortfolioFragment()
+        val experienceFragment = ExperienceFragment()
+
+        addChildFragment(portfolioFragment, R.id.child_fragments_container)
+
+
+    }
 
 
     @SuppressLint("ResourceAsColor")
@@ -65,12 +81,15 @@ class ProfileFragment : Fragment(){
 
         infoBtn.setOnClickListener(View.OnClickListener {
             changeToSelectedColor(infoBtn, portfolioBtn, experienceBtn)
+            replaceFragment(INFO_FRAG_TAG)
         })
         experienceBtn.setOnClickListener {
             changeToSelectedColor(experienceBtn, portfolioBtn, infoBtn)
+            replaceFragment(EXPERIENCE_FRAG_TAG)
         }
         portfolioBtn.setOnClickListener(View.OnClickListener {
             changeToSelectedColor(portfolioBtn, infoBtn, experienceBtn)
+            replaceFragment(PORTFOLIO_FRAG_TAG)
         })
 
         return view
@@ -84,10 +103,11 @@ class ProfileFragment : Fragment(){
 
         val firebaseSource = FirebaseSource()
         val repository = Repository(firebaseSource)
-        profileViewModelFactory= ProfileViewModelFactory(repository)
-        viewModel=ViewModelProviders.of(this,profileViewModelFactory).get(ProfileViewModel::class.java)
+        profileViewModelFactory = ProfileViewModelFactory(repository)
+        viewModel =
+            ViewModelProviders.of(this, profileViewModelFactory).get(ProfileViewModel::class.java)
 
-     //   viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        //   viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
@@ -117,7 +137,7 @@ class ProfileFragment : Fragment(){
 
             filePath = data.data
 
-            viewModel.uploadPictureToFirebaseStorage(filePath!!,"ProfileImages")
+            viewModel.uploadPictureToFirebaseStorage(filePath!!, "ProfileImages")
 
 
 
@@ -147,6 +167,24 @@ class ProfileFragment : Fragment(){
 
 
         }
+    }
+
+    @SuppressLint("ResourceType")
+    fun replaceFragment(selectedFrag: String) {
+
+        when (selectedFrag) {
+            INFO_FRAG_TAG -> childFragmentManager?.beginTransaction()
+                ?.replace(R.id.child_fragments_container, InfoFragment())?.addToBackStack(null)
+                ?.commit()
+            PORTFOLIO_FRAG_TAG -> childFragmentManager?.beginTransaction()
+                ?.replace(R.id.child_fragments_container, PortfolioFragment())?.addToBackStack(null)
+                ?.commit()
+            EXPERIENCE_FRAG_TAG -> childFragmentManager?.beginTransaction()
+                ?.replace(R.id.child_fragments_container, ExperienceFragment())
+                ?.addToBackStack(null)
+                ?.commit()
+        }
+
     }
 
 }

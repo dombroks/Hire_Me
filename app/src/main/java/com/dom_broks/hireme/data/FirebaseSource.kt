@@ -26,7 +26,7 @@ class FirebaseSource {
 
     fun addImageToStorage(filePath: Uri, folder: String) = Completable.create { emitter ->
         if (filePath != null) {
-            val ref = firebaseStorage.reference.child("$folder/${UUID.randomUUID()}")
+            val ref = firebaseStorage.reference.child("$folder/img${firebaseAuth.currentUser?.uid}")
             val uploadTask = ref.putFile(filePath)
             val urlTask =
                 uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->

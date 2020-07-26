@@ -2,5 +2,7 @@
     <string name="app_name">Hire Me</string>
     <string name="facebook_app_id">297994728277649</string>
     <string name="fb_login_protocol_scheme">fb297994728277649</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
