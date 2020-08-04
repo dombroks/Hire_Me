@@ -114,6 +114,10 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02"
     kapt "androidx.hilt:hilt-compiler:1.0.0-alpha02"
 
+    //RecyclerView
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+
+
 
 
 }
