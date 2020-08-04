@@ -10,14 +10,15 @@ The Design is made by me (Figma project is available).
 
 ## Some technical informations about the app:
 
+
+- Dagger-Hilt for dependency injection.
 - MVVM architecture.
 - LivaData.
 - Kotlin coroutines.
 - RxJava.
-- Navigation components.
+- Navigation component.
 - DataBinding.
 - Firebase services (Authentication,Storage,Database).
-- Coroutines.
 - And More...
 
 ## Screenshots:
