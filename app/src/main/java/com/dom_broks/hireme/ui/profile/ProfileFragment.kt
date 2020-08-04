@@ -16,21 +16,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.viewModels
 import com.dom_broks.hireme.ExperienceFragment
 import com.dom_broks.hireme.InfoFragment
 import com.dom_broks.hireme.PortfolioFragment
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.data.FirebaseSource
 import com.dom_broks.hireme.data.Repository
-import com.dom_broks.hireme.ui.auth.viewModel.AuthViewModelFactory
 import com.dom_broks.hireme.utils.addChildFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.profile_fragment.*
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.kodein
-import org.kodein.di.android.x.closestKodein
-import org.kodein.di.generic.instance
 import java.io.IOException
 
+
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
     val INFO_FRAG_TAG = "fragment_info"
     val PORTFOLIO_FRAG_TAG = "fragment_portfolio"
@@ -42,8 +41,8 @@ class ProfileFragment : Fragment() {
     }
 
 
-    private lateinit var viewModel: ProfileViewModel
-    private lateinit var profileViewModelFactory: ProfileViewModelFactory
+    private val viewModel: ProfileViewModel by viewModels()
+
     private val PICK_IMAGE_REQUEST = 1
     private var filePath: Uri? = null
 
@@ -103,9 +102,8 @@ class ProfileFragment : Fragment() {
 
         val firebaseSource = FirebaseSource()
         val repository = Repository(firebaseSource)
-        profileViewModelFactory = ProfileViewModelFactory(repository)
-        viewModel =
-            ViewModelProviders.of(this, profileViewModelFactory).get(ProfileViewModel::class.java)
+
+
 
         //   viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
         // TODO: Use the ViewModel

@@ -1,6 +1,7 @@
 package com.dom_broks.hireme.ui.profile
 
 import android.net.Uri
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import com.dom_broks.hireme.data.AuthListener
 import com.dom_broks.hireme.data.Repository
@@ -8,7 +9,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class ProfileViewModel(private val repository: Repository) : ViewModel() {
+class ProfileViewModel @ViewModelInject constructor(private val repository: Repository) :
+    ViewModel() {
 
 
     var authListener: AuthListener? = null
@@ -18,9 +20,9 @@ class ProfileViewModel(private val repository: Repository) : ViewModel() {
         val disposable = repository.addImageToStorage(uri, folder)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe ({
+            .subscribe({
                 authListener?.onSuccess()
-            },{
+            }, {
                 authListener?.onFailure(it.message!!)
             })
         disposables.add(disposable)

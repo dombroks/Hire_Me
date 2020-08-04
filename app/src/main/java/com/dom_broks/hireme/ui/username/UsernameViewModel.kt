@@ -2,6 +2,7 @@ package com.dom_broks.hireme.ui.username
 
 import android.content.Intent
 import android.view.View
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import com.dom_broks.hireme.data.AuthListener
 import com.dom_broks.hireme.data.Repository
@@ -12,7 +13,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class UsernameViewModel(private val repository: Repository) : ViewModel() {
+class UsernameViewModel @ViewModelInject constructor(private val repository: Repository) : ViewModel() {
 
     var username: String? = null
     var authListener: AuthListener? = null

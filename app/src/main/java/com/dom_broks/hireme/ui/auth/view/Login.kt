@@ -1,34 +1,31 @@
 package com.dom_broks.hireme.ui.auth.view
 
 import android.content.Intent
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.kodein
-import org.kodein.di.generic.instance
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.data.AuthListener
 import com.dom_broks.hireme.databinding.ActivityLoginBinding
 import com.dom_broks.hireme.ui.auth.viewModel.AuthViewModel
-import com.dom_broks.hireme.ui.auth.viewModel.AuthViewModelFactory
 import com.dom_broks.hireme.utils.startHomeActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_login.*
 
+@AndroidEntryPoint
+class Login : AppCompatActivity(), AuthListener{
 
-class Login : AppCompatActivity(), AuthListener, KodeinAware {
-    override val kodein by kodein()
-    private val factory: AuthViewModelFactory by instance<AuthViewModelFactory>()
-    private lateinit var viewModel: AuthViewModel
+   
+    private val viewModel: AuthViewModel by viewModels()
 
 
     //Sign with google
@@ -42,7 +39,7 @@ class Login : AppCompatActivity(), AuthListener, KodeinAware {
 
         val binding: ActivityLoginBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_login)
-        viewModel = ViewModelProviders.of(this, factory).get(AuthViewModel::class.java)
+       // viewModel = ViewModelProviders.of(this).get(AuthViewModel::class.java)
         binding.viewmodel = viewModel
 
         viewModel.authListener = this
@@ -114,3 +111,5 @@ class Login : AppCompatActivity(), AuthListener, KodeinAware {
 
 
 }
+
+

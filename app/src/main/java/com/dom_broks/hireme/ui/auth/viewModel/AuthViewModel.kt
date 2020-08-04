@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.View
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import com.dom_broks.hireme.data.AuthListener
 import com.dom_broks.hireme.data.Repository
@@ -11,11 +12,17 @@ import com.dom_broks.hireme.ui.auth.view.Login
 import com.dom_broks.hireme.ui.auth.view.Register
 import com.dom_broks.hireme.ui.username.Username
 import com.dom_broks.hireme.utils.isEmailValid
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class AuthViewModel(private val repository: Repository) : ViewModel() {
+
+
+class AuthViewModel
+@ViewModelInject
+constructor(private val repository: Repository) : ViewModel() {
     var email: String? = null
     var password: String? = null
 
@@ -128,7 +135,8 @@ class AuthViewModel(private val repository: Repository) : ViewModel() {
             view.context.startActivity(it)
         }
     }
-    fun goToUsernameActivity(ctx : Context) {
+
+    fun goToUsernameActivity(ctx: Context) {
         Intent(ctx, Username::class.java).also {
             ctx.startActivity(it)
         }
