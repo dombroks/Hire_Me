@@ -4,14 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
+
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.data.AuthListener
 import com.dom_broks.hireme.databinding.ActivityUsernameBinding
 import dagger.hilt.android.AndroidEntryPoint
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.kodein
-import org.kodein.di.generic.instance
 
 @AndroidEntryPoint
 class Username : AppCompatActivity(), AuthListener{

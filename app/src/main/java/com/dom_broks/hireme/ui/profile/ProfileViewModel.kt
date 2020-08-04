@@ -9,15 +9,16 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class ProfileViewModel @ViewModelInject constructor(private val repository: Repository) :
-    ViewModel() {
+class ProfileViewModel
+@ViewModelInject
+constructor(private val repository: Repository) :ViewModel() {
 
 
     var authListener: AuthListener? = null
     private val disposables = CompositeDisposable()
 
-    fun uploadPictureToFirebaseStorage(uri: Uri, folder: String) {
-        val disposable = repository.addImageToStorage(uri, folder)
+    fun uploadPictureToFirebaseStorage(uri: Uri?, folder: String) {
+        val disposable = repository.addImageToStorage(uri!!, folder)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({

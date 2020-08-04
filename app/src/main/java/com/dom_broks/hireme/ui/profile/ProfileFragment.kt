@@ -7,30 +7,29 @@ import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.dom_broks.hireme.ExperienceFragment
 import com.dom_broks.hireme.InfoFragment
 import com.dom_broks.hireme.PortfolioFragment
 import com.dom_broks.hireme.R
-import com.dom_broks.hireme.data.FirebaseSource
-import com.dom_broks.hireme.data.Repository
 import com.dom_broks.hireme.utils.addChildFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.profile_fragment.*
 import java.io.IOException
+import java.lang.Exception
 
 
 @AndroidEntryPoint
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(R.layout.profile_fragment) {
     val INFO_FRAG_TAG = "fragment_info"
     val PORTFOLIO_FRAG_TAG = "fragment_portfolio"
     val EXPERIENCE_FRAG_TAG = "fragment_experience"
@@ -55,7 +54,9 @@ class ProfileFragment : Fragment() {
 
         addChildFragment(portfolioFragment, R.id.child_fragments_container)
 
-
+        circleImageView.setOnClickListener {
+            launchGallery()
+        }
     }
 
 
@@ -72,9 +73,6 @@ class ProfileFragment : Fragment() {
         val experienceBtn: TextView = view.findViewById(R.id.experienceBtn)
         portfolioBtn.setBackgroundResource(R.drawable.button_shape_two)
         val avatar: ImageView = view.findViewById(R.id.circleImageView)
-        avatar.setOnClickListener(View.OnClickListener {
-            launchGallery()
-        })
 
 
 
@@ -96,18 +94,6 @@ class ProfileFragment : Fragment() {
 
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-
-        val firebaseSource = FirebaseSource()
-        val repository = Repository(firebaseSource)
-
-
-
-        //   viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
     //change textviews shape while switching from one to another
     private fun changeToSelectedColor(view: View, view2: View, view3: View) {
@@ -134,8 +120,12 @@ class ProfileFragment : Fragment() {
             }
 
             filePath = data.data
+            try {
+                viewModel.uploadPictureToFirebaseStorage(filePath!!, "ProfileImages")
+            }catch (e : Exception){
+                Log.e( "onActivityResult: ","${e.message}" )
+            }
 
-            viewModel.uploadPictureToFirebaseStorage(filePath!!, "ProfileImages")
 
 
 
@@ -167,7 +157,7 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    @SuppressLint("ResourceType")
+
     fun replaceFragment(selectedFrag: String) {
 
         when (selectedFrag) {
