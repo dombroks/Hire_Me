@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleImageView2"
+        android:id="@+id/companyImage"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginTop="16dp"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -23,11 +23,11 @@
         android:text="Mobile applications developer"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18dp"
-        app:layout_constraintStart_toEndOf="@+id/circleImageView2"
-        app:layout_constraintTop_toTopOf="@+id/circleImageView2" />
+        app:layout_constraintStart_toEndOf="@+id/companyImage"
+        app:layout_constraintTop_toTopOf="@+id/companyImage" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/company"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -35,10 +35,11 @@
         android:layout_marginTop="4dp"
         android:text="facebook"
         android:textSize="10sp"
-        app:layout_constraintStart_toEndOf="@+id/circleImageView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintStart_toEndOf="@+id/companyImage"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <TextView
+        android:id="@+id/from_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -46,10 +47,11 @@
         android:textColor="@color/colorPrimary"
         android:textSize="10sp"
         android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintStart_toStartOf="@+id/company"
+        app:layout_constraintTop_toBottomOf="@+id/company" />
 
     <TextView
+        android:id="@+id/duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"

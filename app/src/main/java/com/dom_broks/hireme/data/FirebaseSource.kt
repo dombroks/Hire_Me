@@ -1,19 +1,21 @@
 package com.dom_broks.hireme.data
 
 import android.net.Uri
+import android.util.Log
+import com.dom_broks.hireme.model.Experience
 import com.dom_broks.hireme.model.User
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import io.reactivex.Completable
-import java.util.*
 
 
 class FirebaseSource {
+    private val data = mutableListOf<Experience>()
     private val firebaseAuth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }
@@ -122,4 +124,29 @@ class FirebaseSource {
 
     fun currentUser() = firebaseAuth.currentUser
 
+    fun getUserExperience(): List<Experience> {
+        val ref = firebaseDatabase.getReference("Experience").child("DGqys82RsEW7tkmVyaVM8jPzJFo1")
+
+
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (child in snapshot.children) {
+                        val value = child.getValue(Experience::class.java)
+                        Log.e("message", value.toString())
+                        data.add(value!!)
+                        Log.e("message", data.size.toString())
+                    }
+                } else {
+                    Log.e("message", "no snapshots found")
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                println("Some error happened ${error.message}")
+            }
+        })
+        Log.e("messageSize", data.size.toString())
+        return data
+    }
 }

@@ -136,13 +136,13 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
                 val bitmap = when {
                     Build.VERSION.SDK_INT < 28 -> MediaStore.Images.Media.getBitmap(
-                        context!!.contentResolver,
+                        requireContext().contentResolver,
                         filePath
 
                     ) as Bitmap
                     else -> {
                         val source =
-                            ImageDecoder.createSource(context!!.contentResolver, filePath!!)
+                            ImageDecoder.createSource(requireContext().contentResolver, filePath!!)
                         ImageDecoder.decodeBitmap(source)
                     }
 

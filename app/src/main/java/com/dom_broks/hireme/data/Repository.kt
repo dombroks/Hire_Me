@@ -5,7 +5,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 
-
 class Repository
 @Inject
 constructor(private val firebase: FirebaseSource) {
@@ -35,6 +34,9 @@ constructor(private val firebase: FirebaseSource) {
 
     fun updateUsername(id: String, username: String) =
         firebase.updateUsername(id, username)
+
+    suspend fun getUserExperience() =
+        firebase.getUserExperience()
 
 }
 

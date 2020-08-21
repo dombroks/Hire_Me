@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.databinding.ActivityWelcomeScreenBinding
 import dagger.hilt.android.AndroidEntryPoint
