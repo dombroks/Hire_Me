@@ -125,6 +125,8 @@ class FirebaseSource {
     fun currentUser() = firebaseAuth.currentUser
 
     fun getUserExperience(): List<Experience> {
+
+
         val ref = firebaseDatabase.getReference("Experience").child("DGqys82RsEW7tkmVyaVM8jPzJFo1")
 
 
@@ -146,7 +148,8 @@ class FirebaseSource {
                 println("Some error happened ${error.message}")
             }
         })
-        Log.e("messageSize", data.size.toString())
+
         return data
+        data.clear()
     }
 }
