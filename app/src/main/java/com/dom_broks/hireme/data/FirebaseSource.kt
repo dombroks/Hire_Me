@@ -35,15 +35,12 @@ class FirebaseSource {
                 uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
                     if (!task.isSuccessful) {
                         task.exception?.let { emitter.onError(it) }
-
                     }
                     return@Continuation ref.downloadUrl
                 }).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val downloadUri = task.result
                         addImageToDatabase(firebaseAuth.currentUser?.uid, downloadUri.toString())
-
-
                     } else {
                         // some kind of errors here to handle
                     }
@@ -57,12 +54,8 @@ class FirebaseSource {
     }
 
     fun addImageToDatabase(userUid: String?, uri: String) {
-
         val ref = firebaseDatabase.getReference("Users")
-
         ref.child(userUid!!).child("picture").setValue(uri)
-
-
     }
 
 
@@ -73,7 +66,6 @@ class FirebaseSource {
             if (!emitter.isDisposed) {
                 ref.child(id).setValue(user)
                 emitter.onComplete()
-
             }
         }
 
@@ -151,7 +143,5 @@ class FirebaseSource {
         })
 
         return data
-
-
     }
 }

@@ -16,6 +16,8 @@ import kotlinx.coroutines.launch
 class ProfileViewModel
 @ViewModelInject
 constructor(private val repository: Repository) : ViewModel() {
+
+
     private val _experienceData = MutableLiveData<List<Experience>>()
     val experienceData get() = _experienceData
 

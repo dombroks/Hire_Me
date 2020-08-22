@@ -52,6 +52,8 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         val portfolioFragment = PortfolioFragment()
         val experienceFragment = ExperienceFragment()
 
+
+
         addChildFragment(portfolioFragment, R.id.child_fragments_container)
 
         circleImageView.setOnClickListener {
