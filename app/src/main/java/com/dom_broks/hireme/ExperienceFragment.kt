@@ -41,6 +41,7 @@ class ExperienceFragment : Fragment(R.layout.fragment_experience) {
         viewModel.getUserExperience()
         initRecyclerView()
 
+
     }
 
     private fun initRecyclerView() {
@@ -54,6 +55,7 @@ class ExperienceFragment : Fragment(R.layout.fragment_experience) {
         }
 
     }
+
 
 
 }

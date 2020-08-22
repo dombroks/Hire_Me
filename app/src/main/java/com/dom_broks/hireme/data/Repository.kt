@@ -38,5 +38,8 @@ constructor(private val firebase: FirebaseSource) {
     suspend fun getUserExperience() =
         firebase.getUserExperience()
 
+    fun dispose() =
+        firebase.dispose()
+
 }
 

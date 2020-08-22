@@ -44,5 +44,7 @@ constructor(private val repository: Repository) : ViewModel() {
             list = repository.getUserExperience()
         }
         _experienceData.value = list
+
     }
+    fun dispose() = repository.dispose()
 }
