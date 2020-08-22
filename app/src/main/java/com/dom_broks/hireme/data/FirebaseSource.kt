@@ -26,6 +26,7 @@ class FirebaseSource {
         FirebaseStorage.getInstance()
     }
 
+
     fun addImageToStorage(filePath: Uri, folder: String) = Completable.create { emitter ->
         if (filePath != null) {
             val ref = firebaseStorage.reference.child("$folder/img${firebaseAuth.currentUser?.uid}")
@@ -150,6 +151,7 @@ class FirebaseSource {
         })
 
         return data
-        data.clear()
+
+
     }
 }

@@ -2,6 +2,7 @@ package com.dom_broks.hireme.ui.profile
 
 import android.net.Uri
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dom_broks.hireme.data.AuthListener
@@ -15,7 +16,8 @@ import kotlinx.coroutines.launch
 class ProfileViewModel
 @ViewModelInject
 constructor(private val repository: Repository) : ViewModel() {
-
+    private val _experienceData = MutableLiveData<List<Experience>>()
+    val experienceData get() = _experienceData
 
     var authListener: AuthListener? = null
     private val disposables = CompositeDisposable()
@@ -34,11 +36,11 @@ constructor(private val repository: Repository) : ViewModel() {
 
     }
 
-    fun getUserExperience(): List<Experience> {
+    fun getUserExperience() {
         var list: List<Experience>? = null
         viewModelScope.launch {
             list = repository.getUserExperience()
         }
-        return list!!
+        _experienceData.value = list
     }
 }

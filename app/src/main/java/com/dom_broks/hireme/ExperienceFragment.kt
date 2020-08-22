@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dom_broks.hireme.adapter.experienceDataAdapter
@@ -44,7 +45,11 @@ class ExperienceFragment : Fragment(R.layout.fragment_experience) {
     private fun initRecyclerView() {
 
         experienceRecyclerView.apply {
-            this.adapter = experienceDataAdapter(viewModel.getUserExperience())
+            viewModel.getUserExperience()
+            viewModel.experienceData.observe(
+                viewLifecycleOwner,
+                Observer { adapter = experienceDataAdapter(it) })
+
             this.setHasFixedSize(true)
             this.layoutManager = LinearLayoutManager(requireContext())
         }
