@@ -31,7 +31,7 @@
     <EditText
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/edit_text_shape"
         android:paddingLeft="15dp"
@@ -58,7 +58,7 @@
 
         android:id="@+id/editText"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginTop="25dp"
 
         android:background="@drawable/edit_text_shape"
