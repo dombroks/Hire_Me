@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="40dp">
+    android:padding="10dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/comImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="1dp"
         android:background="@drawable/ic_employee"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -32,10 +31,10 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/edit_text_shape"
-        android:paddingLeft="15dp"
-
         android:singleLine="true"
         android:textColor="@color/black"
         android:textSize="15sp"
@@ -55,21 +54,35 @@
         app:layout_constraintStart_toStartOf="@+id/editText" />
 
     <EditText
-
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="25dp"
-
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/edit_text_shape"
-        android:paddingLeft="15dp"
         android:singleLine="true"
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
+
+
+    <DatePicker
+        android:id="@+id/datePicker1"
+        android:layout_width="232dp"
+        android:layout_height="159dp"
+
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:calendarTextColor="@color/colorPrimary"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
