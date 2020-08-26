@@ -120,6 +120,7 @@ class FirebaseSource {
     fun currentUser() = firebaseAuth.currentUser
 
     fun getUserExperience(): List<Experience> {
+
         val ref = firebaseDatabase.getReference("Experience").child(currentUser()!!.uid)
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -145,4 +146,6 @@ class FirebaseSource {
     fun dispose() {
         experienceData.clear()
     }
+
+
 }

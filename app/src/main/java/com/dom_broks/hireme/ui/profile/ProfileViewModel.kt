@@ -47,5 +47,5 @@ constructor(private val repository: Repository) : ViewModel() {
 
     }
 
-    fun dispose() = repository.dispose()
+
 }

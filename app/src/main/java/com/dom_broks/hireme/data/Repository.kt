@@ -38,8 +38,6 @@ constructor(private val firebase: FirebaseSource) {
     fun getUserExperience() =
         firebase.getUserExperience()
 
-    fun dispose() =
-        firebase.dispose()
 
 }
 
