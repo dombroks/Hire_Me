@@ -6,6 +6,24 @@
     android:layout_height="match_parent"
     android:padding="10dp">
 
+    <Button
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/button_shape"
+        android:fontFamily="sans-serif"
+        android:text="Add"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="@+id/datePicker1"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/datePicker1"
+        app:layout_constraintTop_toBottomOf="@+id/datePicker1" />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/comImage"
         android:layout_width="100dp"
