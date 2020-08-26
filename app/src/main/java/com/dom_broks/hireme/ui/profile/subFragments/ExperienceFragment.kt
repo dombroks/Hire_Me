@@ -25,6 +25,9 @@ class ExperienceFragment : Fragment(R.layout.fragment_experience) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initRecyclerView()
+        AddExperience.setOnClickListener {
+            AddItemDialog.newInstance("title","subtitle").show(childFragmentManager, AddItemDialog.TAG)
+        }
         super.onViewCreated(view, savedInstanceState)
 
     }
@@ -38,6 +41,7 @@ class ExperienceFragment : Fragment(R.layout.fragment_experience) {
             this.layoutManager = LinearLayoutManager(requireContext())
         }
     }
+
 
 
 
