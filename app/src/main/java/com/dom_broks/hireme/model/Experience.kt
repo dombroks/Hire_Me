@@ -9,7 +9,8 @@ data class Experience
     var Duration: String? = null,
     var From: String? = null,
     var To: String? = null,
-    var Place: String? = null
+    var Place: String? = null,
+    var Image: String? = null
 
 )
 
