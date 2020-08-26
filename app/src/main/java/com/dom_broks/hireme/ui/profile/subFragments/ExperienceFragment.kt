@@ -1,17 +1,13 @@
-package com.dom_broks.hireme
+package com.dom_broks.hireme.ui.profile.subFragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.dom_broks.hireme.R
 import com.dom_broks.hireme.adapter.experienceDataAdapter
-import com.dom_broks.hireme.data.Repository
 import com.dom_broks.hireme.ui.profile.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_experience.*

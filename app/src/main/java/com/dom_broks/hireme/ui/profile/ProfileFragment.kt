@@ -17,9 +17,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.dom_broks.hireme.ExperienceFragment
-import com.dom_broks.hireme.InfoFragment
-import com.dom_broks.hireme.PortfolioFragment
+import com.dom_broks.hireme.ui.profile.subFragments.ExperienceFragment
+import com.dom_broks.hireme.ui.profile.subFragments.InfoFragment
+import com.dom_broks.hireme.ui.profile.subFragments.PortfolioFragment
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.utils.addChildFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,9 +48,12 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val infoFragment = InfoFragment()
-        val portfolioFragment = PortfolioFragment()
-        val experienceFragment = ExperienceFragment()
+        val infoFragment =
+            InfoFragment()
+        val portfolioFragment =
+            PortfolioFragment()
+        val experienceFragment =
+            ExperienceFragment()
 
 
 
@@ -164,15 +167,21 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
         when (selectedFrag) {
             INFO_FRAG_TAG -> childFragmentManager?.beginTransaction()
-                ?.replace(R.id.child_fragments_container, InfoFragment())
+                ?.replace(R.id.child_fragments_container,
+                    InfoFragment()
+                )
                 ?.addToBackStack(null)
                 ?.commit()
             PORTFOLIO_FRAG_TAG -> childFragmentManager?.beginTransaction()
-                ?.replace(R.id.child_fragments_container, PortfolioFragment())
+                ?.replace(R.id.child_fragments_container,
+                    PortfolioFragment()
+                )
                 ?.addToBackStack(null)
                 ?.commit()
             EXPERIENCE_FRAG_TAG -> childFragmentManager?.beginTransaction()
-                ?.replace(R.id.child_fragments_container, ExperienceFragment())
+                ?.replace(R.id.child_fragments_container,
+                    ExperienceFragment()
+                )
                 ?.addToBackStack(null)
                 ?.commit()
         }
