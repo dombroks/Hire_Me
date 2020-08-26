@@ -120,15 +120,13 @@ class FirebaseSource {
     fun currentUser() = firebaseAuth.currentUser
 
     fun getUserExperience(): List<Experience> {
-        val ref = firebaseDatabase.getReference("Experience").child("DGqys82RsEW7tkmVyaVM8jPzJFo1")
+        val ref = firebaseDatabase.getReference("Experience").child(currentUser()!!.uid)
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (child in snapshot.children) {
                         val value = child.getValue(Experience::class.java)
-                        Log.e("message", value.toString())
                         experienceData.add(value!!)
-                        Log.e("message", experienceData.size.toString())
                     }
                 } else {
                     Log.e("message", "no snapshots found")
@@ -141,7 +139,8 @@ class FirebaseSource {
 
         return experienceData
     }
-    fun dispose(){
+
+    fun dispose() {
         experienceData.clear()
     }
 }

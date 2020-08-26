@@ -25,9 +25,12 @@ class ExperienceFragment : Fragment(R.layout.fragment_experience) {
         super.onStart()
     }
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
     private fun initRecyclerView() {
@@ -37,9 +40,7 @@ class ExperienceFragment : Fragment(R.layout.fragment_experience) {
                 Observer { adapter = experienceDataAdapter(it) })
             this.setHasFixedSize(true)
             this.layoutManager = LinearLayoutManager(requireContext())
-
         }
-
     }
 
 
