@@ -126,12 +126,14 @@ class FirebaseSource {
                 if (snapshot.exists()) {
                     for (child in snapshot.children) {
                         val value = child.getValue(Experience::class.java)
-                        experienceData.add(value!!)
+                        if (!experienceData.contains(value))
+                            experienceData.add(value!!)
                     }
                 } else {
                     Log.e("message", "no snapshots found")
                 }
             }
+
             override fun onCancelled(error: DatabaseError) {
                 println("Some error happened ${error.message}")
             }
