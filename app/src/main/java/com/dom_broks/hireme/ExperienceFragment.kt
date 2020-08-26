@@ -23,22 +23,12 @@ class ExperienceFragment : Fragment(R.layout.fragment_experience) {
     private val viewModel: ProfileViewModel by viewModels()
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_experience, container, false)
-    }
-
-    companion object {
-        fun newInstance() =
-            ExperienceFragment()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getUserExperience()
+        if (!viewModel.isLoaded) {
+            viewModel.getUserExperience()
+        }
+
         initRecyclerView()
 
 
@@ -55,7 +45,6 @@ class ExperienceFragment : Fragment(R.layout.fragment_experience) {
         }
 
     }
-
 
 
 }

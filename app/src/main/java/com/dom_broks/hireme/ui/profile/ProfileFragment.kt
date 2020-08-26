@@ -30,9 +30,9 @@ import java.lang.Exception
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment(R.layout.profile_fragment) {
-    val INFO_FRAG_TAG = "fragment_info"
-    val PORTFOLIO_FRAG_TAG = "fragment_portfolio"
-    val EXPERIENCE_FRAG_TAG = "fragment_experience"
+    private val INFO_FRAG_TAG = "fragment_info"
+    private val PORTFOLIO_FRAG_TAG = "fragment_portfolio"
+    private val EXPERIENCE_FRAG_TAG = "fragment_experience"
 
 
     companion object {
@@ -124,8 +124,8 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             filePath = data.data
             try {
                 viewModel.uploadPictureToFirebaseStorage(filePath!!, "ProfileImages")
-            }catch (e : Exception){
-                Log.e( "onActivityResult: ","${e.message}" )
+            } catch (e: Exception) {
+                Log.e("onActivityResult: ", "${e.message}")
             }
 
 
@@ -160,14 +160,16 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     }
 
 
-    fun replaceFragment(selectedFrag: String) {
+    private fun replaceFragment(selectedFrag: String) {
 
         when (selectedFrag) {
             INFO_FRAG_TAG -> childFragmentManager?.beginTransaction()
-                ?.replace(R.id.child_fragments_container, InfoFragment())?.addToBackStack(null)
+                ?.replace(R.id.child_fragments_container, InfoFragment())
+                ?.addToBackStack(null)
                 ?.commit()
             PORTFOLIO_FRAG_TAG -> childFragmentManager?.beginTransaction()
-                ?.replace(R.id.child_fragments_container, PortfolioFragment())?.addToBackStack(null)
+                ?.replace(R.id.child_fragments_container, PortfolioFragment())
+                ?.addToBackStack(null)
                 ?.commit()
             EXPERIENCE_FRAG_TAG -> childFragmentManager?.beginTransaction()
                 ?.replace(R.id.child_fragments_container, ExperienceFragment())
