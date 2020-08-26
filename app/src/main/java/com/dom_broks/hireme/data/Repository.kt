@@ -35,7 +35,7 @@ constructor(private val firebase: FirebaseSource) {
     fun updateUsername(id: String, username: String) =
         firebase.updateUsername(id, username)
 
-    suspend fun getUserExperience() =
+    fun getUserExperience() =
         firebase.getUserExperience()
 
     fun dispose() =

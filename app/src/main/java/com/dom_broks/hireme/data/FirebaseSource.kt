@@ -134,7 +134,6 @@ class FirebaseSource {
                     Log.e("message", "no snapshots found")
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
                 println("Some error happened ${error.message}")
             }

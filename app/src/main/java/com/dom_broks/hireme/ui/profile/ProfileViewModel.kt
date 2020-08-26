@@ -18,7 +18,6 @@ class ProfileViewModel
 constructor(private val repository: Repository) : ViewModel() {
 
 
-    var isLoaded = false
     private val _experienceData = MutableLiveData<List<Experience>>()
     val experienceData get() = _experienceData
 
@@ -45,7 +44,6 @@ constructor(private val repository: Repository) : ViewModel() {
             list = repository.getUserExperience()
         }
         _experienceData.value = list
-        isLoaded = true
 
     }
 
