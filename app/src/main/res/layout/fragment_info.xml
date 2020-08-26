@@ -16,12 +16,12 @@
         tools:layout_editor_absoluteY="402dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/addInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:background="@drawable/button_shape"
         android:fontFamily="sans-serif"
-android:layout_margin="20dp"
         android:text="Add Info"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/white"
