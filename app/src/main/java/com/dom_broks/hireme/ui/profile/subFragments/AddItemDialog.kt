@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.dom_broks.hireme.R
+import kotlinx.android.synthetic.main.add_item_dialog.*
 
 class AddItemDialog : DialogFragment() {
 
@@ -18,6 +19,7 @@ class AddItemDialog : DialogFragment() {
         private const val KEY_SUBTITLE = "KEY_SUBTITLE"
 
         fun newInstance(title: String, subTitle: String): AddItemDialog {
+
             val args = Bundle()
             args.putString(KEY_TITLE, title)
             args.putString(KEY_SUBTITLE, subTitle)
@@ -33,6 +35,7 @@ class AddItemDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         return inflater.inflate(R.layout.add_item_dialog, container, false)
     }
 
@@ -40,7 +43,23 @@ class AddItemDialog : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         setupView(view)
         setupClickListeners(view)
+        changeToSelectedColor(End, Begin)
+        End.setOnClickListener {
+            changeToSelectedColor(End, Begin)
+        }
+        Begin.setOnClickListener {
+            changeToSelectedColor(Begin, End)
+        }
+
+
     }
+
+    private fun changeToSelectedColor(view: View, view2: View) {
+        view.setBackgroundResource(R.drawable.button_shape_two)
+        view2.setBackgroundResource(R.drawable.button_shape_three)
+
+    }
+
 
     override fun onStart() {
         super.onStart()
