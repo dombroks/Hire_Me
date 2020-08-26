@@ -18,20 +18,16 @@ import kotlinx.android.synthetic.main.fragment_experience.*
 
 @AndroidEntryPoint
 class ExperienceFragment : Fragment(R.layout.fragment_experience) {
-
-
     private val viewModel: ProfileViewModel by viewModels()
 
+    override fun onStart() {
+        viewModel.getUserExperience()
+        super.onStart()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.getUserExperience()
-
-
         initRecyclerView()
-
-
     }
 
     private fun initRecyclerView() {
@@ -45,6 +41,7 @@ class ExperienceFragment : Fragment(R.layout.fragment_experience) {
         }
 
     }
+
 
 
 }
