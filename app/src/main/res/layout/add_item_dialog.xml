@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto"
         android:text="Job"
+
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/title"
@@ -51,6 +52,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/edit_text_shape"
+        android:hint="  Job title.."
         android:singleLine="true"
         android:textColor="@color/black"
         android:textSize="15sp"
@@ -77,6 +79,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/edit_text_shape"
+        android:hint="  Company name.."
         android:singleLine="true"
         android:textColor="@color/black"
         android:textSize="15sp"
