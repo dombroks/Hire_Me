@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
+import com.dom_broks.hireme.DatePickerDialogFragment
 import com.dom_broks.hireme.R
 import kotlinx.android.synthetic.main.add_item_dialog.*
 
@@ -41,14 +42,23 @@ class AddItemDialog : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupView(view)
-        setupClickListeners(view)
+
         changeToSelectedColor(End, Begin)
+
         End.setOnClickListener {
             changeToSelectedColor(End, Begin)
         }
         Begin.setOnClickListener {
             changeToSelectedColor(Begin, End)
+        }
+
+        addBtn.setOnClickListener {
+            val jobTitle : String = title.text.toString()
+            val companyName : String =companyName.text.toString()
+
+        }
+        Begin.setOnClickListener {
+            DatePickerDialogFragment.newInstance().show(childFragmentManager,DatePickerDialogFragment.TAG)
         }
 
 
@@ -69,19 +79,7 @@ class AddItemDialog : DialogFragment() {
         )
     }
 
-    private fun setupView(view: View) {
-        // view.tvTitle.text = arguments?.getString(KEY_TITLE)
 
-    }
 
-    private fun setupClickListeners(view: View) {
-        /*
-        view.btnPositive.setOnClickListener {
-            // TODO: Do some task here
-            dismiss()
-        }
 
-         */
-
-    }
 }
