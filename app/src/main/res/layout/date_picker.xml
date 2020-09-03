@@ -10,23 +10,37 @@
         android:id="@+id/setDateBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:background="@drawable/button_shape"
         android:fontFamily="sans-serif"
+        android:gravity="center"
         android:text="Set date"
-
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/white"
         android:textSize="17sp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/datePicker2" />
+
+    <TextView
+        android:id="@+id/indice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="ٍٍStarting"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <DatePicker
         android:id="@+id/datePicker2"
 
         android:layout_width="288dp"
         android:layout_height="189dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:backgroundTint="@color/colorPrimary"
         android:calendarTextColor="@color/colorPrimary"
         android:calendarViewShown="false"
@@ -34,6 +48,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/indice" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

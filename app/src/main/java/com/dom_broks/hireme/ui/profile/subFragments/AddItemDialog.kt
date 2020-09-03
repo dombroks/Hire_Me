@@ -43,15 +43,6 @@ class AddItemDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        changeToSelectedColor(End, Begin)
-
-        End.setOnClickListener {
-            changeToSelectedColor(End, Begin)
-        }
-        Begin.setOnClickListener {
-            changeToSelectedColor(Begin, End)
-        }
-
         addBtn.setOnClickListener {
             val jobTitle : String = title.text.toString()
             val companyName : String =companyName.text.toString()

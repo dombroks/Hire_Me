@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import kotlinx.android.synthetic.main.date_picker.*
 
 class DatePickerDialogFragment : DialogFragment() {
     companion object {
@@ -29,6 +30,9 @@ class DatePickerDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setDateBtn.setOnClickListener {
+            indice.text = "Ending"
+        }
 
 
     }
