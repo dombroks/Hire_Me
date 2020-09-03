@@ -38,18 +38,18 @@ fun isEmailValid(email: String): Boolean {
 
 fun toMonth(month: Int): String {
     return when (month) {
-        1 -> return "Jan"
-        2 -> return "Feb"
-        3 -> return "Mar"
-        4 -> return "Apr"
-        5 -> return "May"
-        6 -> return "Jun"
-        7 -> return "Jul"
-        8 -> return "Aug"
-        9 -> return "Sep"
-        10 -> return "Oct"
-        11 -> return "Nov"
-        12 -> return "Dec"
-        else -> return "Null"
+        1 ->  "Jan"
+        2 ->  "Feb"
+        3 ->  "Mar"
+        4 ->  "Apr"
+        5 ->  "May"
+        6 ->  "Jun"
+        7 ->  "Jul"
+        8 ->  "Aug"
+        9 ->  "Sep"
+        10 ->  "Oct"
+        11 ->  "Nov"
+        12 ->  "Dec"
+        else ->  "Null"
     }
 }
