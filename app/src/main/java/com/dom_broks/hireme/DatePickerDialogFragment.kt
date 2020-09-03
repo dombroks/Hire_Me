@@ -32,6 +32,8 @@ class DatePickerDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         setDateBtn.setOnClickListener {
             indice.text = "Ending"
+            presentCheckBox.visibility =View.VISIBLE
+            setDateBtn.text = " Set Ending Date "
         }
 
 

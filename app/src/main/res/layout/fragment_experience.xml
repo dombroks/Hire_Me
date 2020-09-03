@@ -28,17 +28,13 @@
         </androidx.recyclerview.widget.RecyclerView>
     </FrameLayout>
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/AddExperience"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:background="@drawable/button_shape"
-        android:fontFamily="sans-serif"
-        android:text="Add Experience"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/white"
-        android:textSize="17sp" />
+        android:layout_gravity="bottom|end"
+        android:elevation="0dp"
+        android:src="@drawable/ic_add" />
 
 
 </LinearLayout>
