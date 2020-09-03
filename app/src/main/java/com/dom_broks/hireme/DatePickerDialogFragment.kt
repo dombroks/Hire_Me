@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import androidx.fragment.app.DialogFragment
+import com.dom_broks.hireme.utils.toMonth
 import kotlinx.android.synthetic.main.date_picker.*
 
 class DatePickerDialogFragment : DialogFragment() {
@@ -33,7 +34,7 @@ class DatePickerDialogFragment : DialogFragment() {
             indice.text = "Ending"
             presentCheckBox.visibility = View.VISIBLE
             setDateBtn.text = " Set Ending Date "
-            Toast.makeText(requireContext(), (datePicker2.month + 1).toString(), LENGTH_LONG).show()
+            Toast.makeText(requireContext(), toMonth(datePicker2.month + 1), LENGTH_LONG).show()
 
 
         }
