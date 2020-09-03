@@ -9,10 +9,7 @@ import kotlinx.android.synthetic.main.date_picker.*
 
 class DatePickerDialogFragment : DialogFragment() {
     companion object {
-
         const val TAG = "DatePickerDialogFragment"
-
-
         fun newInstance(): DatePickerDialogFragment {
             return DatePickerDialogFragment()
         }
@@ -32,7 +29,7 @@ class DatePickerDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         setDateBtn.setOnClickListener {
             indice.text = "Ending"
-            presentCheckBox.visibility =View.VISIBLE
+            presentCheckBox.visibility = View.VISIBLE
             setDateBtn.text = " Set Ending Date "
         }
 
