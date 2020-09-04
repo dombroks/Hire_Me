@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:padding="10dp">
 
     <Button
         android:id="@+id/setDateBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
+
         android:layout_marginTop="48dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+
         android:background="@drawable/button_shape"
         android:fontFamily="sans-serif"
         android:text=" Set starting date "
@@ -26,18 +26,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/datePicker2" />
-
-    <TextView
-        android:id="@+id/indice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Starting"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatCheckBox
 
@@ -56,7 +44,6 @@
 
         android:layout_width="288dp"
         android:layout_height="189dp"
-        android:layout_marginTop="4dp"
         android:backgroundTint="@color/colorPrimary"
         android:calendarTextColor="@color/colorPrimary"
         android:calendarViewShown="false"
@@ -64,6 +51,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/indice" />
+        tools:layout_editor_absoluteY="41dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

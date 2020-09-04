@@ -6,17 +6,33 @@
     android:layout_height="match_parent"
     android:padding="10dp">
 
+    <TextView
+        android:id="@+id/End"
+        android:layout_width="134dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/edit_text_shape"
+        android:gravity="center"
+        android:text=" To "
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="@+id/companyName"
+        app:layout_constraintTop_toBottomOf="@+id/companyName" />
+
     <Button
         android:id="@+id/addBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/button_shape"
         android:fontFamily="sans-serif"
         android:text="Save"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/white"
         android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="@+id/End"
+        app:layout_constraintHorizontal_bias="0.441"
         app:layout_constraintStart_toStartOf="@+id/Begin"
         app:layout_constraintTop_toBottomOf="@+id/Begin" />
 
@@ -32,16 +48,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto"
-        android:text="Job"
-
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/title"
-        app:layout_constraintStart_toStartOf="@+id/title" />
 
     <EditText
         android:id="@+id/title"
@@ -51,53 +57,43 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/edit_text_shape"
-        android:hint="  Job title.."
+        android:hint="  Job title "
         android:singleLine="true"
         android:textColor="@color/black"
         android:textSize="15sp"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/comImage" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto"
-        android:text="Company"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/companyName"
-        app:layout_constraintStart_toStartOf="@+id/companyName" />
 
     <EditText
         android:id="@+id/companyName"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/edit_text_shape"
-        android:hint="  Company name.."
+        android:hint="  Company name  "
         android:singleLine="true"
         android:textColor="@color/black"
         android:textSize="15sp"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <TextView
         android:id="@+id/Begin"
-        android:layout_width="110dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/button_shape_two"
-        android:elevation="8dp"
+        android:layout_width="134dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/edit_text_shape"
         android:gravity="center"
-        android:text="Duration"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/companyName"
-        app:layout_constraintHorizontal_bias="0.497"
+        android:text=" From "
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="@+id/companyName"
         app:layout_constraintTop_toBottomOf="@+id/companyName" />
 
