@@ -155,7 +155,7 @@ class FirebaseSource {
     }
 
     suspend fun loadUserProfileImage(): String? {
-        var value: String
+        var value: String? = null
         val ref = firebaseDatabase.getReference("Users")
         ref.child(currentUser()?.uid.toString()).child("picture")
             .addValueEventListener(object : ValueEventListener {
@@ -163,7 +163,6 @@ class FirebaseSource {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    va
                     value = snapshot.value.toString()
 
                 }
