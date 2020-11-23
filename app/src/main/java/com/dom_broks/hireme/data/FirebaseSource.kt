@@ -162,19 +162,10 @@ class FirebaseSource {
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     value = snapshot.value.toString()
-                    setValueForProfileImage(value!!)
-
                 }
-
             })
-        Log.e(">>>>>>>>>>>>>",value)
-
+        Log.e(">>>>>>>>>>>>>", value)
         return value
-    }
-    private fun setValueForProfileImage(value : String){
-        this.value = value
-
-
     }
 
 
