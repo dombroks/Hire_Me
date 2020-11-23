@@ -70,8 +70,8 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     }
 
     override fun onStart() {
-        viewModel.getUserExperience()
-        user = viewModel.currentUserData.value!!
+        viewModel.getUserData()
+//        user = viewModel.currentUserData.value!!
         super.onStart()
     }
 

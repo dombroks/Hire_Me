@@ -1,9 +1,9 @@
 package com.dom_broks.hireme.model
 
 data class User(
-    val id: String,
-    val email: String,
-    val username : String,
-    val picture: String
+    var id: String? = null,
+    var email: String? = null,
+    var username: String? = null,
+    var picture: String? = null
 )
 

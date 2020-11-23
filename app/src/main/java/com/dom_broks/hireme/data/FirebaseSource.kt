@@ -161,12 +161,11 @@ class FirebaseSource {
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
             override fun onDataChange(snapshot: DataSnapshot) {
-                user = snapshot.value as User
-
+                user = snapshot.getValue(User::class.java)
             }
         })
+        Log.e(">>>",user!!.username)
         return user!!
     }
 

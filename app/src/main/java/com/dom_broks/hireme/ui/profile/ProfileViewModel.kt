@@ -54,7 +54,7 @@ constructor(private val repository: Repository) : ViewModel() {
     fun getUserData() {
         var user: User? = null
         viewModelScope.launch {
-            user = repository.getUserData()
+            repository.getUserData()
         }
         _currentUserData.value = user
     }
