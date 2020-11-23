@@ -26,8 +26,8 @@ constructor(private val firebase: FirebaseSource) {
     fun addNewUser(id: String, email: String, username: String, picture: String) =
         firebase.addNewUser(id, email, username, picture)
 
-    fun addImageToDatabase(userUid: String?, uri: String) =
-        firebase.addImageToDatabase(userUid, uri)
+    fun addImageToDatabase(uri: String) =
+        firebase.addImageToDatabase(currentUser()?.uid, uri)
 
     fun addImageToStorage(filePath: Uri, folder: String) =
         firebase.addImageToStorage(filePath, folder)
