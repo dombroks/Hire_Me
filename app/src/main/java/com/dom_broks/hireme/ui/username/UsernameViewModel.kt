@@ -21,9 +21,9 @@ class UsernameViewModel @ViewModelInject constructor(private val repository: Rep
     private val user by lazy { repository.currentUser() }
 
 
-    fun updateUsername() {
+    private fun updateUsername() {
         val disposable =
-            repository.updateUsername(user!!.uid, username!!)
+            repository.updateUsername(user!!.uid, username!!.trim())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
