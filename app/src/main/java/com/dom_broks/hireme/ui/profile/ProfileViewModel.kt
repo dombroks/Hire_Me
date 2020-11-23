@@ -50,12 +50,8 @@ constructor(private val repository: Repository) : ViewModel() {
 
     }
 
-    fun loadUserProfileImage() {
-        var uri: String? = null
-        viewModelScope.launch {
-            uri = repository.loadUserProfileImage()
-        }
-        _profileImage.value = uri
+    fun getUserData() {
+
     }
 
 

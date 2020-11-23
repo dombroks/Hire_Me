@@ -66,10 +66,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         }
     }
 
-    override fun onStart() {
-        viewModel.loadUserProfileImage()
-        super.onStart()
-    }
+
 
     @SuppressLint("ResourceAsColor")
     override fun onCreateView(

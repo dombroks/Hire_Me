@@ -21,7 +21,7 @@ import io.reactivex.Completable
 
 class FirebaseSource {
     private val experienceData = mutableListOf<Experience>()
-    var value: String? = null
+    var value = mutableListOf<String>()
 
 
     private val firebaseAuth: FirebaseAuth by lazy {
@@ -153,19 +153,36 @@ class FirebaseSource {
         experienceData.clear()
     }
 
-    suspend fun loadUserProfileImage(): String? {
+    fun loadUserProfileImage(): String? {
         val ref = firebaseDatabase.getReference("Users")
         ref.child(currentUser()?.uid.toString()).child("picture")
-            .addValueEventListener(object : ValueEventListener {
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    value = snapshot.value.toString()
+                    value.add(snapshot.value!!.toString())
                 }
             })
-        Log.e(">>>>>>>>>>>>>", value)
-        return value
+        Log.e(">>>>>>>>>>>>>", value[0])
+        return value[0]
+    }
+
+    fun getUserData(): User {
+        var user: User? = null
+        val ref = firebaseDatabase.getReference("Users")
+        ref.child(currentUser()?.uid.toString()).addListenerForSingleValueEvent(object :
+            ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                user = snapshot.value as User
+
+            }
+        })
+        return user!!
     }
 
 

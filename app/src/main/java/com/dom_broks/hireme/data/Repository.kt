@@ -38,8 +38,8 @@ constructor(private val firebase: FirebaseSource) {
     fun getUserExperience() =
         firebase.getUserExperience()
 
-    suspend fun loadUserProfileImage() =
-        firebase.loadUserProfileImage()
+    fun getUserData() =
+        firebase.getUserData()
 
 
 }
