@@ -21,6 +21,7 @@ import com.dom_broks.hireme.ui.profile.subFragments.ExperienceFragment
 import com.dom_broks.hireme.ui.profile.subFragments.InfoFragment
 import com.dom_broks.hireme.ui.profile.subFragments.PortfolioFragment
 import com.dom_broks.hireme.R
+import com.dom_broks.hireme.model.User
 import com.dom_broks.hireme.utils.addChildFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.profile_fragment.*
@@ -33,6 +34,8 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     private val INFO_FRAG_TAG = "fragment_info"
     private val PORTFOLIO_FRAG_TAG = "fragment_portfolio"
     private val EXPERIENCE_FRAG_TAG = "fragment_experience"
+
+    private lateinit var user : User
 
     private val viewModel: ProfileViewModel by viewModels()
 
@@ -66,6 +69,11 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         }
     }
 
+    override fun onStart() {
+        viewModel.getUserExperience()
+        user = viewModel.currentUserData.value!!
+        super.onStart()
+    }
 
 
     @SuppressLint("ResourceAsColor")

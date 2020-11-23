@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.dom_broks.hireme.data.AuthListener
 import com.dom_broks.hireme.data.Repository
 import com.dom_broks.hireme.model.Experience
+import com.dom_broks.hireme.model.User
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -18,8 +19,8 @@ class ProfileViewModel
 @ViewModelInject
 constructor(private val repository: Repository) : ViewModel() {
 
-    private val _profileImage = MutableLiveData<String>()
-    val profileImage get() = _profileImage
+    private val _currentUserData = MutableLiveData<User>()
+    val currentUserData get() = _currentUserData
 
     private val _experienceData = MutableLiveData<List<Experience>>()
     val experienceData get() = _experienceData
@@ -51,7 +52,11 @@ constructor(private val repository: Repository) : ViewModel() {
     }
 
     fun getUserData() {
-
+        var user: User? = null
+        viewModelScope.launch {
+            user = repository.getUserData()
+        }
+        _currentUserData.value = user
     }
 
 
