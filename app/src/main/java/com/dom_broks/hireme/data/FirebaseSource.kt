@@ -2,6 +2,8 @@ package com.dom_broks.hireme.data
 
 import android.net.Uri
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.dom_broks.hireme.model.Experience
 import com.dom_broks.hireme.model.User
 import com.google.android.gms.tasks.Continuation
@@ -19,6 +21,7 @@ import io.reactivex.Completable
 
 class FirebaseSource {
     private val experienceData = mutableListOf<Experience>()
+    private val imageUri = MutableLiveData<String>()
 
 
     private val firebaseAuth: FirebaseAuth by lazy {
@@ -148,6 +151,22 @@ class FirebaseSource {
 
     fun dispose() {
         experienceData.clear()
+    }
+
+    suspend fun loadUserProfileImage() {
+        val ref = firebaseDatabase.getReference("Users")
+        ref.child(currentUser()?.uid.toString()).child("Image")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val value = snapshot.value as String
+                    imageUri.value = value
+                }
+
+            })
+
     }
 
 
