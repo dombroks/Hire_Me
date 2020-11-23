@@ -1,6 +1,7 @@
 package com.dom_broks.hireme.ui.profile
 
 import android.net.Uri
+import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,6 +18,8 @@ class ProfileViewModel
 @ViewModelInject
 constructor(private val repository: Repository) : ViewModel() {
 
+    private val _profileImage = MutableLiveData<String>()
+    val profileImage get() = _profileImage
 
     private val _experienceData = MutableLiveData<List<Experience>>()
     val experienceData get() = _experienceData
@@ -45,6 +48,14 @@ constructor(private val repository: Repository) : ViewModel() {
         }
         _experienceData.value = list
 
+    }
+
+    fun loadUserProfileImage() {
+        var uri: String? = null
+        viewModelScope.launch {
+            uri = repository.loadUserProfileImage()
+        }
+        _profileImage.value = uri
     }
 
 

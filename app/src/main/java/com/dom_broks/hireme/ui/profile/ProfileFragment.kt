@@ -34,16 +34,18 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     private val PORTFOLIO_FRAG_TAG = "fragment_portfolio"
     private val EXPERIENCE_FRAG_TAG = "fragment_experience"
 
+    private val viewModel: ProfileViewModel by viewModels()
 
     companion object {
         fun newInstance() = ProfileFragment()
     }
 
 
-    private val viewModel: ProfileViewModel by viewModels()
+
 
     private val PICK_IMAGE_REQUEST = 1
     private var filePath: Uri? = null
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -64,6 +66,10 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         }
     }
 
+    override fun onStart() {
+        viewModel.loadUserProfileImage()
+        super.onStart()
+    }
 
     @SuppressLint("ResourceAsColor")
     override fun onCreateView(
@@ -79,8 +85,8 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         portfolioBtn.setBackgroundResource(R.drawable.button_shape_two)
         val avatar: ImageView = view.findViewById(R.id.circleImageView)
 
-
-
+       // val uri = Uri.parse(viewModel.profileImage.value)
+        //avatar.setImageURI(uri)
         infoBtn.setOnClickListener(View.OnClickListener {
             changeToSelectedColor(infoBtn, portfolioBtn, experienceBtn)
             replaceFragment(INFO_FRAG_TAG)
