@@ -35,7 +35,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     private val PORTFOLIO_FRAG_TAG = "fragment_portfolio"
     private val EXPERIENCE_FRAG_TAG = "fragment_experience"
 
-    private lateinit var user : User
 
     private val viewModel: ProfileViewModel by viewModels()
 
@@ -44,15 +43,13 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     }
 
 
-
-
     private val PICK_IMAGE_REQUEST = 1
     private var filePath: Uri? = null
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val infoFragment =
             InfoFragment()
         val portfolioFragment =
@@ -69,12 +66,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         }
     }
 
-    override fun onStart() {
-        viewModel.getUserData()
-//        user = viewModel.currentUserData.value!!
-        super.onStart()
-    }
-
 
     @SuppressLint("ResourceAsColor")
     override fun onCreateView(
@@ -83,14 +74,16 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     ): View? {
         val view: View = inflater.inflate(R.layout.profile_fragment, container, false)
 
-
         val infoBtn: TextView = view.findViewById(R.id.infoBtn)
         val portfolioBtn: TextView = view.findViewById(R.id.portfolioBtn)
         val experienceBtn: TextView = view.findViewById(R.id.experienceBtn)
         portfolioBtn.setBackgroundResource(R.drawable.button_shape_two)
         val avatar: ImageView = view.findViewById(R.id.circleImageView)
 
-       // val uri = Uri.parse(viewModel.profileImage.value)
+//        username.text = viewModel.userInfo?.username
+
+
+        // val uri = Uri.parse(viewModel.profileImage.value)
         //avatar.setImageURI(uri)
         infoBtn.setOnClickListener(View.OnClickListener {
             changeToSelectedColor(infoBtn, portfolioBtn, experienceBtn)
@@ -178,23 +171,26 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
         when (selectedFrag) {
             INFO_FRAG_TAG -> childFragmentManager?.beginTransaction()
-                ?.replace(R.id.child_fragments_container,
+                ?.replace(
+                    R.id.child_fragments_container,
                     InfoFragment()
                 )
                 ?.addToBackStack(null)
                 ?.commit()
             PORTFOLIO_FRAG_TAG -> childFragmentManager?.beginTransaction()
-                ?.replace(R.id.child_fragments_container,
+                ?.replace(
+                    R.id.child_fragments_container,
                     PortfolioFragment()
                 )
                 ?.addToBackStack(null)
                 ?.commit()
             EXPERIENCE_FRAG_TAG -> childFragmentManager?.beginTransaction()
-                ?.replace(R.id.child_fragments_container,
+                ?.replace(
+                    R.id.child_fragments_container,
                     ExperienceFragment()
                 )
                 ?.addToBackStack(null)
-                ?.commit()
+                .commit()
         }
 
     }

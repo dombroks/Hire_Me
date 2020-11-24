@@ -2,7 +2,6 @@ package com.dom_broks.hireme.data
 
 import android.net.Uri
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dom_broks.hireme.model.Experience
 import com.dom_broks.hireme.model.User
@@ -21,6 +20,10 @@ import io.reactivex.Completable
 
 class FirebaseSource {
     private val experienceData = mutableListOf<Experience>()
+
+
+    private val _userInfo = MutableLiveData<User>()
+    val userInfo get() = _userInfo.value
 
 
     private val firebaseAuth: FirebaseAuth by lazy {
@@ -153,20 +156,25 @@ class FirebaseSource {
     }
 
 
-    fun getUserData(): User {
-        var user: User? = null
+    fun getUserData() {
+        var user: User?
         val ref = firebaseDatabase.getReference("Users")
         ref.child(currentUser()?.uid.toString()).addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
+
             override fun onDataChange(snapshot: DataSnapshot) {
                 user = snapshot.getValue(User::class.java)
+                if (_userInfo.value == null){
+                    _userInfo.value = user
+
+                }
+
             }
         })
-        Log.e(">>>",user!!.username)
-        return user!!
+        Log.e("azert",userInfo?.username.toString())
     }
 
 

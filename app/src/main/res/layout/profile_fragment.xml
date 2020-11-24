@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewmodel"
             type="com.dom_broks.hireme.ui.profile.ProfileViewModel" />
@@ -121,7 +122,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/roboto_bold"
-            android:text="@{viewmodel.currentUserData.username}"
+            android:text="@{viewmodel.userInfo.username}"
+
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/circleImageView"

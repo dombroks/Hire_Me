@@ -1,7 +1,6 @@
 package com.dom_broks.hireme.ui.profile
 
 import android.net.Uri
-import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,14 +18,15 @@ class ProfileViewModel
 @ViewModelInject
 constructor(private val repository: Repository) : ViewModel() {
 
-    private val _currentUserData = MutableLiveData<User>()
-    val currentUserData get() = _currentUserData
+    var userInfo = repository.userInfo
+
 
     private val _experienceData = MutableLiveData<List<Experience>>()
     val experienceData get() = _experienceData
 
     var authListener: AuthListener? = null
     private val disposables = CompositeDisposable()
+
 
     fun uploadPictureToFirebaseStorage(uri: Uri?, folder: String) {
         val disposable = repository.addImageToStorage(uri!!, folder)
@@ -52,11 +52,9 @@ constructor(private val repository: Repository) : ViewModel() {
     }
 
     fun getUserData() {
-        var user: User? = null
         viewModelScope.launch {
             repository.getUserData()
         }
-        _currentUserData.value = user
     }
 
 

@@ -1,13 +1,13 @@
 package com.dom_broks.hireme.data
 
 import android.net.Uri
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 
 class Repository
 @Inject
 constructor(private val firebase: FirebaseSource) {
+    var userInfo = firebase.userInfo
 
     fun login(email: String, password: String) =
         firebase.login(email, password)
