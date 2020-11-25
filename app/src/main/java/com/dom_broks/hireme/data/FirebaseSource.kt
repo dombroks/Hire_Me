@@ -7,6 +7,7 @@ import com.dom_broks.hireme.model.Experience
 import com.dom_broks.hireme.model.User
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.TaskCompletionSource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DataSnapshot
@@ -167,14 +168,14 @@ class FirebaseSource {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 user = snapshot.getValue(User::class.java)
-                if (_userInfo.value == null){
+                if (_userInfo.value == null) {
                     _userInfo.value = user
 
                 }
 
             }
         })
-        Log.e("azert",userInfo?.username.toString())
+        Log.e("azert", userInfo?.username.toString())
     }
 
 
