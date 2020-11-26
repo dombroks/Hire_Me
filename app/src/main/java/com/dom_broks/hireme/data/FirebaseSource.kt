@@ -7,10 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import com.dom_broks.hireme.model.Experience
 import com.dom_broks.hireme.model.User
 import com.dom_broks.hireme.utils.Resource
-import com.dom_broks.hireme.utils.Status
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.TaskCompletionSource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DataSnapshot
@@ -20,7 +18,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import io.reactivex.Completable
-import java.lang.Exception
 
 
 class FirebaseSource {
@@ -42,29 +39,27 @@ class FirebaseSource {
 
 
     fun addImageToStorage(filePath: Uri, folder: String) = Completable.create { emitter ->
-        if (filePath != null) {
-            val ref = firebaseStorage.reference.child("$folder/img${firebaseAuth.currentUser?.uid}")
-            val uploadTask = ref.putFile(filePath)
-            val urlTask =
-                uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
-                    if (!task.isSuccessful) {
-                        task.exception?.let { emitter.onError(it) }
-                    }
-                    return@Continuation ref.downloadUrl
-                }).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val downloadUri = task.result
-                        addImageToDatabase(firebaseAuth.currentUser?.uid, downloadUri.toString())
-                    } else {
-                        // some kind of errors here to handle
-                    }
-
-                }.addOnFailureListener {
+        val ref = firebaseStorage.reference.child("$folder/img${firebaseAuth.currentUser?.uid}")
+        val uploadTask = ref.putFile(filePath)
+        val urlTask =
+            uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
+                if (!task.isSuccessful) {
+                    task.exception?.let { emitter.onError(it) }
+                }
+                return@Continuation ref.downloadUrl
+            }).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val downloadUri = task.result
+                    addImageToDatabase(firebaseAuth.currentUser?.uid, downloadUri.toString())
+                } else {
                     // some kind of errors here to handle
                 }
 
+            }.addOnFailureListener {
+                // some kind of errors here to handle
+            }
 
-        }
+
     }
 
     fun addImageToDatabase(userUid: String?, uri: String) {
