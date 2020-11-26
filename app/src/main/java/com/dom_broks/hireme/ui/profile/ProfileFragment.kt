@@ -18,6 +18,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.dom_broks.hireme.ui.profile.subFragments.ExperienceFragment
 import com.dom_broks.hireme.ui.profile.subFragments.InfoFragment
 import com.dom_broks.hireme.ui.profile.subFragments.PortfolioFragment
@@ -75,7 +76,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     ): View? {
         val view: View = inflater.inflate(R.layout.profile_fragment, container, false)
 
-        val infoBtn : TextView = view.findViewById(R.id.infoBtn)
+        val infoBtn: TextView = view.findViewById(R.id.infoBtn)
         val portfolioBtn: TextView = view.findViewById(R.id.portfolioBtn)
         val experienceBtn: TextView = view.findViewById(R.id.experienceBtn)
         portfolioBtn.setBackgroundResource(R.drawable.button_shape_two)
@@ -201,7 +202,10 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         viewModel.userData.observe(viewLifecycleOwner, Observer {
             username.text = it.data!!.username
             job.text = it.data.title
-            circleImageView.setImageURI(Uri.parse(it.data.picture))
+            Glide.with(this)
+                .load(it.data.picture)
+                .into(circleImageView)
+
 
         })
     }
