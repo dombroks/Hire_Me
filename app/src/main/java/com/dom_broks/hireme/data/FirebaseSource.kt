@@ -2,9 +2,11 @@ package com.dom_broks.hireme.data
 
 import android.net.Uri
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dom_broks.hireme.model.Experience
 import com.dom_broks.hireme.model.User
+import com.dom_broks.hireme.utils.Resource
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.TaskCompletionSource
@@ -23,8 +25,8 @@ class FirebaseSource {
     private val experienceData = mutableListOf<Experience>()
 
 
-    private val _userInfo = MutableLiveData<User>()
-    val userInfo get() = _userInfo.value
+    private val _userInfo = MutableLiveData<Resource<User>>()
+
 
 
     private val firebaseAuth: FirebaseAuth by lazy {
@@ -157,7 +159,7 @@ class FirebaseSource {
     }
 
 
-    fun getUserData() {
+    suspend fun getUserData() : LiveData<Resource<User>>{
         var user: User?
         val ref = firebaseDatabase.getReference("Users")
         ref.child(currentUser()?.uid.toString()).addListenerForSingleValueEvent(object :
@@ -165,17 +167,16 @@ class FirebaseSource {
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
             override fun onDataChange(snapshot: DataSnapshot) {
                 user = snapshot.getValue(User::class.java)
                 if (_userInfo.value == null) {
-                    _userInfo.value = user
+                    _userInfo.value = Resource(user,"Successful")
 
                 }
-
             }
         })
-        Log.e("azert", userInfo?.username.toString())
+        //Log.e("azert", userInfo?.username.toString())
+        return _userInfo
     }
 
 

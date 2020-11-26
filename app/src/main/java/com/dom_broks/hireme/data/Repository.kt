@@ -7,7 +7,6 @@ import javax.inject.Inject
 class Repository
 @Inject
 constructor(private val firebase: FirebaseSource) {
-    var userInfo = firebase.userInfo
 
     fun login(email: String, password: String) =
         firebase.login(email, password)
@@ -38,7 +37,7 @@ constructor(private val firebase: FirebaseSource) {
     fun getUserExperience() =
         firebase.getUserExperience()
 
-    fun getUserData() =
+    suspend fun getUserData() =
         firebase.getUserData()
 
 
