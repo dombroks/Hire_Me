@@ -76,16 +76,15 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     ): View? {
         val view: View = inflater.inflate(R.layout.profile_fragment, container, false)
 
+        setUserData()
+
         val infoBtn: TextView = view.findViewById(R.id.infoBtn)
         val portfolioBtn: TextView = view.findViewById(R.id.portfolioBtn)
         val experienceBtn: TextView = view.findViewById(R.id.experienceBtn)
         portfolioBtn.setBackgroundResource(R.drawable.button_shape_two)
-        val avatar: ImageView = view.findViewById(R.id.circleImageView)
 
-        setUserData()
 
-        // val uri = Uri.parse(viewModel.profileImage.value)
-        //avatar.setImageURI(uri)
+
         infoBtn.setOnClickListener(View.OnClickListener {
             changeToSelectedColor(infoBtn, portfolioBtn, experienceBtn)
             replaceFragment(INFO_FRAG_TAG)
@@ -136,13 +135,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
                 Log.e("onActivityResult: ", "${e.message}")
             }
 
-
-
-
             try {
-                // val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, filePath)
-                //  val source = ImageDecoder.createSource(activity!!.contentResolver, filePath!!)
-                //   val bitmap = ImageDecoder.decodeBitmap(source)
 
                 val bitmap = when {
                     Build.VERSION.SDK_INT < 28 -> MediaStore.Images.Media.getBitmap(
@@ -198,7 +191,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
     private fun setUserData() {
         viewModel.getUserData()
-
         viewModel.userData.observe(viewLifecycleOwner, Observer {
             username.text = it.data!!.username
             job.text = it.data.title

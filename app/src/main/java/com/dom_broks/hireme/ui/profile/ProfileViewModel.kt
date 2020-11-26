@@ -54,7 +54,6 @@ constructor(private val repository: Repository) : ViewModel() {
     }
 
     fun getUserData(){
-
         viewModelScope.launch{
             userData.postValue(repository.getUserData().value)
         }

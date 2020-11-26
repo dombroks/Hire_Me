@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import com.dom_broks.hireme.model.Experience
 import com.dom_broks.hireme.model.User
 import com.dom_broks.hireme.utils.Resource
+import com.dom_broks.hireme.utils.Status
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.TaskCompletionSource
@@ -19,6 +20,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import io.reactivex.Completable
+import java.lang.Exception
 
 
 class FirebaseSource {
@@ -26,7 +28,6 @@ class FirebaseSource {
 
 
     private val _userInfo = MutableLiveData<Resource<User>>()
-
 
 
     private val firebaseAuth: FirebaseAuth by lazy {
@@ -159,23 +160,29 @@ class FirebaseSource {
     }
 
 
-    suspend fun getUserData() : LiveData<Resource<User>>{
-        var user: User?
+    fun getUserData(): LiveData<Resource<User>> {
+        var user: User? = null
         val ref = firebaseDatabase.getReference("Users")
         ref.child(currentUser()?.uid.toString()).addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-            override fun onDataChange(snapshot: DataSnapshot) {
-                user = snapshot.getValue(User::class.java)
-                if (_userInfo.value == null) {
-                    _userInfo.value = Resource(user,"Successful")
 
+            override fun onDataChange(snapshot: DataSnapshot) {
+                try {
+                    user = snapshot.getValue(User::class.java)
+                    if (_userInfo.value == null) {
+                        _userInfo.value = Resource.success(user)
+
+                    }
+                } catch (e: Exception) {
+                    _userInfo.value = Resource.error(e.message,user)
                 }
+
             }
         })
-        //Log.e("azert", userInfo?.username.toString())
+
         return _userInfo
     }
 
