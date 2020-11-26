@@ -13,7 +13,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -23,7 +22,6 @@ import com.dom_broks.hireme.ui.profile.subFragments.ExperienceFragment
 import com.dom_broks.hireme.ui.profile.subFragments.InfoFragment
 import com.dom_broks.hireme.ui.profile.subFragments.PortfolioFragment
 import com.dom_broks.hireme.R
-import com.dom_broks.hireme.model.User
 import com.dom_broks.hireme.utils.addChildFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.profile_fragment.*
@@ -85,18 +83,18 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
 
 
-        infoBtn.setOnClickListener(View.OnClickListener {
+        infoBtn.setOnClickListener {
             changeToSelectedColor(infoBtn, portfolioBtn, experienceBtn)
             replaceFragment(INFO_FRAG_TAG)
-        })
+        }
         experienceBtn.setOnClickListener {
             changeToSelectedColor(experienceBtn, portfolioBtn, infoBtn)
             replaceFragment(EXPERIENCE_FRAG_TAG)
         }
-        portfolioBtn.setOnClickListener(View.OnClickListener {
+        portfolioBtn.setOnClickListener {
             changeToSelectedColor(portfolioBtn, infoBtn, experienceBtn)
             replaceFragment(PORTFOLIO_FRAG_TAG)
-        })
+        }
 
         return view
 
@@ -164,26 +162,26 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     private fun replaceFragment(selectedFrag: String) {
 
         when (selectedFrag) {
-            INFO_FRAG_TAG -> childFragmentManager?.beginTransaction()
-                ?.replace(
+            INFO_FRAG_TAG -> childFragmentManager.beginTransaction()
+                .replace(
                     R.id.child_fragments_container,
                     InfoFragment()
                 )
-                ?.addToBackStack(null)
-                ?.commit()
-            PORTFOLIO_FRAG_TAG -> childFragmentManager?.beginTransaction()
-                ?.replace(
+                .addToBackStack(null)
+                .commit()
+            PORTFOLIO_FRAG_TAG -> childFragmentManager.beginTransaction()
+                .replace(
                     R.id.child_fragments_container,
                     PortfolioFragment()
                 )
-                ?.addToBackStack(null)
-                ?.commit()
-            EXPERIENCE_FRAG_TAG -> childFragmentManager?.beginTransaction()
-                ?.replace(
+                .addToBackStack(null)
+                .commit()
+            EXPERIENCE_FRAG_TAG -> childFragmentManager.beginTransaction()
+                .replace(
                     R.id.child_fragments_container,
                     ExperienceFragment()
                 )
-                ?.addToBackStack(null)
+                .addToBackStack(null)
                 .commit()
         }
 
