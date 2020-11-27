@@ -194,6 +194,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             job.text = it.data.title
             Glide.with(this)
                 .load(it.data.picture)
+                .placeholder(R.drawable.ic_image)
                 .into(circleImageView)
 
 
