@@ -53,8 +53,9 @@ class AddItemDialog : DialogFragment() {
         }
         Begin.setOnClickListener {
             val dpdFragment = DatePickerDialogFragment.newInstance()
-            //dpdFragment.arguments
-
+            val bundle = Bundle()
+            bundle.putString("key", "begin")
+            dpdFragment.arguments = bundle
             dpdFragment
                 .show(childFragmentManager, DatePickerDialogFragment.TAG)
         }
