@@ -18,6 +18,10 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import io.reactivex.Completable
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class FirebaseSource {
@@ -50,7 +54,11 @@ class FirebaseSource {
             }).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val downloadUri = task.result
-                    addImageToDatabase(firebaseAuth.currentUser?.uid, downloadUri.toString())
+                    GlobalScope.launch {
+                        addImageToDatabase(firebaseAuth.currentUser?.uid, downloadUri.toString())
+                    }
+
+
                 } else {
                     // some kind of errors here to handle
                 }
@@ -167,12 +175,9 @@ class FirebaseSource {
             override fun onDataChange(snapshot: DataSnapshot) {
                 try {
                     user = snapshot.getValue(User::class.java)
-                    if (_userInfo.value == null) {
-                        _userInfo.value = Resource.success(user)
-
-                    }
+                    _userInfo.value = Resource.success(user)
                 } catch (e: Exception) {
-                    _userInfo.value = Resource.error(e.message,user)
+                    _userInfo.value = Resource.error(e.message, user)
                 }
 
             }
