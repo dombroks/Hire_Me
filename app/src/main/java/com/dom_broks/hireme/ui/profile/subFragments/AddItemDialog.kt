@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.dom_broks.hireme.DatePickerDialogFragment
 import com.dom_broks.hireme.R
@@ -44,12 +45,15 @@ class AddItemDialog : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         addBtn.setOnClickListener {
-            val jobTitle : String = title.text.toString()
-            val companyName : String =companyName.text.toString()
+            val jobTitle: String = title.text.toString()
+            val companyName: String = companyName.text.toString()
+
+            Toast.makeText(context, jobTitle, Toast.LENGTH_LONG).show()
 
         }
         Begin.setOnClickListener {
-            DatePickerDialogFragment.newInstance().show(childFragmentManager,DatePickerDialogFragment.TAG)
+            DatePickerDialogFragment.newInstance()
+                .show(childFragmentManager, DatePickerDialogFragment.TAG)
         }
 
 
@@ -69,8 +73,6 @@ class AddItemDialog : DialogFragment() {
             WindowManager.LayoutParams.WRAP_CONTENT
         )
     }
-
-
 
 
 }
