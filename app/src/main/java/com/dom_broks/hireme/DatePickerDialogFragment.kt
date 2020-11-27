@@ -17,7 +17,9 @@ class DatePickerDialogFragment : DialogFragment() {
     companion object {
         const val TAG = "DatePickerDialogFragment"
         fun newInstance(): DatePickerDialogFragment {
-            return DatePickerDialogFragment()
+            val fragment = DatePickerDialogFragment()
+            fragment.isCancelable = false
+            return fragment
         }
 
     }
@@ -37,7 +39,7 @@ class DatePickerDialogFragment : DialogFragment() {
             startingDate =
                 toMonth(datePicker2.month + 1) + " " + datePicker2.dayOfMonth + " " + datePicker2.year
 
-          //  presentCheckBox.visibility = View.VISIBLE
+            //  presentCheckBox.visibility = View.VISIBLE
 
             Toast.makeText(requireContext(), startingDate, LENGTH_LONG).show()
 
