@@ -29,6 +29,9 @@ constructor(private val repository: Repository) : ViewModel() {
     var authListener: AuthListener? = null
     private val disposables = CompositeDisposable()
 
+    // Experience chronology 
+    var startingDate: String? = null
+    var endDate: String? = null
 
     fun uploadPictureToFirebaseStorage(uri: Uri?, folder: String) {
         val disposable = repository.addImageToStorage(uri!!, folder)

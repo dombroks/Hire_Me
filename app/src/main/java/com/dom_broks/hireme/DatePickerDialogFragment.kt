@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
+import com.dom_broks.hireme.ui.profile.ProfileViewModel
 import com.dom_broks.hireme.utils.toMonth
 import kotlinx.android.synthetic.main.date_picker.*
 
@@ -14,11 +16,13 @@ class DatePickerDialogFragment : DialogFragment() {
     var startingDate: String? = null
     var endingDate: String? = null
 
+    private val viewModel: ProfileViewModel by viewModels()
+
     companion object {
         const val TAG = "DatePickerDialogFragment"
         fun newInstance(): DatePickerDialogFragment {
             val fragment = DatePickerDialogFragment()
-            fragment.isCancelable = false
+            //fragment.isCancelable = false
             return fragment
         }
 
@@ -42,6 +46,7 @@ class DatePickerDialogFragment : DialogFragment() {
             //  presentCheckBox.visibility = View.VISIBLE
 
             Toast.makeText(requireContext(), startingDate, LENGTH_LONG).show()
+
 
 
         }
