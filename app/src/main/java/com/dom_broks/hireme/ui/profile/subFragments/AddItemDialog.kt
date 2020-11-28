@@ -1,7 +1,6 @@
 package com.dom_broks.hireme.ui.profile.subFragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -73,12 +72,12 @@ class AddItemDialog : DialogFragment() {
         )
     }
 
-    fun isValidDate(date: String): Boolean {
+    private fun isValidDate(date: String): Boolean {
         var isValid: Boolean = true
         try {
             var formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-            val date = formatter.parse(date)
-            println(date)
+            val parsedDate = formatter.parse(date)
+            println(parsedDate)
         } catch (e: Exception) {
             isValid = false
         }
