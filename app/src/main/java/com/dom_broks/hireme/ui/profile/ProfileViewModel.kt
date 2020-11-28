@@ -2,10 +2,7 @@ package com.dom_broks.hireme.ui.profile
 
 import android.net.Uri
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.dom_broks.hireme.data.AuthListener
 import com.dom_broks.hireme.data.Repository
 import com.dom_broks.hireme.model.Experience
@@ -29,9 +26,8 @@ constructor(private val repository: Repository) : ViewModel() {
     var authListener: AuthListener? = null
     private val disposables = CompositeDisposable()
 
-    // Experience chronology 
-    var startingDate: String? = "none"
-    var endDate: String? = "none"
+
+
 
     fun uploadPictureToFirebaseStorage(uri: Uri?, folder: String) {
         val disposable = repository.addImageToStorage(uri!!, folder)
@@ -62,13 +58,8 @@ constructor(private val repository: Repository) : ViewModel() {
         }
     }
 
-    fun addExperience(title: String, place: String) {
-        val exp = Experience()
-        exp.Duration = "10 year"
-        exp.From = startingDate
-        exp.To = endDate
-        exp.Title = title
-        exp.Place = place
+    fun addExperience(title: String, place: String, from: String, to: String) {
+        val exp = Experience(title, "10 years", from, to, place)
         viewModelScope.launch {
             repository.addExperience(exp)
         }
