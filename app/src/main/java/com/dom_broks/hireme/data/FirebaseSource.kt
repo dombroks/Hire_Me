@@ -188,10 +188,8 @@ class FirebaseSource {
     }
 
     fun addExperience(exp: Experience) {
-        val ref = firebaseDatabase.getReference("Experience").child(currentUser()?.uid.toString())
+        val ref = firebaseDatabase.getReference("Experience").child(currentUser()?.uid.toString()).push()
             .setValue(exp.toMap())
-
-
     }
 
 }
