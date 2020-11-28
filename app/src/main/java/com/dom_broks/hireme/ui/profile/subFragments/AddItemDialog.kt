@@ -17,16 +17,9 @@ class AddItemDialog : DialogFragment() {
 
         const val TAG = "AddItemDialog"
 
-        private const val KEY_TITLE = "KEY_TITLE"
-        private const val KEY_SUBTITLE = "KEY_SUBTITLE"
 
-        fun newInstance(title: String, subTitle: String): AddItemDialog {
-
-            val args = Bundle()
-            args.putString(KEY_TITLE, title)
-            args.putString(KEY_SUBTITLE, subTitle)
+        fun newInstance(): AddItemDialog {
             val fragment = AddItemDialog()
-            fragment.arguments = args
             return fragment
         }
 
@@ -55,6 +48,14 @@ class AddItemDialog : DialogFragment() {
             val dpdFragment = DatePickerDialogFragment.newInstance()
             val bundle = Bundle()
             bundle.putString("key", "begin")
+            dpdFragment.arguments = bundle
+            dpdFragment
+                .show(childFragmentManager, DatePickerDialogFragment.TAG)
+        }
+        End.setOnClickListener{
+            val dpdFragment = DatePickerDialogFragment.newInstance()
+            val bundle = Bundle()
+            bundle.putString("key", "end")
             dpdFragment.arguments = bundle
             dpdFragment
                 .show(childFragmentManager, DatePickerDialogFragment.TAG)

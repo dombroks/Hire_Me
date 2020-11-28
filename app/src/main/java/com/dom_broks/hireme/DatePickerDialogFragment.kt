@@ -39,14 +39,14 @@ class DatePickerDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val key: String = arguments?.get("key") as String
         setDateBtn.setOnClickListener {
-            startingDate =
+            val date: String =
                 toMonth(datePicker2.month + 1) + " " + datePicker2.dayOfMonth + " " + datePicker2.year
-
-            //  presentCheckBox.visibility = View.VISIBLE
-
-            Toast.makeText(requireContext(), startingDate, LENGTH_LONG).show()
-
+            when (key) {
+                "begin" -> viewModel.startingDate = date
+                "end" -> viewModel.endDate = date
+            }
 
 
         }
