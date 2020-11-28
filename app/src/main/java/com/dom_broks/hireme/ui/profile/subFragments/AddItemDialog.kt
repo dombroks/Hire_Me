@@ -49,7 +49,8 @@ class AddItemDialog : DialogFragment() {
             if (!isValidDate(from) || !isValidDate(to)) {
                 Toast.makeText(context, "Please write a valid date", Toast.LENGTH_LONG).show()
             } else {
-                viewModel.addExperience(jobTitle, companyName, from, to)
+
+                viewModel.addExperience(jobTitle, companyName, from, to,getDuration(from,to))
                 super.dismiss()
             }
 
@@ -83,5 +84,15 @@ class AddItemDialog : DialogFragment() {
         }
 
         return isValid
+    }
+
+    private fun getDuration(date1: String, date2: String): Long {
+        var formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val parsedDate1 = formatter.parse(date1)
+        val parsedDate2 = formatter.parse(date2)
+        var diff: Long = parsedDate2.time - parsedDate1.time
+        diff = diff / 1000 / 60 / 60 / 24 / 24 / 30 / 12
+        return diff
+
     }
 }

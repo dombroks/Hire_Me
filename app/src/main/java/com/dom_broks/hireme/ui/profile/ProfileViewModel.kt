@@ -13,6 +13,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import java.time.Duration
 
 class ProfileViewModel
 @ViewModelInject
@@ -58,8 +59,8 @@ constructor(private val repository: Repository) : ViewModel() {
         }
     }
 
-    fun addExperience(title: String, place: String, from: String, to: String) {
-        val exp = Experience(title, "10 years", from, to, place)
+    fun addExperience(title: String, place: String, from: String, to: String,duration: Long) {
+        val exp = Experience(title, "$duration years", from, to, place)
         viewModelScope.launch {
             repository.addExperience(exp)
         }
