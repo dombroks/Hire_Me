@@ -1,6 +1,7 @@
 package com.dom_broks.hireme.ui.profile.subFragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,27 +9,24 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.ui.profile.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.add_item_dialog.*
+import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class AddItemDialog : DialogFragment() {
     private val viewModel: ProfileViewModel by viewModels()
 
-
     companion object {
-
         const val TAG = "AddItemDialog"
-
-
         fun newInstance(): AddItemDialog {
             val fragment = AddItemDialog()
             return fragment
         }
-
     }
 
     override fun onCreateView(
@@ -49,13 +47,15 @@ class AddItemDialog : DialogFragment() {
             var from = Begin.text.toString()
             var to = End.text.toString()
 
-            viewModel.addExperience(jobTitle, companyName, from, to)
+            if (!isValidDate(from) || !isValidDate(to)) {
+                Toast.makeText(context, "Please write a valid date", Toast.LENGTH_LONG).show()
+            } else {
+                viewModel.addExperience(jobTitle, companyName, from, to)
+                super.dismiss()
+            }
 
-            Toast.makeText(context, jobTitle, Toast.LENGTH_LONG).show()
 
         }
-
-
     }
 
     private fun changeToSelectedColor(view: View, view2: View) {
@@ -73,5 +73,16 @@ class AddItemDialog : DialogFragment() {
         )
     }
 
+    fun isValidDate(date: String): Boolean {
+        var isValid: Boolean = true
+        try {
+            var formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val date = formatter.parse(date)
+            println(date)
+        } catch (e: Exception) {
+            isValid = false
+        }
 
+        return isValid
+    }
 }
