@@ -22,6 +22,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.time.Duration
 
 
 class FirebaseSource {
@@ -186,5 +187,11 @@ class FirebaseSource {
         return _userInfo
     }
 
+    fun addExperience(exp: Experience) {
+        val ref = firebaseDatabase.getReference("Experience").child(currentUser()?.uid.toString())
+            .setValue(exp.toMap())
+
+
+    }
 
 }

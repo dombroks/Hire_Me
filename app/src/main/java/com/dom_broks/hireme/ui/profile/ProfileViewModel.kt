@@ -30,8 +30,8 @@ constructor(private val repository: Repository) : ViewModel() {
     private val disposables = CompositeDisposable()
 
     // Experience chronology 
-    var startingDate: String? = null
-    var endDate: String? = null
+    var startingDate: String? = "none"
+    var endDate: String? = "none"
 
     fun uploadPictureToFirebaseStorage(uri: Uri?, folder: String) {
         val disposable = repository.addImageToStorage(uri!!, folder)
@@ -60,6 +60,20 @@ constructor(private val repository: Repository) : ViewModel() {
         viewModelScope.launch {
             userData.postValue(repository.getUserData().value)
         }
+    }
+
+    fun addExperience(title: String, place: String) {
+        val exp = Experience()
+        exp.Duration = "10 year"
+        exp.From = startingDate
+        exp.To = endDate
+        exp.Title = title
+        exp.Place = place
+        viewModelScope.launch {
+            repository.addExperience(exp)
+        }
+
+
     }
 
 

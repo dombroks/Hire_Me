@@ -5,16 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import android.widget.Toast.LENGTH_LONG
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.dom_broks.hireme.ui.profile.ProfileViewModel
 import com.dom_broks.hireme.utils.toMonth
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.date_picker.*
 
+
+
+@AndroidEntryPoint
 class DatePickerDialogFragment : DialogFragment() {
-    var startingDate: String? = null
-    var endingDate: String? = null
+
 
     private val viewModel: ProfileViewModel by viewModels()
 
@@ -41,14 +43,16 @@ class DatePickerDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         val key: String = arguments?.get("key") as String
         setDateBtn.setOnClickListener {
+            Toast.makeText(context,key,Toast.LENGTH_LONG).show()
             val date: String =
                 toMonth(datePicker2.month + 1) + " " + datePicker2.dayOfMonth + " " + datePicker2.year
-            when (key) {
+            when (key.trim()) {
                 "begin" -> viewModel.startingDate = date
+
                 "end" -> viewModel.endDate = date
             }
 
-
+            super.dismiss()
         }
 
 

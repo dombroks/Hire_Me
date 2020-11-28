@@ -7,11 +7,17 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import com.dom_broks.hireme.DatePickerDialogFragment
 import com.dom_broks.hireme.R
+import com.dom_broks.hireme.ui.profile.ProfileViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.add_item_dialog.*
 
+@AndroidEntryPoint
 class AddItemDialog : DialogFragment() {
+    private val viewModel: ProfileViewModel by viewModels()
+
 
     companion object {
 
@@ -40,6 +46,7 @@ class AddItemDialog : DialogFragment() {
         addBtn.setOnClickListener {
             val jobTitle: String = title.text.toString()
             val companyName: String = companyName.text.toString()
+            viewModel.addExperience(jobTitle, companyName)
 
             Toast.makeText(context, jobTitle, Toast.LENGTH_LONG).show()
 
@@ -52,7 +59,7 @@ class AddItemDialog : DialogFragment() {
             dpdFragment
                 .show(childFragmentManager, DatePickerDialogFragment.TAG)
         }
-        End.setOnClickListener{
+        End.setOnClickListener {
             val dpdFragment = DatePickerDialogFragment.newInstance()
             val bundle = Bundle()
             bundle.putString("key", "end")

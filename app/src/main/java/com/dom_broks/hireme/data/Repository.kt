@@ -1,6 +1,7 @@
 package com.dom_broks.hireme.data
 
 import android.net.Uri
+import com.dom_broks.hireme.model.Experience
 import javax.inject.Inject
 
 
@@ -39,6 +40,9 @@ constructor(private val firebase: FirebaseSource) {
 
     fun getUserData() =
         firebase.getUserData()
+
+    fun  addExperience(exp: Experience) =
+        firebase.addExperience(exp)
 
 
 }
