@@ -1,6 +1,7 @@
 package com.dom_broks.hireme.ui.profile.subFragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,14 +44,14 @@ class AddItemDialog : DialogFragment() {
         addBtn.setOnClickListener {
             val jobTitle = title.text.toString()
             val companyName = companyName.text.toString()
-            var from = Begin.text.toString()
-            var to = End.text.toString()
+            val from = Begin.text.toString()
+            val to = End.text.toString()
 
             if (!isValidDate(from) || !isValidDate(to)) {
                 Toast.makeText(context, "Please write a valid date", Toast.LENGTH_LONG).show()
             } else {
 
-                viewModel.addExperience(jobTitle, companyName, from, to,getDuration(from,to))
+                viewModel.addExperience(jobTitle, companyName, from, to, getDuration(from, to))
                 super.dismiss()
             }
 
@@ -91,7 +92,7 @@ class AddItemDialog : DialogFragment() {
         val parsedDate1 = formatter.parse(date1)
         val parsedDate2 = formatter.parse(date2)
         var diff: Long = parsedDate2.time - parsedDate1.time
-        diff = diff / 1000 / 60 / 60 / 24 / 24 / 30 / 12
+        diff = diff / 1000 / 60 / 60 / 24 / 30 / 12
         return diff
 
     }

@@ -20,7 +20,7 @@
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="match_parent"
-            android:layout_height="744dp"
+            android:layout_height="751dp"
             android:alpha="0.2"
             android:background="@drawable/coding"
             app:layout_constraintEnd_toEndOf="parent"
