@@ -11,8 +11,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.model.Experience
 
-class experienceDataAdapter(private val items: List<Experience>) :
-    RecyclerView.Adapter<experienceDataAdapter.ViewHolder>() {
+class ExperienceDataAdapter(private val items: List<Experience>) :
+    RecyclerView.Adapter<ExperienceDataAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)

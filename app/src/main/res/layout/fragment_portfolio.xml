@@ -7,6 +7,7 @@
     android:padding="10dp">
 
  <androidx.recyclerview.widget.RecyclerView
+     android:id="@+id/portfolioRv"
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
      tools:listitem="@layout/portfolio_list_item"/>

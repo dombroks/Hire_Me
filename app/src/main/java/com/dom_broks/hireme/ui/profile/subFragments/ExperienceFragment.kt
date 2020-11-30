@@ -7,7 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dom_broks.hireme.R
-import com.dom_broks.hireme.adapter.experienceDataAdapter
+import com.dom_broks.hireme.adapter.ExperienceDataAdapter
 import com.dom_broks.hireme.ui.profile.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_experience.*
@@ -36,7 +36,7 @@ class ExperienceFragment : Fragment(R.layout.fragment_experience) {
         experienceRecyclerView.apply {
             viewModel.experienceData.observe(
                 viewLifecycleOwner,
-                Observer { adapter = experienceDataAdapter(it) })
+                Observer { adapter = ExperienceDataAdapter(it) })
             this.setHasFixedSize(true)
             this.layoutManager = LinearLayoutManager(requireContext())
         }
