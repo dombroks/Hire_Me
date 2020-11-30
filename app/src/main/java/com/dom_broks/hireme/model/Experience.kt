@@ -20,7 +20,7 @@ data class Experience
         map["from"] = this.From!!
         map["to"] = this.To!!
         map["image"] =
-            "https://firebasestorage.googleapis.com/v0/b/hire-me-2568d.appspot.com/o/ProfileImages%2FimgDGqys82RsEW7tkmVyaVM8jPzJFo1?alt=media&token=a131134b-4e57-4c41-b92b-ada0e46253cb"
+            "https://firebasestorage.googleapis.com/v0/b/hire-me-2568d.appspot.com/o/facebook.png?alt=media&token=f2cd0c06-69de-4a32-892b-ff2d502fb378"
         return map
     }
 }
