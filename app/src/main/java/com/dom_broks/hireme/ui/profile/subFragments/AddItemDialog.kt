@@ -75,7 +75,7 @@ class AddItemDialog : DialogFragment() {
     }
 
     private fun isValidDate(date: String): Boolean {
-        var isValid: Boolean = true
+        var isValid = true
         try {
             var formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             val parsedDate = formatter.parse(date)

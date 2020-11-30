@@ -26,7 +26,7 @@ class experienceDataAdapter(private val items: List<Experience>) :
         val item = items[position]
         holder.companyName.text = item.Place
         holder.duration.text = item.Duration
-        holder.fromTo.text = item.From + item.To
+        holder.fromTo.text = item.From + " - " + item.To
         holder.title.text = item.Title
 
 
