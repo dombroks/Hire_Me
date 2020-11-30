@@ -79,7 +79,7 @@ class AddItemDialog : DialogFragment() {
         try {
             var formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             val parsedDate = formatter.parse(date)
-            println(parsedDate)
+
         } catch (e: Exception) {
             isValid = false
         }
@@ -93,7 +93,7 @@ class AddItemDialog : DialogFragment() {
         val parsedDate2 = formatter.parse(date2)
         var diff: Long = parsedDate2.time - parsedDate1.time
         diff = diff / 1000 / 60 / 60 / 24 / 30 / 12
-        return diff
+        return if (diff != 0L) diff else diff * 12
 
     }
 }

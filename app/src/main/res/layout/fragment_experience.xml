@@ -34,7 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:elevation="0dp"
-        android:src="@drawable/ic_add" />
+        android:src="@drawable/ic_add"
+        android:contentDescription="Add an Experience" />
 
 
 </LinearLayout>
