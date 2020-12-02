@@ -193,13 +193,13 @@ class FirebaseSource {
             .setValue(exp.toMap())
     }
 
-    fun getPortfolioItems(): LiveData<Resource<List<PortfolioItem>>> {
+    fun fetchPortfolioItems() {
         var listOfItems: MutableList<PortfolioItem>? = null
         val ref = firebaseDatabase.getReference("Portfolio").child(currentUser()!!.uid)
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
-
             }
+
             override fun onDataChange(snapshot: DataSnapshot) {
                 listOfItems = mutableListOf()
                 try {
@@ -215,7 +215,11 @@ class FirebaseSource {
             }
         })
         Log.e("inside firebase source", _userPortfolioItems.value?.data.toString())
-        return _userPortfolioItems
+
     }
+
+    fun getPortfolioItems() = _userPortfolioItems
+
+
 
 }

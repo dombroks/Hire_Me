@@ -26,9 +26,10 @@ class PortfolioFragment : Fragment(R.layout.fragment_portfolio) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel.getPortfolioItems()
+        viewModel.fetchPortfolioItems()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initRecyclerView()
         super.onViewCreated(view, savedInstanceState)
@@ -41,7 +42,7 @@ class PortfolioFragment : Fragment(R.layout.fragment_portfolio) {
         portfolioRv.apply {
             viewModel.portfolioItems.observe(
                 viewLifecycleOwner,
-                Observer { adapter = PortfolioDataAdapter(it.data!!) })
+                Observer {adapter = PortfolioDataAdapter(it.data!!) })
             this.setHasFixedSize(true)
             this.layoutManager = LinearLayoutManager(requireContext())
 

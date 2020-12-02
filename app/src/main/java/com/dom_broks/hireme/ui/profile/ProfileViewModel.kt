@@ -70,7 +70,14 @@ constructor(private val repository: Repository) : ViewModel() {
         }
     }
 
-    fun getPortfolioItems() {
+    fun fetchPortfolioItems() =viewModelScope.launch {
+        repository.fetchPortfolioItems().also {
+            getPortfolioItems()
+        }
+    }
+
+
+    private fun getPortfolioItems() {
         viewModelScope.launch {
             Log.e(">>", "with success")
             _portfolioItems.postValue(repository.getPortfolioItems().value)

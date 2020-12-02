@@ -41,12 +41,14 @@ constructor(private val firebase: FirebaseSource) {
     fun getUserData() =
         firebase.getUserData()
 
-    fun  addExperience(exp: Experience) =
+    fun addExperience(exp: Experience) =
         firebase.addExperience(exp)
 
-    fun getPortfolioItems()=
+    fun getPortfolioItems() =
         firebase.getPortfolioItems()
 
+    fun fetchPortfolioItems() =
+        firebase.fetchPortfolioItems()
 
 }
 
