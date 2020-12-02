@@ -8,6 +8,7 @@ import com.dom_broks.hireme.model.Experience
 import com.dom_broks.hireme.model.PortfolioItem
 import com.dom_broks.hireme.model.User
 import com.dom_broks.hireme.utils.Resource
+import com.dom_broks.hireme.utils.DataHolder
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -20,10 +21,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import io.reactivex.Completable
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.time.Duration
 
 
 class FirebaseSource {
@@ -193,7 +191,7 @@ class FirebaseSource {
             .setValue(exp.toMap())
     }
 
-    fun fetchPortfolioItems() {
+    fun fetchPortfolioItems(holder : DataHolder) {
         var listOfItems: MutableList<PortfolioItem>? = null
         val ref = firebaseDatabase.getReference("Portfolio").child(currentUser()!!.uid)
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -202,23 +200,21 @@ class FirebaseSource {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 listOfItems = mutableListOf()
-                try {
-                    for (child in snapshot.children) {
-                        val item = child.getValue(PortfolioItem::class.java)
-                        listOfItems!!.add(item!!)
-                    }
-                    _userPortfolioItems.value = Resource.success(listOfItems)
-                    Log.e("inside for loop", _userPortfolioItems.value?.data.toString())
-                } catch (e: Exception) {
-                    Log.e("inside", e.message!!)
+
+                for (child in snapshot.children) {
+                    val item = child.getValue(PortfolioItem::class.java)
+                    listOfItems!!.add(item!!)
                 }
+                holder.hold(Resource.success(listOfItems))
+                _userPortfolioItems.value = Resource.success(listOfItems)
+                Log.e("inside for loop", _userPortfolioItems.value?.data.toString())
+
             }
         })
         Log.e("inside firebase source", _userPortfolioItems.value?.data.toString())
 
     }
 
-    fun getPortfolioItems() = _userPortfolioItems
 
 
 

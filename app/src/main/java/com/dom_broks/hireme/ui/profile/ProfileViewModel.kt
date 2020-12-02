@@ -1,7 +1,6 @@
 package com.dom_broks.hireme.ui.profile
 
 import android.net.Uri
-import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.dom_broks.hireme.data.AuthListener
@@ -10,13 +9,11 @@ import com.dom_broks.hireme.model.Experience
 import com.dom_broks.hireme.model.PortfolioItem
 import com.dom_broks.hireme.model.User
 import com.dom_broks.hireme.utils.Resource
-import com.dom_broks.hireme.utils.Status
+import com.dom_broks.hireme.utils.DataHolder
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import java.time.Duration
 
 class ProfileViewModel
 @ViewModelInject
@@ -71,16 +68,14 @@ constructor(private val repository: Repository) : ViewModel() {
     }
 
     fun fetchPortfolioItems() =viewModelScope.launch {
-        repository.fetchPortfolioItems().also {
-            getPortfolioItems()
-        }
+        repository.fetchPortfolioItems(object :DataHolder{
+            override fun hold(list: Resource<List<PortfolioItem>>) {
+                _portfolioItems.postValue(list)
+            }
+
+        })
     }
 
 
-    private fun getPortfolioItems() {
-        viewModelScope.launch {
-            Log.e(">>", "with success")
-            _portfolioItems.postValue(repository.getPortfolioItems().value)
-        }
-    }
+
 }
