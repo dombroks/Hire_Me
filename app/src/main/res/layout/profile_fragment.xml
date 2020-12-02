@@ -46,6 +46,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="440dp"
+
             android:background="@drawable/layout_shape"
             app:layout_constraintBottom_toBottomOf="@+id/imageView4"
             app:layout_constraintEnd_toEndOf="parent"
@@ -102,14 +103,14 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/child_fragments_container"
-                android:layout_width="379dp"
+                android:layout_width="380dp"
                 android:layout_height="335dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"
-                android:layout_marginBottom="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/experienceBtn" />

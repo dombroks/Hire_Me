@@ -38,7 +38,6 @@ class PortfolioFragment : Fragment(R.layout.fragment_portfolio) {
     }
 
     private fun initRecyclerView() {
-
         portfolioRv.apply {
             viewModel.portfolioItems.observe(
                 viewLifecycleOwner,
