@@ -44,6 +44,9 @@ constructor(private val firebase: FirebaseSource) {
     fun  addExperience(exp: Experience) =
         firebase.addExperience(exp)
 
+    fun getPortfolioItems()=
+        firebase.getPortfolioItems()
+
 
 }
 

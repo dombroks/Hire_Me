@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dom_broks.hireme.model.Experience
+import com.dom_broks.hireme.model.PortfolioItem
 import com.dom_broks.hireme.model.User
 import com.dom_broks.hireme.utils.Resource
 import com.google.android.gms.tasks.Continuation
@@ -30,6 +31,7 @@ class FirebaseSource {
 
 
     private val _userInfo = MutableLiveData<Resource<User>>()
+    private val _userPortfolioItems = MutableLiveData<Resource<List<PortfolioItem>>>()
 
 
     private val firebaseAuth: FirebaseAuth by lazy {
@@ -183,13 +185,37 @@ class FirebaseSource {
 
             }
         })
-
         return _userInfo
     }
 
     fun addExperience(exp: Experience) {
-        val ref = firebaseDatabase.getReference("Experience").child(currentUser()?.uid.toString()).push()
+        firebaseDatabase.getReference("Experience").child(currentUser()?.uid.toString()).push()
             .setValue(exp.toMap())
+    }
+
+    fun getPortfolioItems(): LiveData<Resource<List<PortfolioItem>>> {
+        var listOfItems: MutableList<PortfolioItem>? = null
+        val ref = firebaseDatabase.getReference("Portfolio").child(currentUser()!!.uid)
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listOfItems = mutableListOf()
+                try {
+                    for (child in snapshot.children) {
+                        val item = child.getValue(PortfolioItem::class.java)
+                        listOfItems!!.add(item!!)
+                    }
+                    _userPortfolioItems.value = Resource.success(listOfItems)
+                    Log.e("inside for loop", _userPortfolioItems.value?.data.toString())
+                } catch (e: Exception) {
+                    Log.e("inside", e.message!!)
+                }
+            }
+        })
+        Log.e("inside firebase source", _userPortfolioItems.value?.data.toString())
+        return _userPortfolioItems
     }
 
 }

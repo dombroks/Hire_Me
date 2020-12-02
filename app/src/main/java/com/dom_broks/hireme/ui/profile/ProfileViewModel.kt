@@ -1,13 +1,16 @@
 package com.dom_broks.hireme.ui.profile
 
 import android.net.Uri
+import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.dom_broks.hireme.data.AuthListener
 import com.dom_broks.hireme.data.Repository
 import com.dom_broks.hireme.model.Experience
+import com.dom_broks.hireme.model.PortfolioItem
 import com.dom_broks.hireme.model.User
 import com.dom_broks.hireme.utils.Resource
+import com.dom_broks.hireme.utils.Status
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -24,10 +27,11 @@ constructor(private val repository: Repository) : ViewModel() {
     private val _experienceData = MutableLiveData<List<Experience>>()
     val experienceData get() = _experienceData
 
+    private val _portfolioItems = MutableLiveData<Resource<List<PortfolioItem>>>()
+    val portfolioItems get() = _portfolioItems
+
     var authListener: AuthListener? = null
     private val disposables = CompositeDisposable()
-
-
 
 
     fun uploadPictureToFirebaseStorage(uri: Uri?, folder: String) {
@@ -59,14 +63,17 @@ constructor(private val repository: Repository) : ViewModel() {
         }
     }
 
-    fun addExperience(title: String, place: String, from: String, to: String,duration: Long) {
+    fun addExperience(title: String, place: String, from: String, to: String, duration: Long) {
         val exp = Experience(title, "$duration years", from, to, place)
         viewModelScope.launch {
             repository.addExperience(exp)
         }
-
-
     }
 
-
+    fun getPortfolioItems() {
+        viewModelScope.launch {
+            Log.e(">>", "with success")
+            _portfolioItems.postValue(repository.getPortfolioItems().value)
+        }
+    }
 }

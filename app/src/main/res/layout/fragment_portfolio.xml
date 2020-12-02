@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profile.subFragments.PortfolioFragment"
-    android:padding="10dp">
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".ui.profile.subFragments.PortfolioFragment">
 
- <androidx.recyclerview.widget.RecyclerView
-     android:id="@+id/portfolioRv"
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content"
-     tools:listitem="@layout/portfolio_list_item"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+
+            android:id="@+id/portfolioRv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/portfolio_list_item" />
+    </FrameLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="klsdgjflsd" />
+
+
+</LinearLayout>

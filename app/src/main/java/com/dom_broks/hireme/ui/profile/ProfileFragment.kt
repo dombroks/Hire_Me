@@ -59,7 +59,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
 
 
-        addChildFragment(portfolioFragment, R.id.child_fragments_container)
+        addChildFragment(experienceFragment, R.id.child_fragments_container)
 
         circleImageView.setOnClickListener {
             launchGallery()
@@ -196,8 +196,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
                 .load(it.data.picture)
                 .placeholder(R.drawable.ic_image)
                 .into(circleImageView)
-
-
         })
     }
 
