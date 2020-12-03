@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -22,6 +23,7 @@ import com.dom_broks.hireme.ui.profile.subFragments.ExperienceFragment
 import com.dom_broks.hireme.ui.profile.subFragments.InfoFragment
 import com.dom_broks.hireme.ui.profile.subFragments.PortfolioFragment
 import com.dom_broks.hireme.R
+import com.dom_broks.hireme.utils.Status
 import com.dom_broks.hireme.utils.addChildFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.profile_fragment.*
@@ -190,12 +192,15 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     private fun setUserData() {
         viewModel.getUserData()
         viewModel.userData.observe(viewLifecycleOwner, Observer {
-            username.text = it.data!!.username
-            job.text = it.data.title
-            Glide.with(this)
-                .load(it.data.picture)
-                .placeholder(R.drawable.ic_image)
-                .into(circleImageView)
+            if (it.status == Status.SUCCESS) {
+                username.text = it.data!!.username
+                job.text = it.data.title
+                Glide.with(this)
+                    .load(it.data.picture)
+                    .placeholder(R.drawable.ic_image)
+                    .into(circleImageView)
+            } else
+                Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
         })
     }
 

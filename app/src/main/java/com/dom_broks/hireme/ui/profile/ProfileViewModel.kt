@@ -56,7 +56,11 @@ constructor(private val repository: Repository) : ViewModel() {
 
     fun getUserData() {
         viewModelScope.launch {
-            userData.postValue(repository.getUserData().value)
+            repository.getUserData(object : DataHolder {
+                override fun <T : Any> hold(list: T) {
+                    userData.postValue(list as Resource<User>)
+                }
+            })
         }
     }
 
@@ -67,15 +71,12 @@ constructor(private val repository: Repository) : ViewModel() {
         }
     }
 
-    fun fetchPortfolioItems() =viewModelScope.launch {
-        repository.fetchPortfolioItems(object :DataHolder{
-            override fun <T : Any> hold(list : T) {
+    fun fetchPortfolioItems() = viewModelScope.launch {
+        repository.fetchPortfolioItems(object : DataHolder {
+            override fun <T : Any> hold(list: T) {
                 _portfolioItems.postValue(list as Resource<List<PortfolioItem>>)
             }
 
         })
     }
-
-
-
 }

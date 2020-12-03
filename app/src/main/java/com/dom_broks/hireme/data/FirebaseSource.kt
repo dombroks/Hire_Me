@@ -27,10 +27,6 @@ import kotlinx.coroutines.launch
 class FirebaseSource {
     private val experienceData = mutableListOf<Experience>()
 
-
-    private val _userInfo = MutableLiveData<Resource<User>>()
-
-
     private val firebaseAuth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }
@@ -135,7 +131,6 @@ class FirebaseSource {
     fun currentUser() = firebaseAuth.currentUser
 
     fun getUserExperience(): List<Experience> {
-
         val ref = firebaseDatabase.getReference("Experience").child(currentUser()!!.uid)
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -162,25 +157,25 @@ class FirebaseSource {
     }
 
 
-    fun getUserData(): LiveData<Resource<User>> {
+    fun getUserData(holder: DataHolder) {
         var user: User? = null
         val ref = firebaseDatabase.getReference("Users")
         ref.child(currentUser()?.uid.toString()).addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                holder.hold(
+                    Resource.error(
+                        "Error occurred when getting user data: $error.message",
+                        null
+                    )
+                )
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                try {
-                    user = snapshot.getValue(User::class.java)
-                    _userInfo.value = Resource.success(user)
-                } catch (e: Exception) {
-                    _userInfo.value = Resource.error(e.message, user)
-                }
+                user = snapshot.getValue(User::class.java)
+                holder.hold(Resource.success(user))
             }
         })
-        return _userInfo
     }
 
     fun addExperience(exp: Experience) {

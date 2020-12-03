@@ -39,8 +39,8 @@ constructor(private val firebase: FirebaseSource) {
     fun getUserExperience() =
         firebase.getUserExperience()
 
-    fun getUserData() =
-        firebase.getUserData()
+    fun getUserData(holder: DataHolder) =
+        firebase.getUserData(holder)
 
     fun addExperience(exp: Experience) =
         firebase.addExperience(exp)
