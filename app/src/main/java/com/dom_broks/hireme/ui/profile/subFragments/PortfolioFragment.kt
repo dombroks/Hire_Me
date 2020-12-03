@@ -50,7 +50,6 @@ class PortfolioFragment : Fragment(R.layout.fragment_portfolio) {
                 })
             this.setHasFixedSize(true)
             this.layoutManager = LinearLayoutManager(requireContext())
-
         }
     }
 
