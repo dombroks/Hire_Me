@@ -36,8 +36,8 @@ constructor(private val firebase: FirebaseSource) {
     fun updateUsername(id: String, username: String) =
         firebase.updateUsername(id, username)
 
-    fun getUserExperience() =
-        firebase.getUserExperience()
+    fun getUserExperience(holder: DataHolder) =
+        firebase.getUserExperience(holder)
 
     fun getUserData(holder: DataHolder) =
         firebase.getUserData(holder)

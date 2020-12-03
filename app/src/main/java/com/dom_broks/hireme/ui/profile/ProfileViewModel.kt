@@ -21,7 +21,7 @@ constructor(private val repository: Repository) : ViewModel() {
 
     val userData = MutableLiveData<Resource<User>>()
 
-    private val _experienceData = MutableLiveData<List<Experience>>()
+    private val _experienceData = MutableLiveData<Resource<List<Experience>>>()
     val experienceData get() = _experienceData
 
     private val _portfolioItems = MutableLiveData<Resource<List<PortfolioItem>>>()
@@ -46,12 +46,14 @@ constructor(private val repository: Repository) : ViewModel() {
     }
 
     fun getUserExperience() {
-        var list: List<Experience>? = null
         viewModelScope.launch {
-            list = repository.getUserExperience()
-        }
-        _experienceData.value = list
+            repository.getUserExperience(object : DataHolder{
+                override fun <T : Any> hold(list: T) {
+                    _experienceData.postValue(list as Resource<List<Experience>>)
+                }
 
+            })
+        }
     }
 
     fun getUserData() {

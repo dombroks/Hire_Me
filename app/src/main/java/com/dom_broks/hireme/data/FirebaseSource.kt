@@ -25,7 +25,7 @@ import kotlinx.coroutines.launch
 
 
 class FirebaseSource {
-    private val experienceData = mutableListOf<Experience>()
+
 
     private val firebaseAuth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
@@ -129,30 +129,37 @@ class FirebaseSource {
 
     fun currentUser() = firebaseAuth.currentUser
 
-    fun getUserExperience(): List<Experience> {
+    fun getUserExperience(holder: DataHolder) {
+        val experienceData = mutableListOf<Experience>()
         val ref = firebaseDatabase.getReference("Experience").child(currentUser()!!.uid)
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (child in snapshot.children) {
                         val value = child.getValue(Experience::class.java)
-                        if (!experienceData.contains(value))
+                        if (!experienceData.contains(value)) {
                             experienceData.add(value!!)
+                        }
                     }
+                    holder.hold(Resource.success(experienceData))
                 } else {
-                    Log.e("message", "no snapshots found")
+                    holder.hold(Resource.error("No snapshot found", null))
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                println("Some error happened ${error.message}")
+                holder.hold(
+                    Resource.error(
+                        "Error occurred when getting user experience: ${error.message}",
+                        null
+                    )
+                )
             }
         })
-        return experienceData
     }
 
     fun dispose() {
-        experienceData.clear()
+        // experienceData.clear()
     }
 
 
@@ -187,7 +194,12 @@ class FirebaseSource {
         val ref = firebaseDatabase.getReference("Portfolio").child(currentUser()!!.uid)
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
-                holder.hold(Resource.error("Error occurred: ${error.message} ", null))
+                holder.hold(
+                    Resource.error(
+                        "Error occurred when fetching portfolio items: ${error.message} ",
+                        null
+                    )
+                )
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -199,7 +211,6 @@ class FirebaseSource {
                 holder.hold(Resource.success(listOfItems))
             }
         })
-
     }
 
 
