@@ -48,8 +48,8 @@ constructor(private val repository: Repository) : ViewModel() {
     fun getUserExperience() {
         viewModelScope.launch {
             repository.getUserExperience(object : DataHolder{
-                override fun <T : Any> hold(list: T) {
-                    _experienceData.postValue(list as Resource<List<Experience>>)
+                override fun <T : Any> hold(data: T) {
+                    _experienceData.postValue(data as Resource<List<Experience>>)
                 }
 
             })
@@ -59,8 +59,8 @@ constructor(private val repository: Repository) : ViewModel() {
     fun getUserData() {
         viewModelScope.launch {
             repository.getUserData(object : DataHolder {
-                override fun <T : Any> hold(list: T) {
-                    userData.postValue(list as Resource<User>)
+                override fun <T : Any> hold(data: T) {
+                    userData.postValue(data as Resource<User>)
                 }
             })
         }
@@ -75,8 +75,8 @@ constructor(private val repository: Repository) : ViewModel() {
 
     fun fetchPortfolioItems() = viewModelScope.launch {
         repository.fetchPortfolioItems(object : DataHolder {
-            override fun <T : Any> hold(list: T) {
-                _portfolioItems.postValue(list as Resource<List<PortfolioItem>>)
+            override fun <T : Any> hold(data: T) {
+                _portfolioItems.postValue(data as Resource<List<PortfolioItem>>)
             }
 
         })
