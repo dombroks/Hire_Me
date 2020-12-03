@@ -41,27 +41,26 @@ class FirebaseSource {
     fun addImageToStorage(filePath: Uri, folder: String) = Completable.create { emitter ->
         val ref = firebaseStorage.reference.child("$folder/img${firebaseAuth.currentUser?.uid}")
         val uploadTask = ref.putFile(filePath)
-        val urlTask =
-            uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
-                if (!task.isSuccessful) {
-                    task.exception?.let { emitter.onError(it) }
-                }
-                return@Continuation ref.downloadUrl
-            }).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val downloadUri = task.result
-                    GlobalScope.launch {
-                        addImageToDatabase(firebaseAuth.currentUser?.uid, downloadUri.toString())
-                    }
-
-
-                } else {
-                    // some kind of errors here to handle
+        uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
+            if (!task.isSuccessful) {
+                task.exception?.let { emitter.onError(it) }
+            }
+            return@Continuation ref.downloadUrl
+        }).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val downloadUri = task.result
+                GlobalScope.launch {
+                    addImageToDatabase(firebaseAuth.currentUser?.uid, downloadUri.toString())
                 }
 
-            }.addOnFailureListener {
+
+            } else {
                 // some kind of errors here to handle
             }
+
+        }.addOnFailureListener {
+            // some kind of errors here to handle
+        }
 
 
     }
@@ -158,7 +157,7 @@ class FirebaseSource {
 
 
     fun getUserData(holder: DataHolder) {
-        var user: User? = null
+        var user: User?
         val ref = firebaseDatabase.getReference("Users")
         ref.child(currentUser()?.uid.toString()).addListenerForSingleValueEvent(object :
             ValueEventListener {
@@ -184,7 +183,7 @@ class FirebaseSource {
     }
 
     fun fetchPortfolioItems(holder: DataHolder) {
-        var listOfItems: MutableList<PortfolioItem>? = null
+        var listOfItems: MutableList<PortfolioItem>?
         val ref = firebaseDatabase.getReference("Portfolio").child(currentUser()!!.uid)
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
