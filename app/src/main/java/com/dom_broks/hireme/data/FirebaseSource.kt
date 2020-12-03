@@ -29,7 +29,6 @@ class FirebaseSource {
 
 
     private val _userInfo = MutableLiveData<Resource<User>>()
-    private val _userPortfolioItems = MutableLiveData<Resource<List<PortfolioItem>>>()
 
 
     private val firebaseAuth: FirebaseAuth by lazy {
@@ -155,7 +154,6 @@ class FirebaseSource {
                 println("Some error happened ${error.message}")
             }
         })
-
         return experienceData
     }
 
@@ -180,7 +178,6 @@ class FirebaseSource {
                 } catch (e: Exception) {
                     _userInfo.value = Resource.error(e.message, user)
                 }
-
             }
         })
         return _userInfo
@@ -191,31 +188,25 @@ class FirebaseSource {
             .setValue(exp.toMap())
     }
 
-    fun fetchPortfolioItems(holder : DataHolder) {
+    fun fetchPortfolioItems(holder: DataHolder) {
         var listOfItems: MutableList<PortfolioItem>? = null
         val ref = firebaseDatabase.getReference("Portfolio").child(currentUser()!!.uid)
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
+                holder.hold(Resource.error("Error occurred: ${error.message} ", null))
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 listOfItems = mutableListOf()
-
                 for (child in snapshot.children) {
                     val item = child.getValue(PortfolioItem::class.java)
                     listOfItems!!.add(item!!)
                 }
                 holder.hold(Resource.success(listOfItems))
-                _userPortfolioItems.value = Resource.success(listOfItems)
-                Log.e("inside for loop", _userPortfolioItems.value?.data.toString())
-
             }
         })
-        Log.e("inside firebase source", _userPortfolioItems.value?.data.toString())
 
     }
-
-
 
 
 }
