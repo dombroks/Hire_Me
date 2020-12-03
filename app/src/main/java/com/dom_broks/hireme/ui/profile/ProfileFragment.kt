@@ -81,7 +81,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         val infoBtn: TextView = view.findViewById(R.id.infoBtn)
         val portfolioBtn: TextView = view.findViewById(R.id.portfolioBtn)
         val experienceBtn: TextView = view.findViewById(R.id.experienceBtn)
-        portfolioBtn.setBackgroundResource(R.drawable.button_shape_two)
+        experienceBtn.setBackgroundResource(R.drawable.button_shape_two)
 
 
 
@@ -136,19 +136,16 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             }
 
             try {
-
                 val bitmap = when {
                     Build.VERSION.SDK_INT < 28 -> MediaStore.Images.Media.getBitmap(
                         requireContext().contentResolver,
                         filePath
-
                     ) as Bitmap
                     else -> {
                         val source =
                             ImageDecoder.createSource(requireContext().contentResolver, filePath!!)
                         ImageDecoder.decodeBitmap(source)
                     }
-
                 }
 
                 circleImageView.setImageBitmap(bitmap)
