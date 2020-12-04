@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.ui.profile.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.add_portfolio_item_dialog.*
+import kotlinx.android.synthetic.main.fragment_portfolio.*
 
 @AndroidEntryPoint
 class AddPortfolioItemDialog : DialogFragment() {
@@ -21,6 +23,7 @@ class AddPortfolioItemDialog : DialogFragment() {
             return AddPortfolioItemDialog()
         }
     }
+
     override fun onStart() {
         super.onStart()
         dialog?.window?.setLayout(
@@ -35,5 +38,15 @@ class AddPortfolioItemDialog : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.add_portfolio_item_dialog, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        addPortfolioItem.setOnClickListener {
+            viewModel.addPortfolioItem(
+                projectName.text.toString(),
+                "nothing right now"
+            )
+        }
     }
 }

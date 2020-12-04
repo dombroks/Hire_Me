@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.ui.profile.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.add_item_dialog.*
+import kotlinx.android.synthetic.main.add_experience_item_dialog.*
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
@@ -43,7 +43,7 @@ class AddExperienceItemDialog : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.add_item_dialog, container, false)
+        return inflater.inflate(R.layout.add_experience_item_dialog, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
