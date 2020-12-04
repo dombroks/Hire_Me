@@ -13,7 +13,6 @@ import com.dom_broks.hireme.ui.profile.ProfileViewModel
 import com.dom_broks.hireme.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_experience.*
-import javax.annotation.Resource
 
 @AndroidEntryPoint
 class ExperienceFragment : Fragment(R.layout.fragment_experience) {
@@ -28,7 +27,7 @@ class ExperienceFragment : Fragment(R.layout.fragment_experience) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initRecyclerView()
         AddExperience.setOnClickListener {
-            AddItemDialog.newInstance().show(childFragmentManager, AddItemDialog.TAG)
+            AddExperienceItemDialog.newInstance().show(childFragmentManager, AddExperienceItemDialog.TAG)
         }
         super.onViewCreated(view, savedInstanceState)
 

@@ -1,7 +1,6 @@
 package com.dom_broks.hireme.ui.profile.subFragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,13 +17,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
-class AddItemDialog : DialogFragment() {
+class AddExperienceItemDialog : DialogFragment() {
     private val viewModel: ProfileViewModel by viewModels()
 
     companion object {
         const val TAG = "AddItemDialog"
-        fun newInstance(): AddItemDialog {
-            val fragment = AddItemDialog()
+        fun newInstance(): AddExperienceItemDialog {
+            val fragment = AddExperienceItemDialog()
             return fragment
         }
     }
