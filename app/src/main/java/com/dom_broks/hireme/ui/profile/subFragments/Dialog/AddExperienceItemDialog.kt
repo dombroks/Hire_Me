@@ -21,7 +21,7 @@ class AddExperienceItemDialog : DialogFragment() {
     private val viewModel: ProfileViewModel by viewModels()
 
     companion object {
-        const val TAG = "AddItemDialog"
+        const val TAG = "AddExperienceItemDialog"
         fun newInstance(): AddExperienceItemDialog {
             val fragment =
                 AddExperienceItemDialog()

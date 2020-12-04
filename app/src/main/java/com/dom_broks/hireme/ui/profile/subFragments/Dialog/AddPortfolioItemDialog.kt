@@ -15,6 +15,7 @@ class AddPortfolioItemDialog : DialogFragment() {
     private val viewModel: ProfileViewModel by viewModels()
 
     companion object {
+        const val TAG = "AddPortfolioItemDialog"
         fun newInstance(): AddPortfolioItemDialog {
             return AddPortfolioItemDialog()
         }

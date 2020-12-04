@@ -14,6 +14,7 @@ import com.dom_broks.hireme.R
 import com.dom_broks.hireme.adapter.ExperienceDataAdapter
 import com.dom_broks.hireme.adapter.PortfolioDataAdapter
 import com.dom_broks.hireme.ui.profile.ProfileViewModel
+import com.dom_broks.hireme.ui.profile.subFragments.Dialog.AddPortfolioItemDialog
 import com.dom_broks.hireme.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_experience.*
@@ -34,6 +35,12 @@ class PortfolioFragment : Fragment(R.layout.fragment_portfolio) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initRecyclerView()
+
+        addPortfolioItem.setOnClickListener {
+            AddPortfolioItemDialog.newInstance()
+                .show(childFragmentManager, AddPortfolioItemDialog.TAG)
+
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 
