@@ -213,5 +213,10 @@ class FirebaseSource {
         })
     }
 
+    fun addPortfolioItem(item: PortfolioItem) {
+        val ref = firebaseDatabase.getReference("Portfolio").child(currentUser()!!.uid)
+        ref.push().setValue(item.toMap())
+    }
+
 
 }

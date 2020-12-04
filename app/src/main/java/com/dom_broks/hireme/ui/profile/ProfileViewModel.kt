@@ -15,6 +15,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.launch
 
+@Suppress("UNCHECKED_CAST")
 class ProfileViewModel
 @ViewModelInject
 constructor(private val repository: Repository) : ViewModel() {
@@ -47,7 +48,7 @@ constructor(private val repository: Repository) : ViewModel() {
 
     fun getUserExperience() {
         viewModelScope.launch {
-            repository.getUserExperience(object : DataHolder{
+            repository.getUserExperience(object : DataHolder {
                 override fun <T : Any> hold(data: T) {
                     _experienceData.postValue(data as Resource<List<Experience>>)
                 }
@@ -80,5 +81,12 @@ constructor(private val repository: Repository) : ViewModel() {
             }
 
         })
+    }
+
+    fun addPortfolioItem(title: String, image: String) {
+        val item = PortfolioItem(title, image)
+        viewModelScope.launch {
+            repository.addPortfolioItem(item)
+        }
     }
 }

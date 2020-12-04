@@ -2,6 +2,7 @@ package com.dom_broks.hireme.data
 
 import android.net.Uri
 import com.dom_broks.hireme.model.Experience
+import com.dom_broks.hireme.model.PortfolioItem
 import com.dom_broks.hireme.utils.DataHolder
 import javax.inject.Inject
 
@@ -48,5 +49,7 @@ constructor(private val firebase: FirebaseSource) {
     fun fetchPortfolioItems(holder: DataHolder) =
         firebase.fetchPortfolioItems(holder)
 
+    fun addPortfolioItem(item: PortfolioItem) =
+        firebase.addPortfolioItem(item)
 }
 
