@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.adapter.ExperienceDataAdapter
 import com.dom_broks.hireme.ui.profile.ProfileViewModel
+import com.dom_broks.hireme.ui.profile.subFragments.Dialog.AddExperienceItemDialog
 import com.dom_broks.hireme.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_experience.*

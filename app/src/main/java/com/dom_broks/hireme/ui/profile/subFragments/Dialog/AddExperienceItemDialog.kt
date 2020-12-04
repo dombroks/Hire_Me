@@ -1,4 +1,4 @@
-package com.dom_broks.hireme.ui.profile.subFragments
+package com.dom_broks.hireme.ui.profile.subFragments.Dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,7 +23,8 @@ class AddExperienceItemDialog : DialogFragment() {
     companion object {
         const val TAG = "AddItemDialog"
         fun newInstance(): AddExperienceItemDialog {
-            val fragment = AddExperienceItemDialog()
+            val fragment =
+                AddExperienceItemDialog()
             return fragment
         }
     }
@@ -49,19 +50,15 @@ class AddExperienceItemDialog : DialogFragment() {
             if (!isValidDate(from) || !isValidDate(to)) {
                 Toast.makeText(context, "Please write a valid date", Toast.LENGTH_LONG).show()
             } else {
-
                 viewModel.addExperience(jobTitle, companyName, from, to, getDuration(from, to))
                 super.dismiss()
             }
-
-
         }
     }
 
     private fun changeToSelectedColor(view: View, view2: View) {
         view.setBackgroundResource(R.drawable.button_shape_two)
         view2.setBackgroundResource(R.drawable.button_shape_three)
-
     }
 
 
@@ -93,6 +90,5 @@ class AddExperienceItemDialog : DialogFragment() {
         var diff: Long = parsedDate2.time - parsedDate1.time
         diff = diff / 1000 / 60 / 60 / 24 / 30 / 12
         return if (diff != 0L) diff else diff * 12
-
     }
 }
