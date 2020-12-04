@@ -30,6 +30,7 @@
                 android:layout_gravity="bottom|end"
                 android:contentDescription="Add a portfolio item"
                 android:elevation="0dp"
+                app:elevation="0dp"
                 android:src="@drawable/ic_add"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
