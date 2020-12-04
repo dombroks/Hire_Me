@@ -29,6 +29,14 @@ class AddExperienceItemDialog : DialogFragment() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -61,14 +69,6 @@ class AddExperienceItemDialog : DialogFragment() {
         view2.setBackgroundResource(R.drawable.button_shape_three)
     }
 
-
-    override fun onStart() {
-        super.onStart()
-        dialog?.window?.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
-        )
-    }
 
     private fun isValidDate(date: String): Boolean {
         var isValid = true

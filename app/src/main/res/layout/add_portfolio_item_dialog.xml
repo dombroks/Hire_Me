@@ -10,17 +10,24 @@
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/edit_text_shape"
         android:hint="Project name"
-        android:paddingStart="10dp"
         android:paddingLeft="10dp"
         android:singleLine="true"
         android:textColor="@color/black"
         android:textSize="15sp"
         android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        tools:layout_editor_absoluteX="15dp" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_project"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="28dp" />
 
     <Button
         android:layout_width="match_parent"
