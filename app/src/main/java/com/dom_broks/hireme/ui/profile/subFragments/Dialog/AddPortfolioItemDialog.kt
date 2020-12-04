@@ -42,7 +42,7 @@ class AddPortfolioItemDialog : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        addPortfolioItem.setOnClickListener {
+        addItem.setOnClickListener {
             viewModel.addPortfolioItem(
                 projectName.text.toString(),
                 "nothing right now"
