@@ -13,6 +13,7 @@
         android:layout_height="match_parent">
 
         <Button
+            android:id="@+id/deletePortfolioItem"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="13dp"
