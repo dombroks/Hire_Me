@@ -220,10 +220,9 @@ class FirebaseSource {
         ref.child(id.toString()).setValue(item.toMap())
     }
 
-    fun deletePortfolioItem(){
+    fun deletePortfolioItem(itemId: String) {
         val ref = firebaseDatabase.getReference("Portfolio").child(currentUser()!!.uid)
-
-
+        ref.child(itemId).removeValue()
     }
 
 
