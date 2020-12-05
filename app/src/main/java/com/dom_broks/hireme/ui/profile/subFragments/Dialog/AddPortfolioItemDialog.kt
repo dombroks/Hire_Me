@@ -47,6 +47,7 @@ class AddPortfolioItemDialog : DialogFragment() {
                 projectName.text.toString(),
                 "nothing right now"
             )
+            dialog?.dismiss()
         }
     }
 }

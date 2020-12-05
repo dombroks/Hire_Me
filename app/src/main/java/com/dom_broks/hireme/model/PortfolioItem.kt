@@ -8,7 +8,7 @@ data class PortfolioItem(
         val map = HashMap<String, String>()
         map["Title"] = this.Title!!
         map["Image"] =
-            " https://firebasestorage.googleapis.com/v0/b/hire-me-2568d.appspot.com/o/facebook.png?alt=media&token=f2cd0c06-69de-4a32-892b-ff2d502fb378"
+            "https://firebasestorage.googleapis.com/v0/b/hire-me-2568d.appspot.com/o/PortfolioImagees%2Falvaro-reyes-qWwpHwip31M-unsplash.jpg?alt=media&token=f89415ee-b39d-47a0-b2de-0f66243e2875"
         return map
     }
 }
