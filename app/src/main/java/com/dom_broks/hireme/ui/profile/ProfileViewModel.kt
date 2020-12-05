@@ -84,7 +84,7 @@ constructor(private val repository: Repository) : ViewModel() {
     }
 
     fun addPortfolioItem(title: String, image: String) {
-        val item = PortfolioItem(title, image)
+        val item = PortfolioItem("",title, image)
         viewModelScope.launch {
             repository.addPortfolioItem(item)
         }

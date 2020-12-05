@@ -215,7 +215,15 @@ class FirebaseSource {
 
     fun addPortfolioItem(item: PortfolioItem) {
         val ref = firebaseDatabase.getReference("Portfolio").child(currentUser()!!.uid)
-        ref.push().setValue(item.toMap())
+        val id = ref.push().key
+        item.Id = id.toString()
+        ref.child(id.toString()).setValue(item.toMap())
+    }
+
+    fun deletePortfolioItem(){
+        val ref = firebaseDatabase.getReference("Portfolio").child(currentUser()!!.uid)
+
+
     }
 
 
