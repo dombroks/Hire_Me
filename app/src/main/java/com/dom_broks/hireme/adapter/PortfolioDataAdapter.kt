@@ -36,7 +36,7 @@ class PortfolioDataAdapter(
             .load(item.Image.toString())
             .into(holder.itemImage);
         holder.deleteButton.setOnClickListener {
-            listener.onItemDelete(position)
+            listener.onItemDelete(item)
         }
 
     }
@@ -49,7 +49,7 @@ class PortfolioDataAdapter(
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)
-        fun onItemDelete(position: Int)
+        fun onItemDelete(item : PortfolioItem)
     }
 
 

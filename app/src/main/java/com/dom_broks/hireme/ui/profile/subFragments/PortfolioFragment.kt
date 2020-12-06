@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.adapter.ExperienceDataAdapter
 import com.dom_broks.hireme.adapter.PortfolioDataAdapter
+import com.dom_broks.hireme.model.PortfolioItem
 import com.dom_broks.hireme.ui.profile.ProfileViewModel
 import com.dom_broks.hireme.ui.profile.subFragments.Dialog.AddPortfolioItemDialog
 import com.dom_broks.hireme.utils.Status
@@ -64,8 +65,8 @@ class PortfolioFragment : Fragment(R.layout.fragment_portfolio),PortfolioDataAda
         Toast.makeText(context,"You have been clicked on the item $position",Toast.LENGTH_LONG).show()
     }
 
-    override fun onItemDelete(position: Int) {
-        Toast.makeText(context,"You have been deleted the item $position",Toast.LENGTH_LONG).show()
+    override fun onItemDelete(item : PortfolioItem) {
+        Toast.makeText(context,"You have been deleted the item ${item.Title}",Toast.LENGTH_LONG).show()
     }
 
 }
