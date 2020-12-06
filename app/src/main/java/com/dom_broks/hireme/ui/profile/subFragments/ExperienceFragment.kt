@@ -40,7 +40,6 @@ class ExperienceFragment : Fragment(R.layout.fragment_experience) {
                 viewModel.deleteExperienceItem(experienceDataAdapter.getItemIdAt(position))
                 experienceDataAdapter.notifyItemRemoved(position)
             }
-
         }
 
 
