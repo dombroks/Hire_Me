@@ -132,7 +132,7 @@ class FirebaseSource {
     fun getUserExperience(holder: DataHolder) {
         val experienceData = mutableListOf<Experience>()
         val ref = firebaseDatabase.getReference("Experience").child(currentUser()!!.uid)
-        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+        ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (child in snapshot.children) {
