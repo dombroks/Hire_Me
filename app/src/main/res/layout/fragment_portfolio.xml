@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:padding="10dp"
     android:scrollbars="none"
-    tools:context=".ui.profile.subFragments.PortfolioFragment">
+    tools:context=".ui.profile.subFragments.PortfolioFragment"
+    android:id="@+id/portfolioLayout">
 
 
     <LinearLayout
