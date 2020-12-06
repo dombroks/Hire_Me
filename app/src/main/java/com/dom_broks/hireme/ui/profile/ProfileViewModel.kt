@@ -89,4 +89,10 @@ constructor(private val repository: Repository) : ViewModel() {
             repository.addPortfolioItem(item)
         }
     }
+
+    fun deletePortfolioItem(itemId : String){
+        viewModelScope.launch {
+            repository.deletePortfolioItem(itemId)
+        }
+    }
 }

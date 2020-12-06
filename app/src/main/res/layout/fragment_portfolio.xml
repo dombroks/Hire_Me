@@ -22,6 +22,8 @@
                 android:id="@+id/portfolioRv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 tools:listitem="@layout/portfolio_list_item" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -19,9 +19,10 @@ import com.dom_broks.hireme.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_experience.*
 import kotlinx.android.synthetic.main.fragment_portfolio.*
+import kotlinx.android.synthetic.main.portfolio_list_item.*
 
 @AndroidEntryPoint
-class PortfolioFragment : Fragment(R.layout.fragment_portfolio) {
+class PortfolioFragment : Fragment(R.layout.fragment_portfolio),PortfolioDataAdapter.OnItemClickListener {
     private val viewModel: ProfileViewModel by viewModels()
 
     override fun onCreateView(
@@ -39,7 +40,6 @@ class PortfolioFragment : Fragment(R.layout.fragment_portfolio) {
         addPortfolioItem.setOnClickListener {
             AddPortfolioItemDialog.newInstance()
                 .show(childFragmentManager, AddPortfolioItemDialog.TAG)
-
         }
         super.onViewCreated(view, savedInstanceState)
     }
@@ -50,7 +50,7 @@ class PortfolioFragment : Fragment(R.layout.fragment_portfolio) {
                 viewLifecycleOwner,
                 Observer {
                     if (it.status == Status.SUCCESS)
-                        adapter = PortfolioDataAdapter(it.data!!)
+                        adapter = PortfolioDataAdapter(it.data!!,this@PortfolioFragment)
                     else {
                         Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
                     }
@@ -58,6 +58,14 @@ class PortfolioFragment : Fragment(R.layout.fragment_portfolio) {
             this.setHasFixedSize(true)
             this.layoutManager = LinearLayoutManager(requireContext())
         }
+    }
+
+    override fun onItemClick(position: Int) {
+        Toast.makeText(context,"You have been clicked on the item $position",Toast.LENGTH_LONG).show()
+    }
+
+    override fun onItemDelete(position: Int) {
+        Toast.makeText(context,"You have been deleted the item $position",Toast.LENGTH_LONG).show()
     }
 
 }

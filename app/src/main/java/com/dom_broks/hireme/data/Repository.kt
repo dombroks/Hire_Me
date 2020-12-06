@@ -51,5 +51,8 @@ constructor(private val firebase: FirebaseSource) {
 
     fun addPortfolioItem(item: PortfolioItem) =
         firebase.addPortfolioItem(item)
+
+    fun deletePortfolioItem(itemId: String)=
+        firebase.deletePortfolioItem(itemId)
 }
 
