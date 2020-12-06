@@ -1,37 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/experienceFragmentLayout"
     android:padding="5dp"
     tools:context=".ui.profile.subFragments.ExperienceFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <FrameLayout
-        android:id="@+id/frameLayout2"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
+        android:layout_height="match_parent">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/experienceRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/experience_list_item">
-        </androidx.recyclerview.widget.RecyclerView>
-    </FrameLayout>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/experience_list_item" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/AddExperience"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:contentDescription="Add an Experience"
-        android:elevation="0dp"
-        android:src="@drawable/ic_add"
-        app:elevation="0dp" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/AddExperience"
+            tOf="@id/experienceFragmentLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="Add an Experience"
+            android:elevation="0dp"
+            android:src="@drawable/ic_add"
+            app:elevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="NotSibling" />
 
 
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
