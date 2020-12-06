@@ -68,9 +68,15 @@ constructor(private val repository: Repository) : ViewModel() {
     }
 
     fun addExperience(title: String, place: String, from: String, to: String, duration: Long) {
-        val exp = Experience(title, "$duration years", from, to, place)
+        val exp = Experience("", title, "$duration years", from, to, place)
         viewModelScope.launch {
             repository.addExperience(exp)
+        }
+    }
+
+    fun deleteExperienceItem(itemId: String) {
+        viewModelScope.launch {
+            repository.deleteExperienceItem(itemId)
         }
     }
 

@@ -46,6 +46,9 @@ constructor(private val firebase: FirebaseSource) {
     fun addExperience(exp: Experience) =
         firebase.addExperience(exp)
 
+    fun deleteExperienceItem(itemId: String)=
+        firebase.deleteExperienceItem(itemId)
+
     fun fetchPortfolioItems(holder: DataHolder) =
         firebase.fetchPortfolioItems(holder)
 

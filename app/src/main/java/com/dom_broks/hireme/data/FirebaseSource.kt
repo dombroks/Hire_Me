@@ -129,40 +129,6 @@ class FirebaseSource {
 
     fun currentUser() = firebaseAuth.currentUser
 
-    fun getUserExperience(holder: DataHolder) {
-        val experienceData = mutableListOf<Experience>()
-        val ref = firebaseDatabase.getReference("Experience").child(currentUser()!!.uid)
-        ref.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (child in snapshot.children) {
-                        val value = child.getValue(Experience::class.java)
-                        if (!experienceData.contains(value)) {
-                            experienceData.add(value!!)
-                        }
-                    }
-                    holder.hold(Resource.success(experienceData))
-                } else {
-                    holder.hold(Resource.error("No snapshot found", null))
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                holder.hold(
-                    Resource.error(
-                        "Error occurred when getting user experience: ${error.message}",
-                        null
-                    )
-                )
-            }
-        })
-    }
-
-    fun dispose() {
-        // experienceData.clear()
-    }
-
-
     fun getUserData(holder: DataHolder) {
         var user: User?
         val ref = firebaseDatabase.getReference("Users")
@@ -184,9 +150,40 @@ class FirebaseSource {
         })
     }
 
+    fun getUserExperience(holder: DataHolder) {
+        var experienceData : MutableList<Experience>
+        val ref = firebaseDatabase.getReference("Experience").child(currentUser()!!.uid)
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                experienceData = mutableListOf()
+                for (child in snapshot.children) {
+                    val value = child.getValue(Experience::class.java)
+                    experienceData.add(value!!)
+                }
+                holder.hold(Resource.success(experienceData))
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                holder.hold(
+                    Resource.error(
+                        "Error occurred when getting user experience: ${error.message}",
+                        null
+                    )
+                )
+            }
+        })
+    }
+
     fun addExperience(exp: Experience) {
-        firebaseDatabase.getReference("Experience").child(currentUser()?.uid.toString()).push()
-            .setValue(exp.toMap())
+        val ref = firebaseDatabase.getReference("Experience").child(currentUser()?.uid.toString())
+        val key = ref.push().key
+        exp.Id = key.toString()
+        ref.child(key.toString()).setValue(exp.toMap())
+    }
+
+    fun deleteExperienceItem(itemId: String) {
+        val ref = firebaseDatabase.getReference("Experience").child(currentUser()!!.uid)
+        ref.child(itemId).removeValue()
     }
 
     fun fetchPortfolioItems(holder: DataHolder) {

@@ -44,8 +44,11 @@ class ExperienceDataAdapter(private val items: List<Experience>) :
         val duration: TextView = itemView.findViewById(R.id.duration)
         val fromTo: TextView = itemView.findViewById(R.id.from_to)
         val companyImage: ImageView = itemView.findViewById(R.id.companyImage)
+    }
 
-
+    fun getItemIdAt(position: Int): String{
+        val item = items[position]
+        return item.Id.toString()
     }
 
 }
