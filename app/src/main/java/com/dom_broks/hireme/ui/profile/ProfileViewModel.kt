@@ -79,18 +79,17 @@ constructor(private val repository: Repository) : ViewModel() {
             override fun <T : Any> hold(data: T) {
                 _portfolioItems.postValue(data as Resource<List<PortfolioItem>>)
             }
-
         })
     }
 
     fun addPortfolioItem(title: String, image: String) {
-        val item = PortfolioItem("",title, image)
+        val item = PortfolioItem("", title, image)
         viewModelScope.launch {
             repository.addPortfolioItem(item)
         }
     }
 
-    fun deletePortfolioItem(itemId : String){
+    fun deletePortfolioItem(itemId: String) {
         viewModelScope.launch {
             repository.deletePortfolioItem(itemId)
         }

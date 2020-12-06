@@ -23,8 +23,10 @@ import kotlinx.android.synthetic.main.fragment_portfolio.*
 import kotlinx.android.synthetic.main.portfolio_list_item.*
 
 @AndroidEntryPoint
-class PortfolioFragment : Fragment(R.layout.fragment_portfolio),PortfolioDataAdapter.OnItemClickListener {
+class PortfolioFragment : Fragment(R.layout.fragment_portfolio),
+    PortfolioDataAdapter.OnItemClickListener {
     private val viewModel: ProfileViewModel by viewModels()
+    private lateinit var portfolioAdapter: PortfolioDataAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,13 +48,15 @@ class PortfolioFragment : Fragment(R.layout.fragment_portfolio),PortfolioDataAda
     }
 
     private fun initRecyclerView() {
+
         portfolioRv.apply {
             viewModel.portfolioItems.observe(
                 viewLifecycleOwner,
                 Observer {
-                    if (it.status == Status.SUCCESS)
-                        adapter = PortfolioDataAdapter(it.data!!,this@PortfolioFragment)
-                    else {
+                    if (it.status == Status.SUCCESS) {
+                        portfolioAdapter = PortfolioDataAdapter(it.data!!, this@PortfolioFragment)
+                        adapter = portfolioAdapter
+                    } else {
                         Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
                     }
                 })
@@ -62,11 +66,15 @@ class PortfolioFragment : Fragment(R.layout.fragment_portfolio),PortfolioDataAda
     }
 
     override fun onItemClick(position: Int) {
-        Toast.makeText(context,"You have been clicked on the item $position",Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "You have been clicked on the item $position", Toast.LENGTH_LONG)
+            .show()
     }
 
-    override fun onItemDelete(item : PortfolioItem) {
-        Toast.makeText(context,"You have been deleted the item ${item.Title}",Toast.LENGTH_LONG).show()
+    override fun onItemDelete(item: PortfolioItem, position: Int) {
+        Toast.makeText(context, "You have been deleted the item ${item.Title}", Toast.LENGTH_LONG)
+            .show()
+        viewModel.deletePortfolioItem(item.Id.toString())
+        portfolioAdapter.notifyItemRemoved(position)
     }
 
 }

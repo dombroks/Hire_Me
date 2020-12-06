@@ -192,7 +192,7 @@ class FirebaseSource {
     fun fetchPortfolioItems(holder: DataHolder) {
         var listOfItems: MutableList<PortfolioItem>?
         val ref = firebaseDatabase.getReference("Portfolio").child(currentUser()!!.uid)
-        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+        ref.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
                 holder.hold(
                     Resource.error(
