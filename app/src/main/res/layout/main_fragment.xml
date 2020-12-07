@@ -32,6 +32,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/userImage"
             android:layout_width="33dp"
             android:layout_height="33dp"
             android:scaleType="fitXY"

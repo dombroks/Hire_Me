@@ -1,5 +1,6 @@
 package com.dom_broks.hireme.ui.main
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.adapter.JobAdapter
-import com.dom_broks.hireme.adapter.PortfolioDataAdapter
 import com.dom_broks.hireme.ui.profile.ProfileViewModel
 import com.dom_broks.hireme.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_portfolio.*
 import kotlinx.android.synthetic.main.main_fragment.*
 
 @AndroidEntryPoint
@@ -28,7 +29,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     private lateinit var mainAdapter: JobAdapter
     private val mainViewModel: MainViewModel by viewModels()
-    private val viewModel2: ProfileViewModel by viewModels()
+    private val profileViewModel: ProfileViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,9 +39,11 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         mainViewModel.getJobs()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initRecyclerView()
-        viewModel2.getUserData()
+        profileViewModel.getUserData()
+        getImage()
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -59,6 +62,16 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             this.setHasFixedSize(true)
             this.layoutManager = LinearLayoutManager(requireContext())
         }
+
+    }
+
+    private fun getImage() {
+        profileViewModel.userData.observe(viewLifecycleOwner, Observer {
+            val url = it.data?.picture
+            Glide.with(this)
+                .load(url)
+                .into(userImage);
+        })
 
     }
 
