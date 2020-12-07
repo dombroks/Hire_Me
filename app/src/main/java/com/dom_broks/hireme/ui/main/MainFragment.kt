@@ -2,6 +2,8 @@ package com.dom_broks.hireme.ui.main
 
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +46,22 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         initRecyclerView()
         profileViewModel.getUserData()
         getImage()
+        searchView.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                mainAdapter.filter(s.toString())
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+        })
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -74,5 +92,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                 .into(userImage);
         })
     }
+
+
 
 }

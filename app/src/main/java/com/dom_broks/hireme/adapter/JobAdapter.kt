@@ -3,16 +3,21 @@ package com.dom_broks.hireme.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.model.Job
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.collections.ArrayList
 
-class JobAdapter(private val items: List<Job>) :
+class JobAdapter(private var items: List<Job>) :
     RecyclerView.Adapter<JobAdapter.ViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -47,4 +52,17 @@ class JobAdapter(private val items: List<Job>) :
         val experience: TextView = itemView.findViewById(R.id.experience)
         val type: TextView = itemView.findViewById(R.id.type)
     }
+
+    fun filter(text: String) {
+        var filteredList = ArrayList<Job>()
+        for (job in items) {
+            if (job.Title?.toLowerCase()?.contains(text.toLowerCase())!!) {
+                filteredList.add(job)
+            }
+        }
+        items = filteredList
+        notifyDataSetChanged()
+
+    }
+
 }
