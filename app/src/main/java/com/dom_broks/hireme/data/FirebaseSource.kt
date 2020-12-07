@@ -223,6 +223,7 @@ class FirebaseSource {
     }
 
     fun getJobs(holder: DataHolder) {
+        //addJob()
         var listOfItems: MutableList<Job>?
         val ref = firebaseDatabase.getReference("Jobs")
         ref.addValueEventListener(object : ValueEventListener {
@@ -244,5 +245,22 @@ class FirebaseSource {
                 holder.hold(Resource.success(listOfItems))
             }
         })
+    }
+
+    fun addJob() {
+        val job = Job(
+            Id = "",
+            Title = "UI/UX designer",
+            Salary = "$ 80K per year",
+            Image = "https://firebasestorage.googleapis.com/v0/b/hire-me-2568d.appspot.com/o/ExperienceImages%2Ffacebook.jpeg?alt=media&token=cda8e8b2-c5ed-49f1-a452-8c7ddea1ddfa",
+            Location = "West Europe Branch",
+            Experience = "> 2 years",
+            Type = "Full Time",
+            Company = "Facebook"
+        )
+        val ref = firebaseDatabase.getReference("Jobs")
+        val key = ref.push().key
+        job.Id = key
+        ref.child(key.toString()).setValue(job.toMap())
     }
 }
