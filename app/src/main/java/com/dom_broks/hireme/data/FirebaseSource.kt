@@ -224,7 +224,7 @@ class FirebaseSource {
 
     fun getJobs(holder: DataHolder) {
         var listOfItems: MutableList<Job>?
-        val ref = firebaseDatabase.getReference("Job")
+        val ref = firebaseDatabase.getReference("Jobs")
         ref.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
                 holder.hold(

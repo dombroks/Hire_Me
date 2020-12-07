@@ -17,7 +17,7 @@ class MainViewModel @ViewModelInject constructor(private val repository: Reposit
     val jobs get() = _jobs
 
     fun getJobs() = viewModelScope.launch {
-        repository.fetchPortfolioItems(object : DataHolder {
+        repository.getJobs(object : DataHolder {
             override fun <T : Any> hold(data: T) {
                 _jobs.postValue(data as com.dom_broks.hireme.utils.Resource<List<Job>>)
             }
