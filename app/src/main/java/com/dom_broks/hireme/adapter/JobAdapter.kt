@@ -53,13 +53,7 @@ class JobAdapter(private var items: List<Job>) :
         val type: TextView = itemView.findViewById(R.id.type)
     }
 
-    fun filter(text: String) {
-        var filteredList = ArrayList<Job>()
-        for (job in items) {
-            if (job.Title?.toLowerCase()?.contains(text.toLowerCase())!!) {
-                filteredList.add(job)
-            }
-        }
+    fun filter(filteredList: List<Job>) {
         items = filteredList
         notifyDataSetChanged()
 

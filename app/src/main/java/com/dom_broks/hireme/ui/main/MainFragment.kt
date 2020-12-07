@@ -16,10 +16,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.adapter.JobAdapter
+import com.dom_broks.hireme.model.Job
 import com.dom_broks.hireme.ui.profile.ProfileViewModel
 import com.dom_broks.hireme.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.main_fragment.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class MainFragment : Fragment(R.layout.main_fragment) {
@@ -30,6 +33,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     }
 
     private lateinit var mainAdapter: JobAdapter
+    private lateinit var items : List<Job>
     private val mainViewModel: MainViewModel by viewModels()
     private val profileViewModel: ProfileViewModel by viewModels()
 
@@ -46,9 +50,9 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         initRecyclerView()
         profileViewModel.getUserData()
         getImage()
-        searchView.addTextChangedListener(object : TextWatcher{
+        searchView.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                mainAdapter.filter(s.toString())
+                filter(s.toString())
 
             }
 
@@ -65,12 +69,23 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         super.onViewCreated(view, savedInstanceState)
     }
 
+    private fun filter(text: String) {
+        val filteredList = ArrayList<Job>()
+        for (job in items) {
+            if (job.Title?.toLowerCase(Locale.ROOT)?.contains(text.toLowerCase(Locale.ROOT))!!) {
+                filteredList.add(job)
+            }
+        }
+        mainAdapter.filter(filteredList)
+    }
+
     private fun initRecyclerView() {
         jobRv.apply {
             mainViewModel.jobs.observe(
                 viewLifecycleOwner,
                 Observer {
                     if (it.status == Status.SUCCESS) {
+                        items = it.data!!
                         mainAdapter = JobAdapter(it.data!!)
                         adapter = mainAdapter
                     } else {
@@ -92,7 +107,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                 .into(userImage);
         })
     }
-
 
 
 }
