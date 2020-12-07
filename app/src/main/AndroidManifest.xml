@@ -25,7 +25,11 @@
         </activity>
         <activity android:name=".ui.auth.view.Register" />
         <activity android:name=".ui.auth.view.Login" />
-        <activity android:name=".ui.home.MainActivity" />
+        <activity
+            android:name=".ui.home.MainActivity"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
