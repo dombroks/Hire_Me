@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EFEFEC"
     android:orientation="vertical"
     tools:context=".ui.main.MainFragment">
 
@@ -79,12 +80,12 @@
         android:id="@+id/jobRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
         android:paddingBottom="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        tools:listitem="@layout/home_list_item"
-        android:layout_marginBottom="20dp"/>
+        tools:listitem="@layout/home_list_item" />
 
 
 </LinearLayout>
