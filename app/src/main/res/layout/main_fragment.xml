@@ -65,7 +65,8 @@
                     android:layout_height="match_parent"
                     android:background="@color/white"
                     android:hint="Search jobs..."
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    />
 
             </LinearLayout>
 
@@ -78,7 +79,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        tools:listitem="@layout/home_list_item"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
