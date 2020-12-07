@@ -22,7 +22,7 @@
             android:layout_marginRight="8dp"
             android:text="Amazon"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@+id/image"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
@@ -33,7 +33,7 @@
             android:layout_marginBottom="8dp"
             android:text="Full Time"
             android:textColor="@color/colorPrimary"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -45,7 +45,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="12dp"
             android:text="5 - 6 years"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/imageView8"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
@@ -57,7 +57,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="12dp"
             android:text="West Palm Beach Georgia"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/imageView7"
             app:layout_constraintTop_toBottomOf="@+id/salary" />
 
@@ -68,14 +68,14 @@
             android:text="System Adminstrator"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@color/black"
-            android:textSize="15sp"
+            android:textSize="17sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView6"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
             android:layout_marginTop="12dp"
             android:src="@drawable/ic_money"
             app:layout_constraintStart_toStartOf="parent"
@@ -89,14 +89,14 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="12dp"
             android:text="$ 2000 - 3500 per month"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/imageView6"
             app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <ImageView
             android:id="@+id/imageView7"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_marginTop="12dp"
             android:src="@drawable/ic_location"
             app:layout_constraintStart_toStartOf="parent"
@@ -104,8 +104,8 @@
 
         <ImageView
             android:id="@+id/imageView8"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_marginTop="12dp"
             android:src="@drawable/ic_work"
             app:layout_constraintStart_toStartOf="parent"
@@ -124,8 +124,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
             android:layout_marginTop="14dp"
             android:src="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
