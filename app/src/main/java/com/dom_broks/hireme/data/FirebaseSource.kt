@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dom_broks.hireme.model.Experience
+import com.dom_broks.hireme.model.Job
 import com.dom_broks.hireme.model.PortfolioItem
 import com.dom_broks.hireme.model.User
 import com.dom_broks.hireme.utils.Resource
@@ -151,7 +152,7 @@ class FirebaseSource {
     }
 
     fun getUserExperience(holder: DataHolder) {
-        var experienceData : MutableList<Experience>
+        var experienceData: MutableList<Experience>
         val ref = firebaseDatabase.getReference("Experience").child(currentUser()!!.uid)
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -221,5 +222,27 @@ class FirebaseSource {
         ref.child(itemId).removeValue()
     }
 
+    fun getJobs(holder: DataHolder) {
+        var listOfItems: MutableList<Job>?
+        val ref = firebaseDatabase.getReference("Job")
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+                holder.hold(
+                    Resource.error(
+                        "Error occurred when fetching portfolio items: ${error.message} ",
+                        null
+                    )
+                )
+            }
 
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listOfItems = mutableListOf()
+                for (child in snapshot.children) {
+                    val item = child.getValue(Job::class.java)
+                    listOfItems!!.add(item!!)
+                }
+                holder.hold(Resource.success(listOfItems))
+            }
+        })
+    }
 }

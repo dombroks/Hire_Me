@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dom_broks.hireme.R
-import com.dom_broks.hireme.model.Experience
 import com.dom_broks.hireme.model.Job
 
 class JobAdapter(private val items: List<Job>) :
@@ -37,8 +36,6 @@ class JobAdapter(private val items: List<Job>) :
             .load(item.Image.toString())
             .apply(RequestOptions.placeholderOf(R.drawable.button_shape))
             .into(holder.companyImage);
-
-
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -48,9 +45,6 @@ class JobAdapter(private val items: List<Job>) :
         val salary: TextView = itemView.findViewById(R.id.salary)
         val companyImage: ImageView = itemView.findViewById(R.id.image)
         val experience: TextView = itemView.findViewById(R.id.experience)
-        val type : TextView = itemView.findViewById(R.id.type)
+        val type: TextView = itemView.findViewById(R.id.type)
     }
-
-
-
 }

@@ -57,5 +57,8 @@ constructor(private val firebase: FirebaseSource) {
 
     fun deletePortfolioItem(itemId: String)=
         firebase.deletePortfolioItem(itemId)
+
+    fun getJobs(holder: DataHolder) =
+        firebase.getJobs(holder)
 }
 

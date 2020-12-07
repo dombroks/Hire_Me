@@ -1,7 +1,27 @@
 package com.dom_broks.hireme.ui.main
 
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.dom_broks.hireme.data.Repository
+import com.dom_broks.hireme.model.Job
+import com.dom_broks.hireme.utils.DataHolder
+import com.firebase.ui.auth.data.model.Resource
+import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+
+class MainViewModel @ViewModelInject constructor(private val repository: Repository) : ViewModel() {
+
+    private val _jobs = MutableLiveData<Resource<List<Job>>>()
+    private val jobs get() = _jobs
+
+    fun getJobs() = viewModelScope.launch {
+        repository.fetchPortfolioItems(object : DataHolder {
+            override fun <T : Any> hold(data: T) {
+                _jobs.postValue(data as Resource<List<Job>>)
+            }
+        })
+    }
+
 }
