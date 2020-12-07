@@ -45,6 +45,7 @@
             android:layout_width="379dp"
             android:layout_height="40dp"
             android:layout_marginTop="23dp"
+            app:cardBackgroundColor="#EFEFEC"
             app:cardCornerRadius="3dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.466"
@@ -54,6 +55,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#EFEFEC"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -66,7 +68,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/white"
+                    android:background="#EFEFEC"
                     android:hint="Search jobs..."
                     android:textSize="15sp" />
 

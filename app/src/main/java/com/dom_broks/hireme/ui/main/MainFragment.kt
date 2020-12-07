@@ -70,9 +70,9 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             val url = it.data?.picture
             Glide.with(this)
                 .load(url)
+                .circleCrop()
                 .into(userImage);
         })
-
     }
 
 }
