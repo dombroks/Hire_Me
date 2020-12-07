@@ -11,7 +11,7 @@
         android:layout_height="200dp"
         android:background="@color/colorPrimary"
         android:paddingLeft="15dp"
-        android:paddingTop="40dp"
+        android:paddingTop="45dp"
         android:paddingRight="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -22,7 +22,7 @@
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Main"
+            android:text="Home"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -30,8 +30,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
             android:scaleType="fitXY"
             android:src="@drawable/ic_employee"
             app:layout_constraintEnd_toEndOf="parent"
