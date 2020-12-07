@@ -13,13 +13,13 @@ import kotlinx.coroutines.launch
 
 class MainViewModel @ViewModelInject constructor(private val repository: Repository) : ViewModel() {
 
-    private val _jobs = MutableLiveData<Resource<List<Job>>>()
-    private val jobs get() = _jobs
+    private val _jobs = MutableLiveData<com.dom_broks.hireme.utils.Resource<List<Job>>>()
+    val jobs get() = _jobs
 
     fun getJobs() = viewModelScope.launch {
         repository.fetchPortfolioItems(object : DataHolder {
             override fun <T : Any> hold(data: T) {
-                _jobs.postValue(data as Resource<List<Job>>)
+                _jobs.postValue(data as com.dom_broks.hireme.utils.Resource<List<Job>>)
             }
         })
     }
