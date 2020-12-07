@@ -247,7 +247,8 @@ class FirebaseSource {
         })
     }
 
-    fun addJob() {
+    // This function is just for uploading some data to show it in the main fragment
+    private fun addJob() {
         val job = Job(
             Id = "",
             Title = "UI/UX designer",
