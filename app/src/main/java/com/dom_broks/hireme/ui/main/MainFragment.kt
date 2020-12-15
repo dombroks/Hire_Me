@@ -1,5 +1,6 @@
 package com.dom_broks.hireme.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,13 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.adapter.JobAdapter
 import com.dom_broks.hireme.model.Job
+import com.dom_broks.hireme.ui.main.subFragment.JobDetailFragment
 import com.dom_broks.hireme.ui.profile.ProfileViewModel
 import com.dom_broks.hireme.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +27,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
-class MainFragment : Fragment(R.layout.main_fragment),JobAdapter.OnItemClickListner{
+class MainFragment : Fragment(R.layout.main_fragment), JobAdapter.OnItemClickListener {
 
 
     companion object {
@@ -31,7 +35,7 @@ class MainFragment : Fragment(R.layout.main_fragment),JobAdapter.OnItemClickList
     }
 
     private lateinit var mainAdapter: JobAdapter
-    private lateinit var items : List<Job>
+    private lateinit var items: List<Job>
     private val mainViewModel: MainViewModel by viewModels()
     private val profileViewModel: ProfileViewModel by viewModels()
 
@@ -84,7 +88,7 @@ class MainFragment : Fragment(R.layout.main_fragment),JobAdapter.OnItemClickList
                 Observer {
                     if (it.status == Status.SUCCESS) {
                         items = it.data!!
-                        mainAdapter = JobAdapter(it.data!!,this@MainFragment)
+                        mainAdapter = JobAdapter(it.data!!, this@MainFragment)
                         adapter = mainAdapter
                     } else {
                         Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
@@ -107,7 +111,10 @@ class MainFragment : Fragment(R.layout.main_fragment),JobAdapter.OnItemClickList
     }
 
     override fun onItemClick(position: Int) {
-        TODO("Not yet implemented")
+        findNavController().navigate(
+            R.id.jobDetailFragment
+        )
+
     }
 
 

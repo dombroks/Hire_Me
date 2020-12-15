@@ -10,13 +10,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.model.Job
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import java.util.*
-import kotlin.collections.ArrayList
 
-class JobAdapter(private var items: List<Job>, private val listener: OnItemClickListner) :
+class JobAdapter(private var items: List<Job>, private val listener: OnItemClickListener) :
     RecyclerView.Adapter<JobAdapter.ViewHolder>() {
 
 
@@ -64,7 +59,7 @@ class JobAdapter(private var items: List<Job>, private val listener: OnItemClick
         notifyDataSetChanged()
     }
 
-    interface OnItemClickListner {
+    interface OnItemClickListener {
         fun onItemClick(position: Int)
     }
 

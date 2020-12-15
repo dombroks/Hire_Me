@@ -25,4 +25,9 @@
         android:name="com.dom_broks.hireme.ui.profile.ProfileFragment"
         android:label="profile_fragment"
         tools:layout="@layout/profile_fragment" />
+    <fragment
+        android:id="@+id/jobDetailFragment"
+        android:name="com.dom_broks.hireme.ui.main.subFragment.JobDetailFragment"
+        android:label="jobDetailFragment_fragment"
+        tools:layout="@layout/fragment_job_detail_fragement" />
 </navigation>
