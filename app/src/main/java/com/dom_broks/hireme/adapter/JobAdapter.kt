@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -15,7 +16,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
 
-class JobAdapter(private var items: List<Job>) :
+class JobAdapter(private var items: List<Job>, private val listener: OnItemClickListner) :
     RecyclerView.Adapter<JobAdapter.ViewHolder>() {
 
 
@@ -40,10 +41,15 @@ class JobAdapter(private var items: List<Job>) :
         Glide.with(holder.companyImage.context)
             .load(item.Image.toString())
             .apply(RequestOptions.placeholderOf(R.drawable.button_shape))
-            .into(holder.companyImage);
+            .into(holder.companyImage)
+
+        holder.cardView.setOnClickListener {
+            listener.onItemClick(position)
+        }
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val cardView: CardView = itemView.findViewById(R.id.itemLayout)
         val title: TextView = itemView.findViewById(R.id.title)
         val companyName: TextView = itemView.findViewById(R.id.company)
         val location: TextView = itemView.findViewById(R.id.location)
@@ -56,7 +62,10 @@ class JobAdapter(private var items: List<Job>) :
     fun filter(filteredList: List<Job>) {
         items = filteredList
         notifyDataSetChanged()
+    }
 
+    interface OnItemClickListner {
+        fun onItemClick(position: Int)
     }
 
 }

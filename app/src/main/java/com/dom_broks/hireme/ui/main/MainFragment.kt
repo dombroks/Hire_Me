@@ -1,6 +1,5 @@
 package com.dom_broks.hireme.ui.main
 
-import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,7 +12,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.adapter.JobAdapter
 import com.dom_broks.hireme.model.Job
@@ -25,7 +23,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
-class MainFragment : Fragment(R.layout.main_fragment) {
+class MainFragment : Fragment(R.layout.main_fragment),JobAdapter.OnItemClickListner{
 
 
     companion object {
@@ -86,7 +84,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                 Observer {
                     if (it.status == Status.SUCCESS) {
                         items = it.data!!
-                        mainAdapter = JobAdapter(it.data!!)
+                        mainAdapter = JobAdapter(it.data!!,this@MainFragment)
                         adapter = mainAdapter
                     } else {
                         Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
@@ -106,6 +104,10 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                 .circleCrop()
                 .into(userImage);
         })
+    }
+
+    override fun onItemClick(position: Int) {
+        TODO("Not yet implemented")
     }
 
 
