@@ -22,8 +22,8 @@
         android:layout_height="60dp"
         android:layout_marginTop="170dp"
         android:background="@color/white"
-        app:cardCornerRadius="4dp"
         android:elevation="5dp"
+        app:cardCornerRadius="4dp"
         app:cardElevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -69,7 +69,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="384dp"
+        android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
@@ -97,28 +97,34 @@
             android:id="@+id/textView13"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textAlignment="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
             android:text="Facebook company needs a Senior Software Engineer to lead a team with 21 members, It must be 4 years experienced in the field."
+            android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView12"
-            android:gravity="center_horizontal" />
+            tools:ignore="RtlCompat" />
 
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+            app:layout_constraintTop_toBottomOf="@+id/textView13">
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorPrimary" />
+
+        </FrameLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

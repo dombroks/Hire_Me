@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dom_broks.hireme.R
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_map.*
 
 
@@ -38,8 +41,19 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     }
 
     override fun onMapReady(map: GoogleMap?) {
+        val sydney = LatLng(-33.852, 151.211)
+
         map?.let {
             googleMap = it
+            googleMap.apply {
+                this.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+                this.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15f))
+                this.addMarker(
+                    MarkerOptions()
+                        .position(sydney)
+                        .title("Work Location")
+                )
+            }
         }
     }
 }
