@@ -25,7 +25,8 @@ class JobDetailFragment : Fragment(R.layout.fragment_job_detail_fragement) {
         activity?.supportFragmentManager?.beginTransaction()?.replace(
             R.id.map,
             MapFragment.newInstance()
-        )?.commit()
+        )?.addToBackStack(null)
+            ?.commit()
 
         return inflater.inflate(R.layout.fragment_job_detail_fragement, container, false)
     }

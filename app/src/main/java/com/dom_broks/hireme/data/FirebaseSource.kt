@@ -1,9 +1,7 @@
 package com.dom_broks.hireme.data
 
 import android.net.Uri
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+
 import com.dom_broks.hireme.model.Experience
 import com.dom_broks.hireme.model.Job
 import com.dom_broks.hireme.model.PortfolioItem
@@ -251,11 +249,11 @@ class FirebaseSource {
     private fun addJob() {
         val job = Job(
             Id = "",
-            Title = "UI/UX designer",
-            Salary = "$ 80K per year",
+            Title = "Software Architect",
+            Salary = "$ 300K per year",
             Image = "https://firebasestorage.googleapis.com/v0/b/hire-me-2568d.appspot.com/o/ExperienceImages%2Ffacebook.jpeg?alt=media&token=cda8e8b2-c5ed-49f1-a452-8c7ddea1ddfa",
-            Location = "West Europe Branch",
-            Experience = "> 2 years",
+            Location = com.dom_broks.hireme.model.LatLng(52.5200,13.4050),
+            Experience = "> 5 years",
             Type = "Full Time",
             Company = "Facebook"
         )

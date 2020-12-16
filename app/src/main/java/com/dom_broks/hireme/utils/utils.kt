@@ -2,11 +2,13 @@ package com.dom_broks.hireme.utils
 
 import android.content.Context
 import android.content.Intent
+import android.location.Geocoder
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.dom_broks.hireme.ui.auth.view.Login
 import com.dom_broks.hireme.ui.home.MainActivity
 import com.dom_broks.hireme.ui.welcomeScreen.WelcomeScreen
+import com.google.android.gms.maps.model.LatLng
 
 fun Fragment.addChildFragment(fragment: Fragment, frameId: Int) {
     val transaction = childFragmentManager.beginTransaction()
@@ -38,18 +40,24 @@ fun isEmailValid(email: String): Boolean {
 
 fun toMonth(month: Int): String {
     return when (month) {
-        1 ->  "Jan"
-        2 ->  "Feb"
-        3 ->  "Mar"
-        4 ->  "Apr"
-        5 ->  "May"
-        6 ->  "Jun"
-        7 ->  "Jul"
-        8 ->  "Aug"
-        9 ->  "Sep"
-        10 ->  "Oct"
-        11 ->  "Nov"
-        12 ->  "Dec"
-        else ->  "Null"
+        1 -> "Jan"
+        2 -> "Feb"
+        3 -> "Mar"
+        4 -> "Apr"
+        5 -> "May"
+        6 -> "Jun"
+        7 -> "Jul"
+        8 -> "Aug"
+        9 -> "Sep"
+        10 -> "Oct"
+        11 -> "Nov"
+        12 -> "Dec"
+        else -> "Null"
     }
+
 }
+
+fun generateMapCameraLocation(latLng: LatLng): LatLng {
+    return LatLng(latLng.latitude - 30, latLng.longitude - 30)
+}
+

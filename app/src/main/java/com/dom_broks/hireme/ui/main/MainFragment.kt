@@ -1,6 +1,7 @@
 package com.dom_broks.hireme.ui.main
 
 import android.content.Intent
+import android.location.Geocoder
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -88,7 +89,7 @@ class MainFragment : Fragment(R.layout.main_fragment), JobAdapter.OnItemClickLis
                 Observer {
                     if (it.status == Status.SUCCESS) {
                         items = it.data!!
-                        mainAdapter = JobAdapter(it.data!!, this@MainFragment)
+                        mainAdapter = JobAdapter(it.data!!, this@MainFragment,context)
                         adapter = mainAdapter
                     } else {
                         Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
@@ -116,6 +117,7 @@ class MainFragment : Fragment(R.layout.main_fragment), JobAdapter.OnItemClickLis
         )
 
     }
+
 
 
 }

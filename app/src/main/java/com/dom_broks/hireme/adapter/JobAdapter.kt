@@ -1,5 +1,7 @@
 package com.dom_broks.hireme.adapter
 
+import android.content.Context
+import android.location.Geocoder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +13,11 @@ import com.bumptech.glide.request.RequestOptions
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.model.Job
 
-class JobAdapter(private var items: List<Job>, private val listener: OnItemClickListener) :
+class JobAdapter(
+    private var items: List<Job>,
+    private val listener: OnItemClickListener,
+    private var ctx: Context
+) :
     RecyclerView.Adapter<JobAdapter.ViewHolder>() {
 
 
@@ -26,7 +32,8 @@ class JobAdapter(private var items: List<Job>, private val listener: OnItemClick
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         holder.companyName.text = item.Company
-        holder.location.text = item.Location
+        holder.location.text =
+            getLocationNameFromLatLng(item.Location?.latitude!!, item.Location!!.longitude!!)
         holder.salary.text = item.Salary
         holder.title.text = item.Title
         holder.experience.text = item.Experience
@@ -63,4 +70,9 @@ class JobAdapter(private var items: List<Job>, private val listener: OnItemClick
         fun onItemClick(position: Int)
     }
 
+    private fun getLocationNameFromLatLng(lat: Double, lng: Double): String {
+        val geocoder = Geocoder(ctx)
+        val address = geocoder.getFromLocation(lat, lng, 1)[0]
+        return address.getAddressLine(0).toString()
+    }
 }

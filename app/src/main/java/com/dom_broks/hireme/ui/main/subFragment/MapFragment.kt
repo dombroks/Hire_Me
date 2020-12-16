@@ -46,8 +46,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         map?.let {
             googleMap = it
             googleMap.apply {
-                this.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-                this.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15f))
+                this.moveCamera(CameraUpdateFactory.newLatLng(LatLng(-63.852,131.211)))
+                //this.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(-33.100,151.100), 10f))
                 this.addMarker(
                     MarkerOptions()
                         .position(sydney)

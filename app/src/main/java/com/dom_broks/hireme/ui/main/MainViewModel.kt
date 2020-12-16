@@ -1,5 +1,7 @@
 package com.dom_broks.hireme.ui.main
 
+import android.app.Activity
+import android.location.Geocoder
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +10,7 @@ import com.dom_broks.hireme.data.Repository
 import com.dom_broks.hireme.model.Job
 import com.dom_broks.hireme.utils.DataHolder
 import com.firebase.ui.auth.data.model.Resource
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 
 
@@ -23,5 +26,6 @@ class MainViewModel @ViewModelInject constructor(private val repository: Reposit
             }
         })
     }
+
 
 }
