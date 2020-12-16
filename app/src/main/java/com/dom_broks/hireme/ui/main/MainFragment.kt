@@ -106,7 +106,7 @@ class MainFragment : Fragment(R.layout.main_fragment), JobAdapter.OnItemClickLis
             Glide.with(this)
                 .load(url)
                 .circleCrop()
-                .into(userImage);
+                .into(userImage)
         })
     }
 
