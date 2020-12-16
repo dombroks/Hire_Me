@@ -1,6 +1,9 @@
 package com.dom_broks.hireme.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Job
     (
     var Id: String? = null,
@@ -11,7 +14,7 @@ data class Job
     var Company: String? = null,
     var Type: String? = null,
     var Image: String? = null
-) {
+) : Parcelable {
     fun toMap(): HashMap<String, Any> {
         val map = HashMap<String, Any>()
         map["Id"] = this.Id!!

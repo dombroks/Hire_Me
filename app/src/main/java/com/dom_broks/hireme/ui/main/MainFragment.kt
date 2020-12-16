@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
@@ -89,7 +90,7 @@ class MainFragment : Fragment(R.layout.main_fragment), JobAdapter.OnItemClickLis
                 Observer {
                     if (it.status == Status.SUCCESS) {
                         items = it.data!!
-                        mainAdapter = JobAdapter(it.data!!, this@MainFragment,context)
+                        mainAdapter = JobAdapter(it.data!!, this@MainFragment, context)
                         adapter = mainAdapter
                     } else {
                         Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
@@ -112,12 +113,13 @@ class MainFragment : Fragment(R.layout.main_fragment), JobAdapter.OnItemClickLis
     }
 
     override fun onItemClick(position: Int) {
+        val bundle = Bundle()
+        bundle.putParcelable("item",items[position])
         findNavController().navigate(
-            R.id.jobDetailFragment
+            R.id.jobDetailFragment,
+            bundle
         )
-
     }
-
 
 
 }
