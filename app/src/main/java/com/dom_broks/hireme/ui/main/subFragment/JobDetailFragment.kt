@@ -25,6 +25,10 @@ class JobDetailFragment : Fragment(R.layout.fragment_job_detail_fragement) {
         salary.text = item.Salary
         experience.text = item.Experience
 
+
+
+
+
         back_arrow.setOnClickListener {
             findNavController().navigate(
                 R.id.mainFragment
