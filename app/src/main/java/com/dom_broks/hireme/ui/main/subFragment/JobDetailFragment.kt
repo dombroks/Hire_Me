@@ -18,27 +18,26 @@ import kotlinx.android.synthetic.main.fragment_job_detail_fragement.*
 
 
 class JobDetailFragment : Fragment(R.layout.fragment_job_detail_fragement) {
+    private lateinit var item: Job
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val item: Job? = arguments?.get("item") as Job?
-
-        title.text = item?.Title!!.toString()
+        title.text = item.Title!!.toString()
         company.text = item.Company!!.toString()
+        description.text = item.Description
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        item = (arguments?.get("item") as Job?)!!
         activity?.supportFragmentManager?.beginTransaction()?.replace(
             R.id.map,
-            MapFragment.newInstance()
+            MapFragment.newInstance(LatLng(item.Location?.latitude!!, item.Location?.longitude!!))
         )?.addToBackStack(null)
             ?.commit()
-
-
-
         return inflater.inflate(R.layout.fragment_job_detail_fragement, container, false)
     }
 

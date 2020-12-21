@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.model.Job
+import com.dom_broks.hireme.utils.generateMapCameraLocation
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -16,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_job_detail_fragement.*
 import kotlinx.android.synthetic.main.fragment_map.*
 
 
-class MapFragment : Fragment(), OnMapReadyCallback {
+class MapFragment constructor(private val latLng: LatLng) : Fragment(), OnMapReadyCallback {
     private lateinit var googleMap: GoogleMap
 
 
@@ -39,17 +40,17 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     companion object {
         @JvmStatic
-        fun newInstance() =
-            MapFragment()
+        fun newInstance(latLng: LatLng) =
+            MapFragment(latLng)
     }
 
     override fun onMapReady(map: GoogleMap?) {
-        val sydney = LatLng(-33.852, 151.211)
+        val sydney = LatLng(latLng.latitude, latLng.longitude)
 
         map?.let {
             googleMap = it
             googleMap.apply {
-                this.moveCamera(CameraUpdateFactory.newLatLng(LatLng(-63.852, 131.211)))
+                this.moveCamera(CameraUpdateFactory.newLatLng(generateMapCameraLocation(sydney)))
                 //this.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(-33.100,151.100), 10f))
                 this.addMarker(
                     MarkerOptions()

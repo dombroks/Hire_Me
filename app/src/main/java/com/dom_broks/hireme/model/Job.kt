@@ -8,6 +8,7 @@ data class Job
     (
     var Id: String? = null,
     var Title: String? = null,
+    var Description: String? = null,
     var Salary: String? = null,
     var Location: LatLng? = null,
     var Experience: String? = null,
@@ -19,6 +20,7 @@ data class Job
         val map = HashMap<String, Any>()
         map["Id"] = this.Id!!
         map["Title"] = this.Title!!
+        map["Description"] = this.Description!!
         map["Company"] = this.Company!!
         map["Salary"] = this.Salary!!
         map["Type"] = this.Type!!

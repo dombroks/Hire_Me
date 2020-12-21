@@ -252,10 +252,11 @@ class FirebaseSource {
             Title = "Software Architect",
             Salary = "$ 300K per year",
             Image = "https://firebasestorage.googleapis.com/v0/b/hire-me-2568d.appspot.com/o/ExperienceImages%2Ffacebook.jpeg?alt=media&token=cda8e8b2-c5ed-49f1-a452-8c7ddea1ddfa",
-            Location = com.dom_broks.hireme.model.LatLng(52.5200,13.4050),
+            Location = com.dom_broks.hireme.model.LatLng(52.5200, 13.4050),
             Experience = "> 5 years",
             Type = "Full Time",
-            Company = "Facebook"
+            Company = "Facebook",
+            Description = "We are looking for someone who works with REST Api and web services in general"
         )
         val ref = firebaseDatabase.getReference("Jobs")
         val key = ref.push().key
