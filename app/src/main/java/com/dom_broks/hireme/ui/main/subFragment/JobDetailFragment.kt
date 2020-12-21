@@ -1,20 +1,16 @@
 package com.dom_broks.hireme.ui.main.subFragment
 
-import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.model.Job
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapsInitializer
-import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_job_detail_fragement.*
+import kotlinx.android.synthetic.main.main_fragment.*
 
 
 class JobDetailFragment : Fragment(R.layout.fragment_job_detail_fragement) {
@@ -23,9 +19,17 @@ class JobDetailFragment : Fragment(R.layout.fragment_job_detail_fragement) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        title.text = item.Title!!.toString()
-        company.text = item.Company!!.toString()
+        title.text = item.Title!!
+        company.text = item.Company!!
         description.text = item.Description
+        salary.text = item.Salary
+        experience.text = item.Experience
+
+        back_arrow.setOnClickListener {
+            findNavController().navigate(
+                R.id.mainFragment
+            )
+        }
     }
 
     override fun onCreateView(
