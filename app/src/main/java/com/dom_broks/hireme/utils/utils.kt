@@ -58,6 +58,6 @@ fun toMonth(month: Int): String {
 }
 
 fun generateMapCameraLocation(latLng: LatLng): LatLng {
-    return LatLng(latLng.latitude - 30, latLng.longitude - 30)
+    return LatLng(latLng.latitude - 50, latLng.longitude )
 }
 
