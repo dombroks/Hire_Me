@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.dom_broks.hireme.R
-import com.dom_broks.hireme.model.Job
 import com.dom_broks.hireme.utils.generateMapCameraLocation
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -45,19 +45,22 @@ class MapFragment constructor(private val latLng: LatLng) : Fragment(), OnMapRea
     }
 
     override fun onMapReady(map: GoogleMap?) {
-        val sydney = LatLng(latLng.latitude, latLng.longitude)
+        val location = LatLng(latLng.latitude, latLng.longitude)
 
         map?.let {
             googleMap = it
             googleMap.apply {
-                this.moveCamera(CameraUpdateFactory.newLatLng(generateMapCameraLocation(sydney)))
+                this.moveCamera(CameraUpdateFactory.newLatLng(generateMapCameraLocation(location)))
                 //this.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(-33.100,151.100), 10f))
                 this.addMarker(
                     MarkerOptions()
-                        .position(sydney)
+                        .position(location)
                         .title("Work Location")
                 )
+
             }
         }
     }
+
+
 }
