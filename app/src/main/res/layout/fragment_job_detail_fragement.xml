@@ -123,7 +123,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView12"
                 tools:ignore="RtlCompat" />
 
-            <FrameLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/frameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -132,14 +132,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView13">
 
+                <Button
+                    android:id="@+id/expand_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:elevation="4dp"
+                    android:text="Expand"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
                 <fragment
                     android:id="@+id/map"
                     android:name="com.google.android.gms.maps.SupportMapFragment"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:background="@color/lightGrey" />
+                    android:background="@color/lightGrey"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </FrameLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/textView13"

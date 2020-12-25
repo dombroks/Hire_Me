@@ -17,8 +17,8 @@ import kotlinx.android.synthetic.main.fragment_job_detail_fragement.*
 import kotlinx.android.synthetic.main.fragment_map.*
 
 
-class MapFragment constructor(private val latLng: LatLng) : Fragment(), OnMapReadyCallback {
-    private lateinit var googleMap: GoogleMap
+open class MapFragment constructor(val latLng: LatLng) : Fragment(), OnMapReadyCallback {
+    lateinit var googleMap: GoogleMap
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

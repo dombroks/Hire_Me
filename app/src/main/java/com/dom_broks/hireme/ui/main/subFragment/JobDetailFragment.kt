@@ -8,6 +8,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.dom_broks.hireme.ExpandedMapFragment
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.model.Job
 import com.google.android.gms.maps.model.LatLng
@@ -19,12 +20,19 @@ class JobDetailFragment : Fragment(R.layout.fragment_job_detail_fragement) {
     private lateinit var item: Job
 
 
-    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpViews()
 
 
+        // Checkpoint
+        expand_btn.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()?.replace(
+                R.id.mainFragment,
+                ExpandedMapFragment.newInstance(LatLng(item.Location?.latitude!!, item.Location?.longitude!!))
+            )?.addToBackStack(null)
+                ?.commit()
+        }
         back_arrow.setOnClickListener {
             findNavController().navigate(
                 R.id.mainFragment

@@ -9,7 +9,11 @@
         android:id="@+id/mainFragment"
         android:name="com.dom_broks.hireme.ui.main.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_jobDetailFragment"
+            app:destination="@id/jobDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.dom_broks.hireme.ui.chat.ChatFragment"
@@ -29,5 +33,14 @@
         android:id="@+id/jobDetailFragment"
         android:name="com.dom_broks.hireme.ui.main.subFragment.JobDetailFragment"
         android:label="jobDetailFragment_fragment"
-        tools:layout="@layout/fragment_job_detail_fragement" />
+        tools:layout="@layout/fragment_job_detail_fragement" >
+        <action
+            android:id="@+id/action_jobDetailFragment_to_mapFragement"
+            app:destination="@id/expandedMapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/expandedMapFragment"
+        android:name="com.dom_broks.hireme.ExpandedMapFragment"
+        android:label="fragment_map_fragement"
+        tools:layout="@layout/fragment_map_fragement" />
 </navigation>
