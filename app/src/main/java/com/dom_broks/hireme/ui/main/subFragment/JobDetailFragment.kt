@@ -27,11 +27,12 @@ class JobDetailFragment : Fragment(R.layout.fragment_job_detail_fragement) {
 
         // Checkpoint
         expand_btn.setOnClickListener {
-            activity?.supportFragmentManager?.beginTransaction()?.replace(
-                R.id.mainFragment,
-                ExpandedMapFragment.newInstance(LatLng(item.Location?.latitude!!, item.Location?.longitude!!))
-            )?.addToBackStack(null)
-                ?.commit()
+            val bundle = Bundle()
+            bundle.putParcelable("item",item)
+            findNavController().navigate(
+                R.id.expandedMapFragment,
+                bundle
+            )
         }
         back_arrow.setOnClickListener {
             findNavController().navigate(
