@@ -12,6 +12,7 @@ import com.dom_broks.hireme.ExpandedMapFragment
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.model.Job
 import com.google.android.gms.maps.model.LatLng
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_job_detail_fragement.*
 import kotlinx.android.synthetic.main.main_fragment.*
 
@@ -28,7 +29,8 @@ class JobDetailFragment : Fragment(R.layout.fragment_job_detail_fragement) {
         // Checkpoint
         expand_btn.setOnClickListener {
             val bundle = Bundle()
-            bundle.putParcelable("item",item)
+            bundle.putParcelable("item", item)
+
             findNavController().navigate(
                 R.id.expandedMapFragment,
                 bundle

@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.transition.Visibility
+import androidx.transition.VisibilityPropagation
 import com.dom_broks.hireme.model.Job
 
 import com.dom_broks.hireme.utils.generateMapCameraLocation
@@ -13,6 +16,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_map.mapView
 import kotlinx.android.synthetic.main.fragment_map_fragement.*
 
@@ -55,7 +59,6 @@ class ExpandedMapFragment() : Fragment(), OnMapReadyCallback {
             googleMap = it
             googleMap.apply {
                 this.moveCamera(CameraUpdateFactory.newLatLng(location))
-                //this.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(-33.100,151.100), 10f))
                 this.addMarker(
                     MarkerOptions()
                         .position(location)
