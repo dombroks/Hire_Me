@@ -20,17 +20,19 @@ import kotlinx.android.synthetic.main.main_fragment.*
 class JobDetailFragment : Fragment(R.layout.fragment_job_detail_fragement) {
     private lateinit var item: Job
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpViews()
 
 
-        // Checkpoint
+
         expand_btn.setOnClickListener {
             val bundle = Bundle()
             bundle.putParcelable("item", item)
-
             findNavController().navigate(
                 R.id.expandedMapFragment,
                 bundle

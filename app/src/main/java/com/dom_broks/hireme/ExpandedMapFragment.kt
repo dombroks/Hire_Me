@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_map_fragement.*
 
 class ExpandedMapFragment() : Fragment(), OnMapReadyCallback {
     lateinit var googleMap: GoogleMap
-    lateinit var item : Job
+    lateinit var item: Job
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -34,6 +34,17 @@ class ExpandedMapFragment() : Fragment(), OnMapReadyCallback {
 
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        expand_map_back_arrow.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putParcelable("item", item)
+            findNavController().navigate(
+                R.id.jobDetailFragment,
+                bundle
+            )
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +52,6 @@ class ExpandedMapFragment() : Fragment(), OnMapReadyCallback {
     ): View? {
         item = (arguments?.get("item") as Job?)!!
 
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_map_fragement, container, false)
     }
 
@@ -58,8 +68,8 @@ class ExpandedMapFragment() : Fragment(), OnMapReadyCallback {
         map?.let {
             googleMap = it
             googleMap.apply {
-                this.moveCamera(CameraUpdateFactory.newLatLng(location))
-                this.addMarker(
+                moveCamera(CameraUpdateFactory.newLatLng(location))
+                addMarker(
                     MarkerOptions()
                         .position(location)
                         .title("Work Location")
