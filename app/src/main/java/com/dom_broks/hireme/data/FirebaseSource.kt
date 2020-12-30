@@ -20,6 +20,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import io.reactivex.Completable
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
@@ -185,7 +186,7 @@ class FirebaseSource {
         ref.child(itemId).removeValue()
     }
 
-    fun fetchPortfolioItems(holder: DataHolder) {
+    fun getPortfolioItems(holder: DataHolder) {
         var listOfItems: MutableList<PortfolioItem>?
         val ref = firebaseDatabase.getReference("Portfolio").child(currentUser()!!.uid)
         ref.addValueEventListener(object : ValueEventListener {
@@ -220,7 +221,9 @@ class FirebaseSource {
         ref.child(itemId).removeValue()
     }
 
-    fun getJobs(holder: DataHolder) {
+    suspend fun getJobs(holder: DataHolder) {
+        holder.hold(Resource.loading(null))
+        delay(6000L)
         //addJob()
         var listOfItems: MutableList<Job>?
         val ref = firebaseDatabase.getReference("Jobs")

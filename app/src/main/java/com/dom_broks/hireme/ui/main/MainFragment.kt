@@ -1,17 +1,14 @@
 package com.dom_broks.hireme.ui.main
 
-import android.content.Intent
-import android.location.Geocoder
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -20,11 +17,12 @@ import com.bumptech.glide.Glide
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.adapter.JobAdapter
 import com.dom_broks.hireme.model.Job
-import com.dom_broks.hireme.ui.main.subFragment.JobDetailFragment
 import com.dom_broks.hireme.ui.profile.ProfileViewModel
 import com.dom_broks.hireme.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.android.synthetic.main.main_fragment.view.*
+import kotlinx.coroutines.Dispatchers
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -40,6 +38,7 @@ class MainFragment : Fragment(R.layout.main_fragment), JobAdapter.OnItemClickLis
     private lateinit var items: List<Job>
     private val mainViewModel: MainViewModel by viewModels()
     private val profileViewModel: ProfileViewModel by viewModels()
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,6 +50,7 @@ class MainFragment : Fragment(R.layout.main_fragment), JobAdapter.OnItemClickLis
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        progressBar = view.findViewById(R.id.progressBar)
         initRecyclerView()
         profileViewModel.getUserData()
         getImage()
@@ -84,15 +84,21 @@ class MainFragment : Fragment(R.layout.main_fragment), JobAdapter.OnItemClickLis
     }
 
     private fun initRecyclerView() {
+
         jobRv.apply {
             mainViewModel.jobs.observe(
                 viewLifecycleOwner,
                 Observer {
+                    if (it.status == Status.LOADING) {
+                        this@MainFragment.progressBar.visibility = View.VISIBLE
+                    }
                     if (it.status == Status.SUCCESS) {
+                        this@MainFragment.progressBar.visibility = View.GONE
                         items = it.data!!
                         mainAdapter = JobAdapter(it.data!!, this@MainFragment, context)
                         adapter = mainAdapter
-                    } else {
+
+                    } else if (it.status == Status.ERROR) {
                         Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
                     }
                 })
@@ -114,7 +120,7 @@ class MainFragment : Fragment(R.layout.main_fragment), JobAdapter.OnItemClickLis
 
     override fun onItemClick(position: Int) {
         val bundle = Bundle()
-        bundle.putParcelable("item",items[position])
+        bundle.putParcelable("item", items[position])
         findNavController().navigate(
             R.id.jobDetailFragment,
             bundle

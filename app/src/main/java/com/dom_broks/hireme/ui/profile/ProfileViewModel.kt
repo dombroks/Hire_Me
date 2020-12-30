@@ -81,7 +81,7 @@ constructor(private val repository: Repository) : ViewModel() {
     }
 
     fun fetchPortfolioItems() = viewModelScope.launch {
-        repository.fetchPortfolioItems(object : DataHolder {
+        repository.getPortfolioItems(object : DataHolder {
             override fun <T : Any> hold(data: T) {
                 _portfolioItems.postValue(data as Resource<List<PortfolioItem>>)
             }

@@ -49,8 +49,8 @@ constructor(private val firebase: FirebaseSource) {
     fun deleteExperienceItem(itemId: String)=
         firebase.deleteExperienceItem(itemId)
 
-    fun fetchPortfolioItems(holder: DataHolder) =
-        firebase.fetchPortfolioItems(holder)
+    fun getPortfolioItems(holder: DataHolder) =
+        firebase.getPortfolioItems(holder)
 
     fun addPortfolioItem(item: PortfolioItem) =
         firebase.addPortfolioItem(item)
@@ -58,7 +58,7 @@ constructor(private val firebase: FirebaseSource) {
     fun deletePortfolioItem(itemId: String)=
         firebase.deletePortfolioItem(itemId)
 
-    fun getJobs(holder: DataHolder) =
+    suspend fun getJobs(holder: DataHolder) =
         firebase.getJobs(holder)
 }
 
