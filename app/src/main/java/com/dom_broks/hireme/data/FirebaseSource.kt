@@ -151,6 +151,7 @@ class FirebaseSource {
     }
 
     fun getUserExperience(holder: DataHolder) {
+        holder.hold(Resource.loading(null))
         var experienceData: MutableList<Experience>
         val ref = firebaseDatabase.getReference("Experience").child(currentUser()!!.uid)
         ref.addValueEventListener(object : ValueEventListener {
@@ -187,6 +188,7 @@ class FirebaseSource {
     }
 
     fun getPortfolioItems(holder: DataHolder) {
+        holder.hold(Resource.loading(null))
         var listOfItems: MutableList<PortfolioItem>?
         val ref = firebaseDatabase.getReference("Portfolio").child(currentUser()!!.uid)
         ref.addValueEventListener(object : ValueEventListener {
@@ -221,9 +223,8 @@ class FirebaseSource {
         ref.child(itemId).removeValue()
     }
 
-    suspend fun getJobs(holder: DataHolder) {
+    fun getJobs(holder: DataHolder) {
         holder.hold(Resource.loading(null))
-        delay(6000L)
         //addJob()
         var listOfItems: MutableList<Job>?
         val ref = firebaseDatabase.getReference("Jobs")

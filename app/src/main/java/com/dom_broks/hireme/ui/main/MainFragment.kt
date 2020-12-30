@@ -84,7 +84,6 @@ class MainFragment : Fragment(R.layout.main_fragment), JobAdapter.OnItemClickLis
     }
 
     private fun initRecyclerView() {
-
         jobRv.apply {
             mainViewModel.jobs.observe(
                 viewLifecycleOwner,
