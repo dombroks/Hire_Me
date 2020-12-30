@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -23,6 +24,7 @@ import kotlinx.android.synthetic.main.fragment_experience.*
 class ExperienceFragment : Fragment(R.layout.fragment_experience) {
     private val viewModel: ProfileViewModel by viewModels()
     private lateinit var experienceDataAdapter: ExperienceDataAdapter
+    private lateinit var progressBar: ProgressBar
 
 
     private val itemCallback =
@@ -53,6 +55,7 @@ class ExperienceFragment : Fragment(R.layout.fragment_experience) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        progressBar = view.findViewById(R.id.experience_progress_bar)
         initRecyclerView()
         AddExperience.setOnClickListener {
             AddExperienceItemDialog.newInstance()
@@ -67,11 +70,17 @@ class ExperienceFragment : Fragment(R.layout.fragment_experience) {
             viewModel.experienceData.observe(
                 viewLifecycleOwner,
                 Observer {
+                    if (it.status == Status.LOADING) {
+                        this@ExperienceFragment.progressBar.visibility = View.VISIBLE
+                    }
                     if (it.status == Status.SUCCESS) {
+                        this@ExperienceFragment.progressBar.visibility = View.GONE
                         experienceDataAdapter = ExperienceDataAdapter(it.data!!)
                         adapter = experienceDataAdapter
-                    } else
+                    } else if (it.status == Status.ERROR){
                         Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
+                    }
+
                 })
             this.setHasFixedSize(true)
             this.layoutManager = LinearLayoutManager(requireContext())

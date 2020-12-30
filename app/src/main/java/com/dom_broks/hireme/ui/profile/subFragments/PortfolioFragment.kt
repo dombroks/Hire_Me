@@ -1,9 +1,11 @@
 package com.dom_broks.hireme.ui.profile.subFragments
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,12 +19,14 @@ import com.dom_broks.hireme.ui.profile.subFragments.Dialog.AddPortfolioItemDialo
 import com.dom_broks.hireme.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_portfolio.*
+import kotlinx.android.synthetic.main.profile_fragment.*
 
 @AndroidEntryPoint
 class PortfolioFragment : Fragment(R.layout.fragment_portfolio),
     PortfolioDataAdapter.OnItemClickListener {
     private val viewModel: ProfileViewModel by viewModels()
     private lateinit var portfolioAdapter: PortfolioDataAdapter
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +38,7 @@ class PortfolioFragment : Fragment(R.layout.fragment_portfolio),
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        progressBar = view.findViewById(R.id.portfolio_progress_bar)
         initRecyclerView()
 
         addPortfolioItem.setOnClickListener {
@@ -49,10 +54,14 @@ class PortfolioFragment : Fragment(R.layout.fragment_portfolio),
             viewModel.portfolioItems.observe(
                 viewLifecycleOwner,
                 Observer {
+                    if (it.status == Status.LOADING) {
+                            this@PortfolioFragment.progressBar.visibility = View.VISIBLE
+                    }
                     if (it.status == Status.SUCCESS) {
+                        this@PortfolioFragment.progressBar.visibility = View.GONE
                         portfolioAdapter = PortfolioDataAdapter(it.data!!, this@PortfolioFragment)
                         adapter = portfolioAdapter
-                    } else {
+                    } else if (it.status == Status.ERROR) {
                         Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
                     }
                 })
