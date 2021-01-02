@@ -215,18 +215,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/viewex"
                 tools:ignore="RtlCompat" />
 
-            <TextView
-                android:id="@+id/experience2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:gravity="center_horizontal"
-                android:text="Scroll view end"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/experience"
-                tools:ignore="RtlCompat" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
