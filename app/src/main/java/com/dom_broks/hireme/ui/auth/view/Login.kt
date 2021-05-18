@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 
 import android.widget.Toast
@@ -12,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import com.dom_broks.hireme.R
 import com.dom_broks.hireme.data.AuthListener
 import com.dom_broks.hireme.databinding.ActivityLoginBinding
+import com.dom_broks.hireme.databinding.ActivitySignUpBinding
 import com.dom_broks.hireme.ui.auth.viewModel.AuthViewModel
 import com.dom_broks.hireme.utils.startHomeActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -22,15 +24,16 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_login.*
 
 @AndroidEntryPoint
-class Login : AppCompatActivity(), AuthListener{
+class Login : AppCompatActivity(), AuthListener {
 
-   
+
     private val viewModel: AuthViewModel by viewModels()
+
 
 
     //Sign with google
     private lateinit var googleSignInClient: GoogleSignInClient
-    private  val RC_SIGN_IN = 123
+    private val RC_SIGN_IN = 123
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,12 +42,13 @@ class Login : AppCompatActivity(), AuthListener{
 
         val binding: ActivityLoginBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_login)
-       // viewModel = ViewModelProviders.of(this).get(AuthViewModel::class.java)
+
         binding.viewmodel = viewModel
+
 
         viewModel.authListener = this
 
-       google.setOnClickListener(View.OnClickListener { signIn() })
+        google.setOnClickListener(View.OnClickListener { signIn() })
 
         createGoogleSignInRequest()
 
@@ -81,7 +85,7 @@ class Login : AppCompatActivity(), AuthListener{
                 //passing the id token to viewModel login with google function
                 viewModel.loginWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
-                Log.e("Failure","Msg ${e.message}")
+                Log.e("Failure", "Msg ${e.message}")
             }
         }
     }

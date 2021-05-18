@@ -10,14 +10,17 @@ import com.dom_broks.hireme.model.PortfolioItem
 import com.dom_broks.hireme.model.User
 import com.dom_broks.hireme.utils.Resource
 import com.dom_broks.hireme.utils.DataHolder
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")
+@HiltViewModel
 class ProfileViewModel
-@ViewModelInject
+@Inject
 constructor(private val repository: Repository) : ViewModel() {
 
     val userData = MutableLiveData<Resource<User>>()

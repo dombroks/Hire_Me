@@ -5,8 +5,12 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import com.dom_broks.hireme.data.Repository
 import com.dom_broks.hireme.utils.startLoginActivity
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MainActivityViewModel @ViewModelInject constructor(
+
+@HiltViewModel
+class MainActivityViewModel @Inject constructor(
 
     private val repository: Repository
 ) : ViewModel() {

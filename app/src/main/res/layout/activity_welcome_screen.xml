@@ -12,6 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="10dp"
         tools:context=".ui.welcomeScreen.WelcomeScreen">
 
         <Button
@@ -20,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
             android:layout_marginLeft="26dp"
-            android:layout_marginTop="232dp"
+            android:layout_marginTop="152dp"
             android:layout_marginEnd="26dp"
             android:layout_marginRight="26dp"
             android:background="@drawable/button_shape"
@@ -30,7 +31,9 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/white"
             android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -43,7 +46,9 @@
             android:layout_marginEnd="35dp"
             android:layout_marginRight="35dp"
             android:src="@drawable/ic_welcome_page"
+            app:layout_constraintBottom_toTopOf="@+id/textView6"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,7 +60,9 @@
             android:text="Welcome to our community"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/colorPrimary"
+            app:layout_constraintBottom_toTopOf="@+id/textView7"
             app:layout_constraintEnd_toEndOf="@+id/imageView2"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
@@ -67,7 +74,9 @@
             android:gravity="center"
             android:text="Where we connect\n employees and recruiters"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBottom_toTopOf="@+id/getStarted"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 

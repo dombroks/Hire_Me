@@ -13,15 +13,16 @@ import com.dom_broks.hireme.ui.auth.view.Register
 import com.dom_broks.hireme.ui.username.Username
 import com.dom_broks.hireme.utils.isEmailValid
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 
-
+@HiltViewModel
 class AuthViewModel
-@ViewModelInject
+@Inject
 constructor(private val repository: Repository) : ViewModel() {
     var email: String? = null
     var password: String? = null

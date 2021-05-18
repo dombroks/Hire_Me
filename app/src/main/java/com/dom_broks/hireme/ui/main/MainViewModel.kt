@@ -10,11 +10,13 @@ import com.dom_broks.hireme.data.Repository
 import com.dom_broks.hireme.model.Job
 import com.dom_broks.hireme.utils.DataHolder
 import com.firebase.ui.auth.data.model.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-
-class MainViewModel @ViewModelInject constructor(private val repository: Repository) : ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
 
     private val _jobs = MutableLiveData<com.dom_broks.hireme.utils.Resource<List<Job>>>()
     val jobs get() = _jobs

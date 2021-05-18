@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.profile.subFragments.InfoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <TextView
         android:id="@+id/textView10"
