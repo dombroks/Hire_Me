@@ -23,9 +23,9 @@ The Design is made by me (Figma project is available).
 
 ## Screenshots:
 
-![](11.jpg)   ![](12.jpg) 
-![](13.jpg)   ![](14.jpg) 
-![](15.jpg)   ![](16.jpg) 
+![](screenshots/11.jpg)   ![](screenshots/12.jpg) 
+![](screenshots/13.jpg)   ![](screenshots/14.jpg) 
+![](screenshots/15.jpg)   ![](screenshots/16.jpg) 
 
 ## How to Run 
 
