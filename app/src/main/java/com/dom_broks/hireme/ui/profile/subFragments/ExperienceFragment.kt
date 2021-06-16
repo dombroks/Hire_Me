@@ -17,6 +17,7 @@ import com.dom_broks.hireme.adapter.ExperienceDataAdapter
 import com.dom_broks.hireme.ui.profile.ProfileViewModel
 import com.dom_broks.hireme.ui.profile.subFragments.Dialog.AddExperienceItemDialog
 import com.dom_broks.hireme.utils.Status
+import com.dom_broks.hireme.worker.DeleteWorker
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_experience.*
 
@@ -25,6 +26,7 @@ class ExperienceFragment : Fragment(R.layout.fragment_experience) {
     private val viewModel: ProfileViewModel by viewModels()
     private lateinit var experienceDataAdapter: ExperienceDataAdapter
     private lateinit var progressBar: ProgressBar
+    private lateinit var deleteWorker: DeleteWorker
 
 
     private val itemCallback =
@@ -38,9 +40,10 @@ class ExperienceFragment : Fragment(R.layout.fragment_experience) {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
-                viewModel.deleteExperienceItem(experienceDataAdapter.getItemIdAt(position))
-                experienceDataAdapter.notifyItemRemoved(position)
+                deleteWorker.doWork()
+                val position = viewHolder.bindingAdapterPosition
+                //viewModel.deleteExperienceItem(experienceDataAdapter.getItemIdAt(position))
+               // experienceDataAdapter.notifyItemRemoved(position)
             }
         }
 
