@@ -3,8 +3,7 @@
 
 ## Project Description
 
-This project is created in order to help people whether the are searching for a job or seaching for an emplyee. For example, recuiters in companies can open an
-account in this app and post some announcement for their offers or they can directly search for someone who has the requirements that make him eligible to apply to this job. The app is still underconstruction and i will add new features everytime.
+This project is created in order to help people whether they are searching for a job or searching for an employee. For example, recruiters in companies can open an account in this app and post some announcement for their offers or they can directly search for someone who has the requirements that make him eligible to apply to this job. . The app is still underconstruction and i will add new features everytime.
 
 The Design is made by me (Figma project is available).
 
