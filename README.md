@@ -28,7 +28,7 @@ The Design is made by me (Figma project is available).
 
 ## How to Run 
 
-For getting more understanding, you can donwload the project and upload it to your android studio.
+For getting more understanding, you can donwload the project and upload it to your android studio and run it.
 
 ## Notes 
 
