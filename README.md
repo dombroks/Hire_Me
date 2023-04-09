@@ -3,7 +3,7 @@
 
 ## Project Description
 
-This project is created in order to help people whether they are searching for a job or searching for an employee. For example, recruiters in companies can open an account in this app and post some announcement for their offers or they can directly search for someone who has the requirements that make him eligible to apply to this job. . The app is still underconstruction and i will add new features everytime.
+Jober is an Android app designed for tech professionals looking for employment. Users can create profiles, upload work experience and portfolios. Employers can search for candidates, view their profiles and contact them directly through the app. Employers can also post job offers, including job descriptions, work type (remote, in-office or hybrid) and office location on a map view. The app also provides a feature where users can share a link to their CV.
 
 The Design is made by me (Figma project is available).
 
