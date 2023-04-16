@@ -21,10 +21,15 @@ The Design is made by me (Figma project is available).
 - And More...
 
 ## Screenshots:
+| <img src="screenshots/11.jpg" width="200"/> | <img src="screenshots/12.jpg" width="200"/> | <img src="screenshots/13.jpg" width="200"/> | 
+|:---:|:---:|:---:|
+|Entry|Splash|Welcome|
 
-![](screenshots/11.jpg)   ![](screenshots/12.jpg) 
-![](screenshots/13.jpg)   ![](screenshots/14.jpg) 
-![](screenshots/15.jpg)   ![](screenshots/16.jpg) 
+
+| <img src="screenshots/14.jpg" width="200"/> | <img src="screenshots/15.jpg" width="200"/> | <img src="screenshots/16.jpg" width="200"/> | 
+|:---:|:---:|:---:|
+|Login|Profile|Messages|
+
 
 ## How to Run 
 
