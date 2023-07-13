@@ -43,6 +43,4 @@ For getting more understanding, you can donwload the project and upload it to yo
 
 ## Contact
 
-This is my email : tinoutech@gmail.com
-
 This is my LinkedIn account : https://www.linkedin.com/in/younes-belouche-641bb3197/
